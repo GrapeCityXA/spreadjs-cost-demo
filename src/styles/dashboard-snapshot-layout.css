@@ -1,0 +1,94 @@
+/* Only the version snapshot dialog: other dashboard overlays keep their layout. */
+html body .el-dialog.dashboard-dialog.snapshot-dialog {
+  display: flex;
+  flex-direction: column;
+  width: min(1440px, calc(100vw - 48px)) !important;
+  max-height: calc(100vh - 48px);
+  max-height: calc(100dvh - 48px);
+  margin: 24px auto !important;
+  padding: 0;
+  overflow: hidden;
+}
+.snapshot-dialog .el-dialog__header {
+  flex: none;
+  margin: 0;
+  padding: 16px 64px 16px 20px;
+  border-bottom: 1px solid var(--el-border-color-lighter);
+}
+.snapshot-dialog .el-dialog__title { font-size: 20px; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
+.snapshot-dialog .el-dialog__headerbtn { top: 8px; right: 8px; width: 44px; height: 44px; }
+.snapshot-dialog .el-dialog__body {
+  min-width: 0;
+  min-height: 0;
+  padding: 16px 20px max(20px, env(safe-area-inset-bottom));
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: #8e9ba8 #f4ecef;
+}
+.snapshot-dialog .snapshot-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; margin-bottom: 12px; font-size: 14px; line-height: 1.6; font-variant-numeric: tabular-nums; }
+.snapshot-dialog .snapshot-meta > strong { font-size: 16px; }
+.snapshot-dialog .snapshot-meta > span:not(.el-tag) { color: var(--el-text-color-regular); }
+.snapshot-dialog .snapshot-meta .el-tag { height: auto; min-height: 24px; padding-block: 2px; white-space: normal; line-height: 1.5; }
+.snapshot-dialog .snapshot-meta .el-tag--success { --el-tag-text-color: #3b6f29; }
+.snapshot-dialog .snapshot-meta .el-tag--info { --el-tag-text-color: var(--el-text-color-regular); }
+.snapshot-dialog .snapshot-tabs { min-width: 0; overflow: visible; }
+.snapshot-dialog .snapshot-tabs > .el-tabs__header {
+  position: sticky;
+  top: -16px;
+  z-index: 4;
+  margin: 0;
+  padding-top: 4px;
+  background: var(--el-bg-color, #fff);
+}
+.snapshot-dialog .snapshot-tabs > .el-tabs__content { overflow: visible; padding-top: 16px; }
+.snapshot-dialog .snapshot-tabs .el-tabs__item { min-height: 44px; }
+.snapshot-dialog .snapshot-tabs .el-tab-pane > p { margin: 0 0 12px; font-size: 14px; line-height: 1.6; }
+.snapshot-dialog .snapshot-tabs .el-tab-pane > h3 { margin: 24px 0 8px; font-size: 16px; line-height: 1.5; }
+.snapshot-dialog .function-list { display: grid; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--el-border-color-lighter); font-size: 14px; line-height: 1.6; }
+.snapshot-dialog .function-list small { font-size: 14px; color: var(--el-text-color-secondary); }
+.snapshot-dialog .snapshot-value { font-variant-numeric: tabular-nums; }
+.snapshot-dialog .app-column-control.active { border: 1px solid #c77aa5; }
+.snapshot-dialog .app-column-control:active { background: #f8ebf3; }
+/* Remove the touch-only two-row header without shrinking its hit areas. */
+html body .dashboard-dialog.snapshot-dialog .app-data-table th.el-table__cell { padding-block: 4px; font-size: 14px; vertical-align: middle; }
+html body .dashboard-dialog.snapshot-dialog .app-data-table th .cell {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  min-width: max-content;
+  padding-inline: 12px;
+}
+.snapshot-dialog .app-data-table .app-column-heading { display: contents; }
+.snapshot-dialog .app-data-table .app-column-label { flex: 0 0 auto; padding: 0; white-space: nowrap; overflow-wrap: normal; line-height: 24px; }
+html body .snapshot-dialog .app-data-table :is(.app-column-control, .el-table__column-filter-trigger) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+}
+html body .snapshot-dialog .app-data-table :is(button.app-column-control, .el-table__column-filter-trigger):focus-visible {
+  outline: 2px solid var(--el-color-primary);
+  outline-offset: -2px;
+}
+.snapshot-dialog .el-dialog__headerbtn:focus-visible { outline: 2px solid var(--el-color-primary); outline-offset: -4px; }
+.snapshot-dialog:has(.el-tab-pane:not([aria-hidden="true"]) .el-table--scrollable-x) .dashboard-table-hint { display: block; }
+
+@media (max-width: 767px) {
+  html body .el-dialog.dashboard-dialog.snapshot-dialog {
+    width: calc(100vw - 16px) !important;
+    max-height: calc(100vh - 16px);
+    max-height: calc(100dvh - 16px);
+    margin: 8px auto !important;
+  }
+  .snapshot-dialog .el-dialog__header { padding: 12px 56px 12px 12px; }
+  .snapshot-dialog .el-dialog__body { padding-inline: max(12px, env(safe-area-inset-left)) max(12px, env(safe-area-inset-right)); padding-top: 12px; }
+  .snapshot-dialog .snapshot-tabs > .el-tabs__header { top: -12px; }
+  .snapshot-dialog .snapshot-tabs .el-tab-pane > p { font-size: 16px; }
+}
+@media (max-height: 500px) {
+  html body .el-dialog.dashboard-dialog.snapshot-dialog { max-height: calc(100vh - 16px); max-height: calc(100dvh - 16px); margin-block: 8px !important; }
+  .snapshot-dialog .el-dialog__header { padding-block: 8px; }
+}

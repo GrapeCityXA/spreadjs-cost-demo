@@ -1,0 +1,151 @@
+/* Query the workspace after navigation and padding, then the detail after its task rail. */
+.portal-layout .portal-content > .quarterly-review.portal-workbench {
+  container: quarterly-workspace / inline-size;
+  max-width: none;
+  padding: 24px;
+}
+
+.quarterly-review .masthead { align-items: flex-start; gap: 16px; }
+.quarterly-review .masthead > div { min-width: 0; }
+.quarterly-review .masthead > .el-button { flex: 0 0 auto; margin: 0; }
+.quarterly-review .subhead { line-height: 1.6; overflow-wrap: anywhere; }
+.quarterly-review .workbench-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; padding-top: 16px; align-items: start; }
+.portal-content .quarterly-review .task-rail { position: static; max-height: none; overflow: visible; padding: 12px; }
+.quarterly-review .rail-heading { margin-bottom: 12px; }
+.quarterly-review .task-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 8px; max-height: 224px; overflow-y: auto; padding: 2px; }
+.quarterly-review .task-card { margin: 0; padding: 12px; min-width: 0; align-content: start; gap: 8px; }
+.quarterly-review .task-card-top { gap: 8px; flex-wrap: wrap; }
+.quarterly-review .review-content { container: quarterly-detail / inline-size; min-width: 0; }
+.quarterly-review .briefing { padding: 16px; margin-bottom: 16px; }
+.quarterly-review .briefing-title, .quarterly-review .panel-heading { align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+.quarterly-review .briefing-title > div, .quarterly-review .panel-heading > div { min-width: 0; flex: 1 1 160px; }
+.quarterly-review .briefing-title h2, .quarterly-review .panel-heading h3 { overflow-wrap: anywhere; }
+.quarterly-review .briefing-context { margin: 6px 0 0; color: var(--portal-muted); font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+.quarterly-review .briefing-meta { gap: 8px 16px; margin-top: 12px; }
+.quarterly-review .briefing-meta > span { min-width: 0; overflow-wrap: anywhere; }
+.quarterly-review .snapshot-note { padding: 8px 12px; line-height: 1.6; }
+.quarterly-review .panel { padding: 16px; margin-bottom: 16px; }
+.quarterly-review .panel-heading { margin-bottom: 12px; }
+.quarterly-review .dependency-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 144px), 1fr)); gap: 8px; }
+.quarterly-review .dependency-grid span { min-width: 0; padding: 12px; overflow-wrap: anywhere; }
+.quarterly-review .dependency-grid b { font-variant-numeric: tabular-nums; }
+.quarterly-review .dependency-panel > small { line-height: 1.6; overflow-wrap: anywhere; }
+.quarterly-review .review-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.quarterly-review .review-layout > .panel { margin-bottom: 0; }
+.quarterly-review .workbook-panel { position: static; min-width: 0; }
+.quarterly-review .workbook-surface { width: 100%; height: clamp(240px, 46svh, 480px); min-height: 0; }
+.quarterly-review .workbook-surface.hidden { height: 0; min-height: 0; }
+.quarterly-review .scoring-column { display: grid; gap: 16px; min-width: 0; }
+.quarterly-review .scoring-column > .panel { min-width: 0; margin: 0; }
+.quarterly-review .indicator-card { padding: 16px 0; }
+.quarterly-review .indicator-card:first-of-type { padding-top: 4px; }
+.quarterly-review .indicator-card:last-child { padding-bottom: 0; }
+.quarterly-review .indicator-title { align-items: flex-start; gap: 12px; }
+.quarterly-review .indicator-title > div { flex: 1; min-width: 0; gap: 4px; }
+.quarterly-review .indicator-title b { font-size: 14px; line-height: 1.6; }
+.quarterly-review .indicator-title small { overflow-wrap: anywhere; }
+.quarterly-review :deep(.el-tag) { flex-shrink: 0; }
+.quarterly-review .indicator-meta { gap: 8px 12px; line-height: 1.6; }
+.quarterly-review .review-label { margin: 12px 0 4px; }
+.quarterly-review .review-help { margin: 12px 0 8px; color: var(--portal-muted); font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+.quarterly-review .button-row { gap: 8px; margin-top: 12px; }
+.quarterly-review .button-row > .el-button + .el-button { margin-left: 0; }
+.quarterly-review .score-row { flex-wrap: wrap; gap: 8px; margin-top: 0; }
+.quarterly-review .score-row :deep(.el-input-number) { width: auto; min-width: 0; flex: 1 1 128px; }
+.quarterly-review .score-row > .el-button { margin: 0; }
+.quarterly-review .indicator-card :deep(.el-date-editor) { width: 100%; min-width: 0; }
+.quarterly-review .adjustment-form { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.quarterly-review .adjustment-field { min-width: 0; }
+.quarterly-review .adjustment-field .review-label { margin-top: 0; }
+.quarterly-review .adjustment-field :deep(.el-select), .quarterly-review .adjustment-field :deep(.el-input-number) { width: 100%; min-width: 0; }
+.quarterly-review .adjustment-reason, .quarterly-review .adjustment-submit { grid-column: 1 / -1; }
+.quarterly-review .adjustment-submit { justify-self: start; margin: 0; }
+.quarterly-review .adjustment-form + .adjustment-item { margin-top: 12px; }
+.quarterly-review .anomaly-item > div:first-child, .quarterly-review .adjustment-item > div:first-child { flex-wrap: wrap; gap: 8px; }
+.quarterly-review .anomaly-item b, .quarterly-review .anomaly-item p, .quarterly-review .adjustment-item p, .quarterly-review .adjustment-item small { overflow-wrap: anywhere; }
+.quarterly-review .evidence-link { gap: 12px; min-height: 44px; }
+.quarterly-review .artifact-download { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 44px; padding: 8px 0; text-align: start; overflow-wrap: anywhere; color: var(--portal-focus); background: transparent; border: 0; border-bottom: 1px solid var(--portal-line); cursor: pointer; }
+.quarterly-review .rank-list > div { grid-template-columns: 24px minmax(0, 1fr) minmax(64px, max-content); gap: 8px; }
+.quarterly-review .rank-list > div > span { min-width: 0; overflow-wrap: anywhere; }
+.quarterly-review .rank-list small { display: block; margin-top: 4px; }
+.quarterly-review .rank-list strong { font-variant-numeric: tabular-nums; }
+.quarterly-review .rank-list h4 { margin: 0 0 8px; color: var(--portal-ink); font-size: 14px; line-height: 1.5; font-weight: 600; }
+.quarterly-review .finalize-button { height: auto; min-height: 44px; white-space: normal; line-height: 1.5; padding: 8px 12px; }
+.quarterly-review .welcome-panel { min-height: 220px; padding: 24px; }
+.quarterly-review .welcome-panel p { max-width: 50ch; line-height: 1.6; margin: 8px 0; overflow-wrap: anywhere; }
+.quarterly-review .review-notice > .el-button { flex-shrink: 0; margin: 0; }
+
+/* Keep the review controls consistent with the monthly review workbench. */
+.quarterly-review .button-row > .el-button, .quarterly-review .score-row > .el-button,
+.quarterly-review .adjustment-submit { min-height: 32px; font-size: 12px; }
+.quarterly-review .score-total > b { font-variant-numeric: tabular-nums; }
+.quarterly-review .score-total small { line-height: 1.6; overflow-wrap: anywhere; }
+.quarterly-review .task-card:not(:disabled):hover { border-color: var(--portal-focus); }
+.quarterly-review .evidence-link:hover, .quarterly-review .artifact-download:hover { color: var(--portal-focus); background: var(--portal-paper); }
+.quarterly-review .evidence-link :deep(.el-icon), .quarterly-review .artifact-download :deep(.el-icon) { flex: 0 0 16px; font-size: 16px; color: var(--portal-focus); }
+.quarterly-review .task-list { scrollbar-width: thin; scrollbar-color: var(--portal-line) transparent; scrollbar-gutter: stable; }
+.quarterly-review :deep(.el-textarea__inner) { resize: vertical; line-height: 1.6; }
+.quarterly-review :deep(.el-input__inner), .quarterly-review :deep(.el-textarea__inner) { caret-color: var(--portal-focus); }
+.quarterly-review :deep(.el-input__inner::placeholder), .quarterly-review :deep(.el-textarea__inner::placeholder) { color: #73767a; }
+.quarterly-review :deep(.el-button:focus-visible) { outline: 2px solid var(--portal-focus); outline-offset: 2px; }
+.quarterly-review :deep(.el-button--primary) { --el-button-bg-color: var(--portal-focus); --el-button-border-color: var(--portal-focus); --el-button-hover-bg-color: #7a1454; --el-button-hover-border-color: #7a1454; --el-button-active-bg-color: #6f114b; --el-button-active-border-color: #6f114b; }
+.quarterly-review :deep(.el-tag--success) { --el-tag-text-color: #236449; }
+.quarterly-review :deep(.el-tag--warning) { --el-tag-text-color: #87531e; }
+.quarterly-review :deep(.el-tag--danger) { --el-tag-text-color: #b42318; }
+.quarterly-review :deep(.el-tag--info) { --el-tag-text-color: var(--portal-muted); }
+.quarterly-review :deep(.el-button--success:not(.is-disabled)) { --el-button-text-color: #fff; --el-button-bg-color: #236449; --el-button-border-color: #236449; --el-button-hover-bg-color: #1c513b; --el-button-hover-border-color: #1c513b; --el-button-active-bg-color: #174430; --el-button-active-border-color: #174430; }
+.quarterly-review :deep(.el-button--success.is-plain:not(.is-disabled)) { --el-button-text-color: #236449; --el-button-bg-color: #f0f9eb; --el-button-border-color: #a7c4b4; }
+.quarterly-review :deep(.el-button--warning:not(.is-disabled)) { --el-button-text-color: #fff; --el-button-bg-color: #87531e; --el-button-border-color: #87531e; --el-button-hover-bg-color: #714518; --el-button-hover-border-color: #714518; --el-button-active-bg-color: #603b15; --el-button-active-border-color: #603b15; }
+.quarterly-review :deep(.el-button--danger.is-plain:not(.is-disabled)) { --el-button-text-color: #b42318; --el-button-border-color: #e8b4ae; --el-button-hover-bg-color: #a32118; --el-button-hover-border-color: #a32118; --el-button-active-bg-color: #8e1c14; --el-button-active-border-color: #8e1c14; }
+.quarterly-review ::selection { background: #f0c6dd; color: #4b0b31; }
+
+@container quarterly-workspace (min-width: 760px) {
+  .quarterly-review .workbench-grid:not(.without-queue) { grid-template-columns: 220px minmax(0, 1fr); }
+  .portal-content .quarterly-review .task-rail { position: sticky; top: 16px; }
+  .quarterly-review .task-list { grid-template-columns: minmax(0, 1fr); max-height: calc(100dvh - 240px); }
+}
+
+/* Leave room for both a usable workbook and a complete review form. */
+@container quarterly-detail (min-width: 820px) {
+  .quarterly-review .review-layout { grid-template-columns: minmax(0, 1fr) minmax(340px, 420px); }
+  .quarterly-review .workbook-panel { position: sticky; top: 16px; }
+  .quarterly-review .workbook-surface:not(.hidden) { height: clamp(360px, 68svh, 760px); }
+}
+
+@container quarterly-detail (max-width: 340px) {
+  .quarterly-review .adjustment-form { grid-template-columns: minmax(0, 1fr); }
+  .quarterly-review .score-row > .el-button { flex: 1 1 100%; }
+  .quarterly-review .button-row > .el-button { flex: 1 1 auto; }
+  .quarterly-review .rank-list > div { grid-template-columns: 20px minmax(0, 1fr) auto; }
+}
+
+@media (max-width: 600px) {
+  .portal-layout .portal-content > .quarterly-review.portal-workbench { padding: 16px; }
+  .quarterly-review .masthead { flex-direction: row; align-items: flex-start; gap: 12px; }
+  .quarterly-review .briefing, .quarterly-review .panel { padding: 12px; }
+  .quarterly-review .task-list { max-height: 192px; }
+  .quarterly-review .welcome-panel { min-height: 180px; padding: 20px; }
+}
+
+@media (max-width: 600px), (any-pointer: coarse) {
+  .quarterly-review :deep(.el-button), .quarterly-review .button-row > .el-button, .quarterly-review .score-row > .el-button, .quarterly-review .adjustment-submit { height: auto; min-height: 44px; white-space: normal; line-height: 1.5; }
+  .quarterly-review :deep(.el-input__wrapper), .quarterly-review :deep(.el-select__wrapper) { min-height: 44px; }
+  .quarterly-review :deep(.el-input), .quarterly-review :deep(.el-input-number), .quarterly-review :deep(.el-date-editor) { --el-component-size: 44px; height: 44px; }
+  .quarterly-review :deep(.el-input__inner), .quarterly-review :deep(.el-textarea__inner), .quarterly-review :deep(.el-select__selected-item) { font-size: 16px; }
+  /* Native numeric entry avoids the stacked half-height stepper targets. */
+  .quarterly-review :deep(.el-input-number__increase), .quarterly-review :deep(.el-input-number__decrease) { display: none; }
+  .quarterly-review :deep(.el-input-number .el-input__wrapper) { padding-inline: 12px; }
+}
+
+@media (max-height: 600px), (any-pointer: coarse) {
+  .portal-content .quarterly-review .task-rail, .quarterly-review .workbook-panel { position: static; }
+}
+
+@media (max-height: 600px) {
+  .quarterly-review .task-list { max-height: 192px; }
+}
+
+/* The date panel is teleported outside the workbench. Scope it by its own class. */
+:global(.quarterly-review-date-popper) { max-width: calc(100vw - 24px); }
+:global(.quarterly-review-date-popper .el-date-picker) { width: min(322px, calc(100vw - 26px)); }
+:global(.quarterly-review-date-popper .el-picker-panel__content) { width: auto; margin-inline: 12px; }

@@ -1,0 +1,54 @@
+/* Inter Latin subset, self-hosted so local preview and the subpath build behave
+   the same as production. Chinese falls back to the platform UI fonts. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/Inter-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../assets/fonts/Inter-SemiBold.woff2') format('woff2');
+}
+
+:root {
+  --font-sans:
+    "Inter",
+    "Microsoft YaHei",
+    "微软雅黑",
+
+    -apple-system,
+    BlinkMacSystemFont,
+    "Noto Sans",
+    "Liberation Sans",
+
+    "PingFang SC",
+    "Hiragino Sans GB",
+
+    "Noto Sans CJK SC",
+    "Noto Sans SC",
+    "WenQuanYi Micro Hei",
+
+    system-ui,
+    sans-serif;
+
+  --el-font-family: var(--font-sans);
+}
+
+html,
+body {
+  font-family: var(--font-sans);
+  font-optical-sizing: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}

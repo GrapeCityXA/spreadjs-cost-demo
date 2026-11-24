@@ -1,0 +1,421 @@
+<title>业务流程走一遍</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #eef0eb;
+    --sheet: #fcfcfa;
+    --ink: #18201d;
+    --muted: #5c6a62;
+    --faint: #8b978f;
+    --line: #d9dfd9;
+    --line-strong: #bcc6be;
+    --accent: #146356;
+    --accent-soft: #e4efea;
+    --warn: #9a5a12;
+    --warn-soft: #f6ecd9;
+    --shadow: 0 1px 2px rgba(24,32,29,.05), 0 12px 32px rgba(24,32,29,.06);
+    --sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --display: Archivo, "Noto Sans SC", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  button, input, textarea { font: inherit; color: inherit; }
+  .page { max-width: 960px; margin: 0 auto; padding: 24px 20px 80px; }
+
+  .toolbar { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--ground) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); margin: 0 -20px 20px; padding: 12px 20px; }
+  .toolbar-top { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .brand b { font-family: var(--display); font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+  .brand span { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-left: 8px; }
+  .progress { flex: 1 1 200px; min-width: 150px; display: flex; align-items: center; gap: 10px; }
+  .bar { flex: 1; height: 5px; background: var(--line); border-radius: 3px; overflow: hidden; }
+  .bar > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .2s ease; }
+  .count { font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .count b { color: var(--ink); font-weight: 500; }
+  .action { border: 1px solid var(--line-strong); background: var(--sheet); border-radius: 7px; padding: 6px 11px; font-size: 12px; color: var(--muted); cursor: pointer; }
+  .action:hover { color: var(--ink); border-color: var(--faint); }
+  .action.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .action.primary:hover { background: #0f4f45; }
+  .action:focus-visible, .step input:focus-visible, textarea:focus-visible, .meta input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .toolbar-toggle {
+    flex: none;
+    border: 1px solid var(--line-strong);
+    background: var(--sheet);
+    border-radius: 6px;
+    padding: 4px 9px;
+    font-size: 11.5px;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .toolbar-toggle:hover { color: var(--ink); border-color: var(--faint); }
+  .toolbar-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .toolbar.collapsed { padding-top: 6px; padding-bottom: 6px; margin-bottom: 14px; }
+  .toolbar.collapsed .brand,
+  .toolbar.collapsed .action,
+  .toolbar.collapsed .meta { display: none; }
+  .toolbar.collapsed .toolbar-top { gap: 10px; }
+  .toolbar.collapsed .progress { flex: 1; }
+  .meta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+  .meta label { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--faint); }
+  .meta input { border: 1px solid var(--line); background: var(--sheet); border-radius: 5px; padding: 4px 8px; min-width: 140px; font-size: 12px; }
+  .save-state { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--faint); align-self: center; }
+
+  .sheet { background: var(--sheet); border: 1px solid var(--line); box-shadow: var(--shadow); padding: 34px 38px 40px; }
+  .masthead { border-bottom: 2px solid var(--ink); padding-bottom: 18px; }
+  .eyebrow { margin: 0 0 8px; font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+  h1 { margin: 0; font-family: var(--display); font-size: clamp(26px, 3.4vw, 34px); line-height: 1.15; letter-spacing: -.015em; }
+  .lede { margin: 10px 0 0; max-width: 64ch; color: var(--muted); }
+  .route { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 18px; font-size: 12px; color: var(--muted); }
+  .route span { padding: 2px 8px; border: 1px solid var(--line); background: #fff; border-radius: 3px; }
+  .route i { color: var(--line-strong); font-style: normal; }
+  .notice { margin: 14px 0 0; padding: 9px 12px; border: 1px solid #e3cfae; background: #fdf9f1; border-radius: 5px; color: #6b5a1f; font-size: 12.5px; }
+
+  .stage { margin-top: 32px; }
+  .stage-head { display: flex; align-items: baseline; gap: 12px; border-top: 1px solid var(--line-strong); padding-top: 12px; }
+  .stage-no { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: .08em; }
+  h2 { margin: 0; font-family: var(--display); font-size: 19px; font-weight: 600; letter-spacing: -.005em; }
+  .current-tag { margin-left: auto; font-size: 10px; font-family: var(--mono); letter-spacing: .06em; color: var(--warn); background: var(--warn-soft); padding: 1px 7px; border-radius: 3px; }
+  .stage-intro { margin: 10px 0 4px; padding: 10px 14px; background: #f5f8f4; border-left: 3px solid #bcd4c9; color: var(--muted); font-size: 13px; }
+  .stage-intro b { color: var(--ink); font-weight: 500; }
+
+  .steps { margin-top: 6px; }
+  .step { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+  .steps .step:first-child { border-top: 0; }
+  .step > input[type="checkbox"] { appearance: none; width: 18px; height: 18px; margin: 3px 0 0; border: 1.5px solid var(--line-strong); border-radius: 4px; background: #fff; display: grid; place-content: center; cursor: pointer; }
+  .step > input[type="checkbox"]:checked { background: var(--accent); border-color: var(--accent); }
+  .step > input[type="checkbox"]:checked::after { content: ""; width: 9px; height: 5px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: translateY(-1px) rotate(-45deg); }
+  .step-body { min-width: 0; }
+  .step-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; }
+  .id { font-family: var(--mono); font-size: 10.5px; color: var(--faint); letter-spacing: .04em; flex: none; }
+  .step-title label { font-weight: 500; cursor: pointer; }
+  .expect { margin: 4px 0 0; color: var(--muted); font-size: 12.5px; }
+  .expect b { color: var(--ink); font-weight: 500; }
+  .extra { margin: 8px 0 0; }
+  .extra table { width: 100%; border-collapse: collapse; font-size: 12px; border: 1px solid var(--line); }
+  .extra th, .extra td { padding: 5px 8px; border-top: 1px solid var(--line); text-align: left; }
+  .extra thead th { border-top: 0; background: #f4f6f2; color: var(--faint); font-weight: 500; font-family: var(--mono); font-size: 10px; }
+  .note-field { display: block; width: 100%; margin-top: 8px; min-height: 34px; resize: vertical; border: 1px solid var(--line); border-radius: 5px; background: #f8f9f6; padding: 7px 9px; font-size: 12.5px; line-height: 1.55; color: var(--ink); field-sizing: content; }
+  .note-field::placeholder { color: #a2ada5; }
+  .note-field:focus { background: #fff; border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px var(--accent-soft); }
+  .step.done .step-title label { color: var(--muted); }
+  .step.done .note-field { background: #f3f8f5; }
+  .step.note-only .note-field { border-color: #e3cfae; background: #fdf9f1; }
+
+  .help { margin-top: 34px; padding: 14px 18px; border: 1px solid var(--line); background: #fff; }
+  .help h3 { margin: 0 0 8px; font-family: var(--display); font-size: 14px; }
+  .help ul { margin: 0; padding-left: 18px; font-size: 12.5px; color: var(--muted); }
+  .help li { margin: 5px 0; }
+  footer { margin-top: 30px; padding-top: 14px; border-top: 1px solid var(--line-strong); display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-family: var(--mono); font-size: 10.5px; color: var(--faint); }
+
+  dialog.export { width: min(720px, calc(100% - 32px)); border: 1px solid var(--line-strong); border-radius: 9px; padding: 0; background: var(--sheet); color: var(--ink); box-shadow: 0 24px 60px rgba(0,0,0,.2); }
+  dialog.export::backdrop { background: rgba(20,30,25,.35); }
+  .dialog-head, .dialog-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 18px; border-bottom: 1px solid var(--line); }
+  .dialog-foot { justify-content: flex-end; border-top: 1px solid var(--line); border-bottom: 0; }
+  .dialog-head h3 { margin: 0; font-family: var(--display); font-size: 16px; }
+  .dialog-body { padding: 14px 18px; }
+  .dialog-body textarea { width: 100%; min-height: 300px; resize: vertical; border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; font-family: var(--mono); font-size: 11.5px; line-height: 1.6; background: #f8f9f6; }
+
+  @media (max-width: 720px) {
+    .page { padding: 14px 12px 60px; }
+    .toolbar { margin-inline: -12px; padding-inline: 12px; }
+    .sheet { padding: 24px 18px 30px; }
+    .meta label { flex: 1 1 100%; }
+    .meta input { width: 100%; }
+    .save-state { margin-left: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="page">
+  <div class="toolbar">
+    <div class="toolbar-top">
+      <div class="brand"><b>业务流程走一遍</b><span>Guided run</span></div>
+      <div class="progress"><div class="bar"><i id="bar"></i></div><span class="count"><b id="doneCount">0</b> / <span id="totalCount">0</span></span></div>
+      <button type="button" class="action primary" id="exportBtn">导出记录</button>
+      <button type="button" class="action" id="clearBtn">清空</button>
+      <button type="button" class="toolbar-toggle" id="toolbarToggle" aria-expanded="true" title="收起顶部工具栏">收起</button>
+    </div>
+    <div class="meta">
+      <label>测试人 <input id="tester" type="text" placeholder="姓名"></label>
+      <label>环境 <input id="environment" type="text" placeholder="test.com"></label>
+      <span class="save-state" id="saveState">记录会自动保存在本机浏览器</span>
+    </div>
+  </div>
+
+  <main class="sheet">
+    <header class="masthead">
+      <p class="eyebrow">SpreadJS cost report demo · guided flow</p>
+      <h1>把业务流程走一遍</h1>
+      <p class="lede">当前库保留了业务字段，按 6 个阶段走完：建字段、做模板、发任务、协同填报、审核定稿、出报表。每一步都说明“在做什么”和“应该看到什么”，遇到问题可以在下面直接记录。</p>
+      <div class="route" aria-label="业务流程">
+        <span>业务字段</span><i>→</i><span>组件</span><i>→</i><span>模板</span><i>→</i><span>周期包</span><i>→</i><span>任务</span><i>→</i><span>提交</span><i>→</i><span>审核</span><i>→</i><span>定稿</span><i>→</i><span>报表</span>
+      </div>
+      <p class="notice">当前库保留了 7 个业务字段（重量、价格、生产日期等）；组件、模板、周期包、任务为空，所以流程从检查字段、做模板开始。</p>
+    </header>
+
+    <div id="stages"></div>
+
+    <section class="help">
+      <h3>卡住了先看这里</h3>
+      <ul>
+        <li><b>协同一直连接超时：</b>必须用 <code>http://test.com</code>；确认 Caddy 已启动、后端在改过 LICENSE 后重启过。</li>
+        <li><b>填报队列为空：</b>任务可能已提交或已取消；换到“填报人”视角，并确认任务的组织与该账号一致。</li>
+        <li><b>责任人下拉为空：</b>该组织下没有持有这个职责的账号；换组织，或先在“组织与用户”分配角色。</li>
+        <li><b>报表生成失败：</b>先完成审核定稿；报表模板必须是已发布状态。</li>
+        <li><b>一键清理：</b>执行 <code>npm run demo:reset</code>，可分别选择清空字段/组件/模板（默认保留），会先备份并自动重启后端。</li>
+      </ul>
+    </section>
+
+    <footer>
+      <span>业务流程导览 · 本地记录</span>
+      <span>勾选和备注只保存在当前浏览器</span>
+    </footer>
+  </main>
+</div>
+
+<dialog class="export" id="exportDialog">
+  <div class="dialog-head"><h3>流程记录</h3><button type="button" class="action" id="closeDialog">关闭</button></div>
+  <div class="dialog-body"><textarea id="exportText" readonly></textarea></div>
+  <div class="dialog-foot"><button type="button" class="action" id="copyBtn">复制</button><button type="button" class="action primary" id="downloadBtn">下载 .md</button></div>
+</dialog>
+
+<script>
+const STAGES = [
+  {
+    no: '00', title: '开始前',
+    intro: '先确认环境。协同的客户端授权绑定在 test.com，必须用这个域名访问。',
+    items: [
+      { id: '0.1', text: '启动后端、展示模式前端和 Caddy', expect: '后端 3001、展示模式 5199、http://test.com 可打开' },
+      { id: '0.2', text: '打开登录页，确认有四个演示视角', expect: '设计/管理员、填报人、填报人二、审核/定稿' },
+      { id: '0.3', text: '确认展示模式报表生成环境', expect: '展示模式在浏览器内生成并上传后端保存，不需要服务端 Chromium；普通模式后端生成仍需要 Playwright Chromium' }
+    ]
+  },
+  {
+    no: '01', title: '建业务字段',
+    intro: '字段是业务口径的字典，模板里的单元格要绑定字段，填报数据也按字段存储。先有字段，才能做模板。',
+    items: [
+      { id: '1.1', text: '用「设计 / 管理员」进入业务字段目录，确认已有字段', expect: '当前有 7 个字段；如果为空，点「新建字段」补充' },
+      { id: '1.2', text: '（已有可跳过）确认或新建「重量」：编码 WEIGHT，类型 decimal，单位 磅，精度 2，可编辑打开', expect: '管理员创建的字段直接生效' },
+      { id: '1.3', text: '（已有可跳过）确认或新建「生产日期」：编码 PROD_DATE，类型 date，可编辑打开', expect: '字段目录中有可用的业务字段' }
+    ]
+  },
+  {
+    no: '02', title: '做组件和模板',
+    intro: '组件是表头/表体/表尾的可复用块；模板由组件组合。模板发布后，才能被填报计划引用。',
+    items: [
+      { id: '2.1', text: '设计模板 → 组件库 → 新建组件', expect: '组件名称如「月报主体」，稳定编码 monthly_body，区域选 Body' },
+      { id: '2.2', text: '在设计器里打开字段目录，把重量、生产日期拖到单元格；选中单元格 → 单元格属性 → 填报权限，重量单元格的可编辑对象选「填报人一」，生产日期单元格选「填报人二」', expect: '两个单元格分别保存成功，后续由两人分工填写' },
+      { id: '2.3', text: '保存草稿 → 提交发布', expect: '管理员提交即发布，组件状态变为已发布' },
+      { id: '2.4', text: '回到模板与组件 → 模板版本 → 从组件组合，选择刚发布的 Body 组件并保存', expect: '生成一个模板草稿' },
+      { id: '2.5', text: '打开模板发布检查 → 提交发布', expect: '模板版本变为已发布，可被填报计划选择' }
+    ]
+  },
+  {
+    no: '03', title: '发起填报任务',
+    intro: '填报计划把模板、周期、责任人和期限钉在一起。展示模式只使用一个演示空间，激活后生成一条填报任务。',
+    items: [
+      { id: '3.1', text: '填报计划 → 新建填报计划；报告类型自动使用唯一的「月度报告」，选择报告期间和刚发布的模板版本', expect: '第一步只显示报告期间与模板，不需要选择报告类型' },
+      { id: '3.2', text: '第二步填写截止时间', expect: '演示模式不显示组织选择，默认就是当前演示空间' },
+      { id: '3.3', text: '第三步责任分配：新增两条「填报人」，分别选填报人一和填报人二；提交人选填报人一；审核人和定稿人选审核人', expect: '两个填报人都在同一任务里；提交/审核/定稿只能选实际持有对应职责的用户，未分配时不能激活' },
+      { id: '3.4', text: '保存草稿 → 校验配置 → 激活并发起', expect: '生成一条填报任务，状态为填报中' }
+    ]
+  },
+  {
+    no: '04', title: '协同填报',
+    intro: '两名填报人在同一个协作房间里编辑同一张表，各自只能改自己负责的单元格；提交后房间冻结，形成不可变的业务修订。',
+    items: [
+      { id: '4.1', text: '用「填报人一」登录，进入协同填报，打开刚生成的任务', expect: '协作状态已连接，重量单元格可编辑' },
+      { id: '4.2', text: '在另一个窗口用「填报人二」登录，打开同一个任务', expect: '两边在线人数都显示 2 人，能看到对方的姓名和选区' },
+      { id: '4.3', text: '填报人一填写重量，填报人二填写生产日期', expect: '两人的修改实时同步；各自只能编辑自己负责的单元格' },
+      { id: '4.4', text: '由填报人一（提交人）提交本期数据 → 确认提交', expect: '页面变只读，任务状态变为已提交' }
+    ]
+  },
+  {
+    no: '05', title: '审核与定稿',
+    intro: '审核人查看静态提交快照，记录意见；通过后定稿，生成正式文件和历史版本。',
+    items: [
+      { id: '5.1', text: '提交后点页面上的「切换为审核人」；或退出登录，用「审核 / 定稿」账号登录，进入审核发布，打开刚提交的任务', expect: '显示只读的提交快照，不连接协同房间' },
+      { id: '5.2', text: '填写审核意见，点「通过并保存意见」', expect: '任务进入审核中，意见保存' },
+      { id: '5.3', text: '点「生成正式文件并定稿」', expect: '任务变为已定稿，历史定稿出现 R1，可下载 XLSX/PDF' }
+    ]
+  },
+  {
+    no: '06', title: '报表输出（可选）',
+    intro: '报表工作室用已定稿数据生成报表。需要一个已发布的报表模板；如果只跑业务闭环，到定稿就已经完整。',
+    items: [
+      { id: '6.1', text: '报表工作室 → 报表模板 Tab → 新建报表模板，绑定需要的字段并发布', expect: '模板状态为已发布' },
+      { id: '6.2', text: '点右上角「生成报表」，选择模板和期间', expect: '生成期间页面锁定，浏览器在屏幕外渲染；完成后上传后端，切到「生成记录」可预览下载，换同组织范围账号也能下载' }
+    ]
+  }
+];
+
+const KEY = 'cost-report-demo-guide-v1';
+const TOOLBAR_KEY = 'cost-report-demo-guide-toolbar-collapsed';
+const state = { checks: {}, notes: {}, meta: { tester: '', environment: '' } };
+const toolbar = document.querySelector('.toolbar');
+const toolbarToggle = document.getElementById('toolbarToggle');
+let toolbarCollapsed = true;
+try {
+  const saved = localStorage.getItem(TOOLBAR_KEY);
+  if (saved !== null) toolbarCollapsed = saved === '1';
+} catch {}
+function applyToolbar(collapsed, persist = false) {
+  toolbar.classList.toggle('collapsed', collapsed);
+  toolbarToggle.setAttribute('aria-expanded', String(!collapsed));
+  toolbarToggle.textContent = collapsed ? '展开' : '收起';
+  toolbarToggle.title = collapsed ? '展开顶部工具栏' : '收起顶部工具栏';
+  if (persist) {
+    try { localStorage.setItem(TOOLBAR_KEY, collapsed ? '1' : '0'); } catch {}
+  }
+}
+applyToolbar(toolbarCollapsed);
+toolbarToggle.addEventListener('click', () => {
+  toolbarCollapsed = !toolbarCollapsed;
+  applyToolbar(toolbarCollapsed, true);
+});
+const allItems = STAGES.flatMap(stage => stage.items.map(item => ({ ...item, stage: stage.no })));
+const total = allItems.length;
+let saveTimer = null;
+
+function load() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (!raw) return;
+    if (raw.checks && typeof raw.checks === 'object') state.checks = raw.checks;
+    if (raw.notes && typeof raw.notes === 'object') state.notes = raw.notes;
+    if (raw.meta && typeof raw.meta === 'object') state.meta = { tester: String(raw.meta.tester || ''), environment: String(raw.meta.environment || '') };
+  } catch {}
+}
+
+function save() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    try {
+      localStorage.setItem(KEY, JSON.stringify({ ...state, updatedAt: new Date().toISOString() }));
+      const now = new Date();
+      document.getElementById('saveState').textContent = '已保存 ' + now.toLocaleTimeString('zh-CN', { hour12: false });
+    } catch {
+      document.getElementById('saveState').textContent = '无法保存：浏览器存储不可用';
+    }
+  }, 200);
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+}
+
+function render() {
+  const host = document.getElementById('stages');
+  host.innerHTML = '';
+  STAGES.forEach(stage => {
+    const wrap = document.createElement('section');
+    wrap.className = 'stage';
+    wrap.id = 'stage-' + stage.no;
+    const done = stage.items.filter(item => state.checks[item.id]).length;
+    wrap.innerHTML = `
+      <div class="stage-head"><span class="stage-no">${stage.no}</span><h2>${escapeHtml(stage.title)}</h2>
+        <span class="current-tag" data-current="${stage.no}" hidden>当前</span>
+        <span class="count" style="margin-left:auto">${done} / ${stage.items.length}</span></div>
+      <p class="stage-intro">${escapeHtml(stage.intro)}</p>
+      <div class="steps"></div>`;
+    const list = wrap.querySelector('.steps');
+    stage.items.forEach(item => {
+      const article = document.createElement('article');
+      article.className = 'step';
+      article.dataset.id = item.id;
+      const domId = 'check-' + item.id.replace(/[^a-zA-Z0-9_-]/g, '-');
+      article.innerHTML = `
+        <input type="checkbox" id="${domId}" aria-label="${escapeHtml(item.text)}">
+        <div class="step-body">
+          <div class="step-title"><span class="id">${item.id}</span><label for="${domId}">${escapeHtml(item.text)}</label></div>
+          ${item.expect ? `<p class="expect">${escapeHtml(item.expect)}</p>` : ''}
+          ${item.extra ? `<div class="extra">${item.extra}</div>` : ''}
+          <textarea class="note-field" rows="1" placeholder="记录问题或备注…" aria-label="备注：${escapeHtml(item.text)}"></textarea>
+        </div>`;
+      const check = article.querySelector('input');
+      const note = article.querySelector('.note-field');
+      check.checked = Boolean(state.checks[item.id]);
+      note.value = state.notes[item.id] || '';
+      check.addEventListener('change', () => {
+        if (check.checked) state.checks[item.id] = true; else delete state.checks[item.id];
+        syncItem(article, item.id); syncCounts(); save();
+      });
+      note.addEventListener('input', () => {
+        if (note.value.trim()) state.notes[item.id] = note.value; else delete state.notes[item.id];
+        syncItem(article, item.id); syncCounts(); save();
+      });
+      syncItem(article, item.id);
+      list.appendChild(article);
+    });
+    host.appendChild(wrap);
+  });
+  syncCounts();
+}
+
+function syncItem(article, id) {
+  const done = Boolean(state.checks[id]);
+  const note = (state.notes[id] || '').trim();
+  article.classList.toggle('done', done);
+  article.classList.toggle('note-only', !done && Boolean(note));
+}
+
+function syncCounts() {
+  const done = allItems.filter(item => state.checks[item.id]).length;
+  document.getElementById('doneCount').textContent = done;
+  document.getElementById('totalCount').textContent = total;
+  document.getElementById('bar').style.width = total ? (done / total * 100) + '%' : '0%';
+  const firstOpen = STAGES.find(stage => stage.items.some(item => !state.checks[item.id]));
+  document.querySelectorAll('[data-current]').forEach(tag => { tag.hidden = !firstOpen || tag.dataset.current !== firstOpen.no; });
+}
+
+function buildExport() {
+  const done = allItems.filter(item => state.checks[item.id]).length;
+  const lines = ['# 业务流程记录', '', `- 测试人：${state.meta.tester || '未填写'}`, `- 环境：${state.meta.environment || '未填写'}`, `- 时间：${new Date().toLocaleString('zh-CN', { hour12: false })}`, `- 进度：${done} / ${total}`, ''];
+  const failed = allItems.filter(item => !state.checks[item.id]);
+  lines.push('## 未完成');
+  if (!failed.length) lines.push('');
+  failed.forEach(item => { const note = (state.notes[item.id] || '').trim(); lines.push(`- [ ] ${item.id} ${item.text}${note ? `｜备注：${note}` : ''}`); });
+  const noted = allItems.filter(item => state.checks[item.id] && (state.notes[item.id] || '').trim());
+  if (noted.length) { lines.push('', '## 已完成但有备注'); noted.forEach(item => lines.push(`- [x] ${item.id} ${item.text}｜备注：${state.notes[item.id].trim()}`)); }
+  return lines.join('\n');
+}
+
+document.getElementById('tester').value = state.meta.tester;
+document.getElementById('environment').value = state.meta.environment;
+document.getElementById('tester').addEventListener('input', event => { state.meta.tester = event.target.value; save(); });
+document.getElementById('environment').addEventListener('input', event => { state.meta.environment = event.target.value; save(); });
+document.getElementById('exportBtn').addEventListener('click', () => {
+  document.getElementById('exportText').value = buildExport();
+  document.getElementById('exportDialog').showModal();
+});
+document.getElementById('closeDialog').addEventListener('click', () => document.getElementById('exportDialog').close());
+document.getElementById('copyBtn').addEventListener('click', async () => {
+  const text = document.getElementById('exportText').value;
+  try { await navigator.clipboard.writeText(text); document.getElementById('copyBtn').textContent = '已复制'; }
+  catch { document.getElementById('exportText').select(); document.execCommand('copy'); document.getElementById('copyBtn').textContent = '已复制'; }
+  setTimeout(() => { document.getElementById('copyBtn').textContent = '复制'; }, 1500);
+});
+document.getElementById('downloadBtn').addEventListener('click', () => {
+  const blob = new Blob([document.getElementById('exportText').value], { type: 'text/markdown;charset=utf-8' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = '业务流程记录.md';
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+});
+document.getElementById('clearBtn').addEventListener('click', () => {
+  if (!confirm('清空所有勾选、备注和测试人信息？此操作不可撤销。')) return;
+  state.checks = {}; state.notes = {}; state.meta = { tester: '', environment: '' };
+  document.getElementById('tester').value = '';
+  document.getElementById('environment').value = '';
+  try { localStorage.removeItem(KEY); } catch {}
+  render();
+  document.getElementById('saveState').textContent = '已清空本机记录';
+});
+
+load();
+render();
+</script>

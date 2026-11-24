@@ -1,0 +1,50 @@
+[
+  {
+    "asset": "design.webp",
+    "source": "协同填报完整流程.mp4",
+    "seconds": 54.3075,
+    "operation": "Extracted recording frame, resized to 1600x900, WebP; no UI alterations."
+  },
+  {
+    "asset": "collaboration.webp",
+    "source": "协同填报.mp4",
+    "seconds": 27.915,
+    "operation": "Extracted recording frame, resized to 1600x900, WebP; no UI alterations."
+  },
+  {
+    "asset": "import.webp",
+    "source": "模板制作1-直接导入模板.mp4",
+    "seconds": 21.795,
+    "operation": "Extracted recording frame, resized to 1600x900, WebP; no UI alterations."
+  },
+  {
+    "asset": "composition.webp",
+    "source": "模板制作2-模块化管理.mp4",
+    "seconds": 12.991,
+    "operation": "Extracted recording frame, resized to 1600x900, WebP; no UI alterations."
+  },
+  {
+    "asset": "data.webp",
+    "source": "模板制作3-对接其他系统数据.mp4",
+    "seconds": 13.664,
+    "operation": "Extracted recording frame, resized to 1600x900, WebP; no UI alterations."
+  },
+  {
+    "asset": "analysis.webp",
+    "source": "勾稽分析.mp4",
+    "seconds": 14.7825,
+    "operation": "Extracted recording frame, resized to 1600x900, WebP; no UI alterations."
+  },
+  {
+    "asset": "report.webp",
+    "source": "协同填报完整流程.mp4",
+    "seconds": 300,
+    "operation": "Extracted recording frame, resized to 1600x900, WebP; no UI alterations."
+  },
+  {
+    "asset": "filling.webp",
+    "source": "协同填报完整流程.mp4",
+    "seconds": 271.5375,
+    "operation": "Extracted recording frame, resized to 1600x900, WebP; no UI alterations."
+  }
+]

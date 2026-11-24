@@ -1,0 +1,188 @@
+{
+  "fixtureVersion": 1,
+  "synthetic": true,
+  "purpose": "开发演示和流程联调用的假组织映射，不是源表到真实组织的映射证据。",
+  "sourceWorkbook": "样例表-集团专业化子公司2026年1-7月收入、利润完成情况统计表.xlsx",
+  "sourceSheet": "分月数据",
+  "officialUseAllowed": false,
+  "databaseImportAllowed": false,
+  "reportingPeriodExample": "2026-07",
+  "scopePolicy": {
+    "status": "synthetic_only",
+    "candidateSourceRows": "5-16",
+    "candidateCount": 12,
+    "officialInclusionApproved": false,
+    "combinedTotalAvailable": false,
+    "reason": "源表第 5–16 行只是候选范围；真实组织编码、期间有效的母子关系和去重范围尚待业务确认。合成映射不能批准正式范围或生成正式合计。"
+  },
+  "rows": [
+    {
+      "sourceRow": 5,
+      "sourceLabel": "航天电工",
+      "syntheticOrganizationCode": "SYNTH-ORG-005",
+      "mappingStatus": "synthetic_example_only",
+      "officialInclusionApproved": false,
+      "relationshipScenario": "independent_fixture_assumption",
+      "syntheticParentCode": null
+    },
+    {
+      "sourceRow": 6,
+      "sourceLabel": "大桥集团",
+      "syntheticOrganizationCode": "SYNTH-ORG-006",
+      "mappingStatus": "synthetic_example_only",
+      "officialInclusionApproved": false,
+      "relationshipScenario": "independent_fixture_assumption",
+      "syntheticParentCode": null
+    },
+    {
+      "sourceRow": 7,
+      "sourceLabel": "城发投资（信息管网）",
+      "syntheticOrganizationCode": "SYNTH-ORG-007",
+      "mappingStatus": "synthetic_example_only",
+      "officialInclusionApproved": false,
+      "relationshipScenario": "independent_fixture_assumption",
+      "syntheticParentCode": null
+    },
+    {
+      "sourceRow": 8,
+      "sourceLabel": "城房集团",
+      "syntheticOrganizationCode": "SYNTH-ORG-008",
+      "mappingStatus": "synthetic_example_only",
+      "officialInclusionApproved": false,
+      "relationshipScenario": "independent_fixture_assumption",
+      "syntheticParentCode": null
+    },
+    {
+      "sourceRow": 9,
+      "sourceLabel": "城发建工",
+      "syntheticOrganizationCode": "SYNTH-ORG-009",
+      "mappingStatus": "synthetic_example_only",
+      "officialInclusionApproved": false,
+      "relationshipScenario": "independent_fixture_assumption",
+      "syntheticParentCode": null
+    },
+    {
+      "sourceRow": 10,
+      "sourceLabel": "城发城运",
+      "syntheticOrganizationCode": "SYNTH-ORG-010",
+      "mappingStatus": "synthetic_example_only",
+      "officialInclusionApproved": false,
+      "relationshipScenario": "independent_fixture_assumption",
+      "syntheticParentCode": null
+    },
+    {
+      "sourceRow": 11,
+      "sourceLabel": "城发资本",
+      "syntheticOrganizationCode": "SYNTH-ORG-011",
+      "mappingStatus": "synthetic_example_only",
+      "officialInclusionApproved": false,
+      "relationshipScenario": "independent_fixture_assumption",
+      "syntheticParentCode": null
+    },
+    {
+      "sourceRow": 12,
+      "sourceLabel": "三峡设计",
+      "syntheticOrganizationCode": "SYNTH-ORG-012",
+      "mappingStatus": "synthetic_example_only",
+      "officialInclusionApproved": false,
+      "relationshipScenario": "independent_fixture_assumption",
+      "syntheticParentCode": null
+    },
+    {
+      "sourceRow": 13,
+      "sourceLabel": "矿产能源（三峡物流）",
+      "syntheticOrganizationCode": "SYNTH-ORG-013",
+      "mappingStatus": "synthetic_example_only",
+      "officialInclusionApproved": false,
+      "relationshipScenario": "independent_fixture_assumption",
+      "syntheticParentCode": null
+    },
+    {
+      "sourceRow": 14,
+      "sourceLabel": "三峡人才",
+      "syntheticOrganizationCode": "SYNTH-ORG-014",
+      "mappingStatus": "synthetic_example_only",
+      "officialInclusionApproved": false,
+      "relationshipScenario": "independent_fixture_assumption",
+      "syntheticParentCode": null
+    },
+    {
+      "sourceRow": 15,
+      "sourceLabel": "公交集团",
+      "syntheticOrganizationCode": "SYNTH-ORG-015",
+      "mappingStatus": "synthetic_example_only",
+      "officialInclusionApproved": false,
+      "relationshipScenario": "independent_fixture_assumption",
+      "syntheticParentCode": null
+    },
+    {
+      "sourceRow": 16,
+      "sourceLabel": "城发实业",
+      "syntheticOrganizationCode": "SYNTH-ORG-016",
+      "mappingStatus": "synthetic_example_only",
+      "officialInclusionApproved": false,
+      "relationshipScenario": "independent_fixture_assumption",
+      "syntheticParentCode": null
+    }
+  ],
+  "deferredSourceRows": [
+    {
+      "sourceRow": 17,
+      "sourceLabel": "生态水务",
+      "syntheticOrganizationCode": null,
+      "status": "deferred",
+      "officialInclusionApproved": false,
+      "reason": "七月查找结果与可见汇总不一致，且未获明确纳入决定；不为该行创建映射样例。"
+    }
+  ],
+  "relationshipScenarios": [
+    {
+      "scenario": "independent_rows",
+      "status": "assumed_for_fixture_only",
+      "description": "第 5–16 行在此示例中各自独立，仅用于演示映射结构；不代表真实母子关系。"
+    },
+    {
+      "scenario": "parent_child_deduplication",
+      "status": "synthetic_scenario_only",
+      "syntheticParentCode": "SYNTH-PARENT-001",
+      "syntheticChildCode": "SYNTH-CHILD-001",
+      "sourceRow": null,
+      "description": "与任何源表行无关的独立假案例，用于后续检查父子组织不能重复计入合计。"
+    }
+  ],
+  "manualAdjustmentScope": {
+    "status": "source_evidence_only",
+    "officialCalculationApplied": false,
+    "reason": "下列源单元格中的内嵌偏移尚无业务原因、责任人及审批凭证，不导入业务调整，也不叠加到正式计算。",
+    "candidateCells": [
+      "分月数据!C13",
+      "分月数据!AC13",
+      "分月数据!D16",
+      "分月数据!G16",
+      "分月数据!J16",
+      "分月数据!U16",
+      "分月数据!V16",
+      "分月数据!AU16",
+      "分月数据!AV16",
+      "分月数据!AU17",
+      "分月数据!AV17"
+    ],
+    "approvalEvidenceRequired": [
+      "源工作簿版本及单元格",
+      "原表达式和有符号调整额",
+      "受影响组织、期间和指标",
+      "调整原因及支持材料引用",
+      "责任人、审批人及审批引用",
+      "生效报表/配置版本"
+    ]
+  },
+  "realDataAcceptance": {
+    "status": "deferred_until_project_completion",
+    "requiredEvidence": [
+      "第 5–16 行到稳定 Organization ID 的业务确认映射",
+      "报表期有效的父子关系及合并/排除决定",
+      "第 17 行七月查找核实及纳入决定",
+      "拟纳入调整的逐条业务原因和审批凭证"
+    ]
+  }
+}

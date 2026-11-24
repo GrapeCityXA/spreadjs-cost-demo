@@ -1,0 +1,65 @@
+/* Match the portal's established action palette, only within this workflow. */
+.workflow-page,
+.workflow-detail,
+.workflow-select-options,
+body:has(.workflow-page) .app-data-table-filter {
+  --el-color-primary: #941966;
+  --el-color-primary-light-3: #7a1454;
+  --el-color-primary-light-5: #c77aa5;
+  --el-color-primary-light-7: #dfaec9;
+  --el-color-primary-light-8: #f8ebf3;
+  --el-color-primary-light-9: #f8ebf3;
+  --el-color-primary-dark-2: #6f114b;
+  --el-text-color-placeholder: #6d5a65;
+}
+.workflow-page ::selection,
+.workflow-detail ::selection { color:#6f114b; background:#f8ebf3; }
+.workflow-page .el-button { font-weight:500; }
+.workflow-page .workflow-tabs .el-button { font-weight:400; }
+.workflow-page .workflow-tabs [aria-current="page"] { font-weight:600; }
+.workflow-page .tab-count { font-weight:inherit; font-variant-numeric:tabular-nums; }
+.workflow-page .el-button--primary.is-plain { color:#941966; background:#fff; border-color:#c77aa5; }
+.workflow-page .el-button--primary.is-plain:is(:hover,:focus-visible) { color:#7a1454; background:#f8ebf3; border-color:#941966; }
+.workflow-page .el-button.is-link { color:#941966; }
+.workflow-page .el-button.is-link:hover { color:#7a1454; text-decoration:underline; text-underline-offset:3px; }
+.workflow-page .el-select__placeholder { color:var(--portal-muted); }
+.workflow-page .el-select__wrapper { caret-color:var(--portal-focus); }
+.workflow-page .el-empty__description p { color:var(--portal-muted); }
+.workflow-page .el-tag--plain.el-tag--success { --el-tag-text-color:#287346; --el-tag-border-color:#b8d4c1; --el-tag-bg-color:#f0f7f2; }
+.workflow-page .el-tag--plain.el-tag--warning { --el-tag-text-color:#8a5300; --el-tag-border-color:#dfc9a5; --el-tag-bg-color:#fff8eb; }
+.workflow-page .el-tag--plain.el-tag--info { --el-tag-text-color:#6d5a65; --el-tag-border-color:#dcdfe6; --el-tag-bg-color:#f8f3f6; }
+html body .workflow-page .app-data-table th.el-table__cell { color:var(--portal-muted); }
+.workflow-page .app-column-control { color:var(--portal-muted); }
+.workflow-page .app-column-control:is(:hover,.active) { color:var(--portal-focus); background:var(--portal-accent-surface); }
+html body .workflow-page .app-data-table :is(.app-column-control,.el-table__column-filter-trigger):focus-visible { outline:2px solid var(--portal-focus); outline-offset:2px; }
+.workflow-page .accessible-table-scroll { scrollbar-color:#909399 var(--portal-paper); }
+.workflow-page .app-data-table { font-variant-numeric:tabular-nums; }
+.workflow-page .workflow-item-heading .version { display:inline-block; font-size:14px; font-weight:400; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.workflow-page .workflow-item summary:hover { color:#7a1454; text-decoration:underline; text-underline-offset:3px; }
+.workflow-page .start-card { display:flex; flex-direction:column; background:var(--portal-surface); }
+.workflow-page .start-card .el-button { align-self:flex-start; margin-top:auto; }
+.workflow-detail .el-dialog__body > p { margin:16px 0 0; color:#6d5a65; line-height:1.6; }
+
+/* Keep each row readable as a single unit, with a stable action target. */
+.workflow-page .workflow-item { align-items:center; }
+.workflow-page .workflow-item:has(details[open]) { align-items:start; }
+.workflow-page .workflow-item-details { align-self:center; }
+.workflow-page .workflow-item:has(details[open]) .workflow-item-details { align-self:start; }
+.workflow-page .workflow-item-progress .el-tag { min-height:28px; padding:3px 8px; font-size:14px; line-height:1.5; }
+.workflow-page .workflow-item summary { border-radius:4px; }
+.workflow-page .workflow-item summary:focus-visible { outline-offset:4px; }
+.workflow-page .workflow-item-facts { font-size:14px; line-height:1.6; }
+.workflow-page .workflow-item details[open] .workflow-item-facts { padding-top:12px; border-top:1px solid var(--portal-line); }
+.workflow-page .workflow-item-progress p { color:var(--portal-muted); }
+.workflow-page .workflow-item:focus-within { background:var(--portal-paper); }
+.workflow-page .workflow-item:first-child { border-start-start-radius:7px; border-start-end-radius:7px; }
+.workflow-page .workflow-item:last-child { border-end-start-radius:7px; border-end-end-radius:7px; }
+@media (hover:hover) {
+  .workflow-page .workflow-item:hover { background:var(--portal-paper); }
+}
+@container workflow (max-width:600px) {
+  .workflow-page .workflow-item { gap:12px; }
+  .workflow-page .workflow-item-details { justify-self:stretch; }
+  .workflow-page .workflow-item-facts { font-size:16px; }
+  .workflow-page .workflow-item-context { margin-top:4px; }
+}

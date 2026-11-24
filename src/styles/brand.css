@@ -1,0 +1,50 @@
+/*
+ * SpreadJS showcase palette.
+ * Deep magenta #941966 is the brand surface; content stays light and neutral
+ * so tables, forms and workbooks keep their readability.
+ */
+:root {
+  --brand-950: #4b0b31;
+  --brand-900: #5f0e40;
+  --brand-800: #74114f;
+  --brand-700: #941966;
+  --brand-600: #aa2a7a;
+  --brand-500: #c14995;
+  --brand-100: #f3dbe8;
+  --brand-50: #faf2f7;
+  --brand-canvas: #f8f3f6;
+  --brand-surface: #ffffff;
+  --brand-ink: #2c1b26;
+  --brand-muted: #6d5a65;
+  --brand-line: #e8d9e1;
+
+  --el-color-primary: var(--brand-700);
+  --el-color-primary-light-3: #b04a86;
+  --el-color-primary-light-5: #c77aa5;
+  --el-color-primary-light-7: #dfaec9;
+  --el-color-primary-light-8: #eac4d8;
+  --el-color-primary-light-9: #f8ebf3;
+  --el-color-primary-dark-2: var(--brand-800);
+  --el-text-color-primary: var(--brand-ink);
+  --el-text-color-regular: #4b3944;
+  --el-text-color-secondary: var(--brand-muted);
+  --el-text-color-placeholder: #9a8792;
+  --el-border-color: #e0ccd8;
+  --el-border-color-light: #ebdde5;
+  --el-border-color-lighter: #f1e7ed;
+  --el-fill-color: #f6eef3;
+  --el-fill-color-light: #faf5f8;
+  --el-fill-color-lighter: #fdfafb;
+  --el-bg-color-page: var(--brand-canvas);
+}
+
+html,
+body,
+#app {
+  background: var(--brand-canvas);
+}
+
+::selection {
+  background: #f0c6dd;
+  color: var(--brand-950);
+}

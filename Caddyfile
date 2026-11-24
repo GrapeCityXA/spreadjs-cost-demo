@@ -1,0 +1,6 @@
+# 官网演示本地入口：http://test.com:8088 -> Vite 展示模式（5199）
+# 配合 hosts 中的 `127.0.0.1 test.com` 使用；协同服务的授权按域名校验。
+# 不用 80：Windows 重启后 IIS 的 http.sys 会占用 80。
+http://test.com:8088 {
+	reverse_proxy [::1]:5199
+}

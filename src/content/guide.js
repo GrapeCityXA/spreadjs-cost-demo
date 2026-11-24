@@ -1,0 +1,87 @@
+const help = 'https://demo.grapecity.com.cn/spreadjs/help/docs/'
+export const resources = {
+  designer: { label: '可嵌入的表格设计器', url: help + 'spreadjs-designer-component' },
+  binding: { label: '数据绑定与数模分离', url: help + 'features/core-concept/binding' },
+  validation: { label: '单元格数据验证', url: help + 'features/data-processing-and-analysis/datavalidate' },
+  formula: { label: '异步自定义函数', url: 'https://demo.grapecity.com.cn/spreadjs/help/api/classes/GC.Spread.CalcEngine.Functions.AsyncFunction' },
+  collaboration: { label: '实时协同搭建教程', url: help + 'collaboration-server/tutorial-real-time-collaborative-spreadjs-designer' },
+  dataModel: { label: 'DataManager 协作边界', url: help + 'collaboration-server/collaboration-explaination/collaboration-mode/data-manager-based-model' },
+  report: { label: 'ReportSheet 报表', url: help + 'features/data-processing-and-analysis/reportsheet' },
+  excel: { label: 'Excel 导入与导出', url: help + 'features/file-operations/excelclient' },
+  pdf: { label: 'PDF 与打印设置', url: help + 'features/file-operations/ExportingToPDF' },
+}
+
+export const videos = [
+  { id: 'full', title: '协同填报完整流程', description: '从模板配置到协同填报、业务流转，连贯了解项目的完整操作。', file: 'full.mp4', size: '约 96 MB', stage: '全流程' },
+  { id: 'import', title: '模板制作 · 直接导入模板', description: '把已有 Excel 表样带入浏览器，继续进行模板设计。', file: 'import.mp4', size: '约 5.4 MB', stage: '模板设计' },
+  { id: 'composition', title: '模板制作 · 模块化管理', description: '将表头、表体、表尾组合为可复用组件，再拼成完整模板。', file: 'composition.mp4', size: '约 3.0 MB', stage: '模板设计' },
+  { id: 'data', title: '模板制作 · 对接其他系统数据', description: '把外部数据引入模板，减少重复录入。', file: 'data.mp4', size: '约 6.2 MB', stage: '数据接入' },
+  { id: 'collaboration', title: '协同填报', description: '观察多人在同一份工作簿中编辑、同步和协作。', file: 'collaboration.mp4', size: '约 8.1 MB', stage: '多人协同' },
+  { id: 'analysis', title: '勾稽分析', description: '通过表内数据关系检查，理解业务指标之间的关联。', file: 'analysis.mp4', size: '约 3.4 MB', stage: '数据核验' },
+]
+
+export const steps = [
+  {
+    id: 'design', title: '把已有表样，变成可复用的业务模板', short: '设计模板', role: '模板设计人员',
+    description: '直接导入 Excel，也可以从空白工作簿设计，或将表头、表体、表尾组合成模板。表样与业务口径一起管理。',
+    value: '保留熟悉的 Excel 操作体验，让复杂表样在浏览器里继续使用。',
+    capabilities: ['可视化设计器', 'Excel 导入', '多工作表与样式'],
+    proof: '在「报表模板搭建」中选择直接设计或组件组合，进入设计工作台调整布局、格式和公式。',
+    output: '可发布的工作簿模板', route: '/portal/template', action: '查看模板搭建', videos: ['import', 'composition'], docs: ['designer', 'excel'],
+    technical: 'SpreadJS 提供工作簿编辑与序列化能力；项目负责组件版本、组合关系与发布治理。模板结构和业务数据分开存储，发布的模板版本成为后续任务的固定依据。',
+  },
+  {
+    id: 'binding', title: '让单元格，连接真实业务数据', short: '绑定数据', role: '模板设计人员 / 数据管理员',
+    description: '给输入位置绑定业务字段，配置辅助数据源，把其他系统的数据带入表格。模板可以复用，填报数据按周期变化。',
+    value: '用数据绑定连接表格与业务对象，减少手工搬运和重复维护。',
+    capabilities: ['业务字段绑定', '外部数据接入', '模板与数据分离'],
+    proof: '业务字段目录统一字段定义；设计工作台配置绑定路径及辅助数据，填报时装配本次任务的数据。',
+    output: '模板结构 + 独立数据源', route: '/portal/field-catalog', action: '查看业务字段', videos: ['data'], docs: ['binding', 'dataModel'],
+    technical: '本项目使用 DataManager 表与 CellBindingSource 承载任务数据。外部辅助数据以只读方式展示，保存模板时剥离运行数据。远程数据集不会因接入协同就自动同步，其一致性由数据服务负责。',
+  },
+  {
+    id: 'dispatch', title: '一次配置，生成同口径填报任务', short: '发布任务', role: '管理人员',
+    description: '选择模板版本、填报周期、责任人和截止时间。激活填报计划，生成填报任务。',
+    value: '同一份 SpreadJS 模板可以装配不同数据，形成一致的填报工作簿。',
+    capabilities: ['工作簿模板复用', '数据装配', '单元格权限展示'],
+    proof: '通过填报计划固定模板和规则版本，再到流程中心查看下发的任务与责任分工。',
+    output: '填报任务 + 独立协同工作副本', route: '/portal/period-configuration', action: '查看填报计划', videos: ['full'], docs: ['binding', 'collaboration'],
+    technical: '周期包激活、任务分派和角色授权由项目业务服务实现。SpreadJS 承载任务工作簿；每个任务及业务修订对应独立协同房间。前端的可编辑区域提示与服务端操作授权配合生效。',
+  },
+  {
+    id: 'collaborate', title: '多人进入同一张表，修改实时同步', short: '协同填报', role: '填报人员 / 提交人员',
+    description: '团队成员在授权范围内共同填报，观察同伴在线状态与选区，在表格中直接录入、粘贴和计算。',
+    value: 'SpreadJS 协同引擎处理并发编辑，让共同维护工作簿成为在线体验。',
+    capabilities: ['实时协同', '多人修改同步', '在线状态与选区'],
+    proof: '使用两个已获授权的账号打开同一任务，编辑一个输入区域，观察另一端的数据更新与协作状态。',
+    output: '持续同步的填报工作簿', route: '/portal/monthly-filling', action: '进入协同填报', videos: ['collaboration'], docs: ['collaboration', 'dataModel'],
+    technical: '客户端工作簿与 SharedDoc 绑定，WebSocket 连接协同服务，OT 处理并发操作；项目在服务端逐项检查修改权限。同房间成员可接收完整工作簿，隐藏或只读是交互权限，不能用来隔离机密数据。',
+  },
+  {
+    id: 'submit', title: '从实时编辑，形成可追溯的业务提交', short: '校验提交', role: '提交人员',
+    description: '完成必填、公式与异常检查，补充异常说明，确认协同操作同步后提交，形成稳定的审核依据。',
+    value: '表格中的输入、公式和绑定信息可以落为结构化记录，连接后续业务流程。',
+    capabilities: ['绑定数据提取', '公式结果与校验', '工作簿快照'],
+    proof: '在填报工作台运行提交检查，根据问题定位单元格，再提交本次业务版本。',
+    output: '结构化业务修订 + 提交快照', route: '/portal/monthly-filling', action: '查看填报工作台', videos: ['full'], docs: ['binding', 'validation'],
+    technical: '项目冻结协同工作副本、确认服务端版本，并按 INPUT_ / TABLE_ / CALC_ 命名区域契约提取、校验和保存。协同操作历史与业务提交版本各自管理，正式业务记录以 SQLite 中的结构化数据为准。',
+  },
+  {
+    id: 'review', title: '在原表语境里审核，把通过的版本定稿', short: '审核定稿', role: '部门审核人员 / 定稿人员',
+    description: '审核人员查看提交表样与指标，记录意见、退回修改或批准定稿。季度流程继续引用已定稿月度数据，开展评分与排名。',
+    value: '用同一套表格呈现能力还原提交现场，保留布局、公式结果与业务上下文。',
+    capabilities: ['工作簿还原', '只读表格预览', '结果呈现'],
+    proof: '月报审核页查看提交工作簿与审核记录；退回后形成新的业务修订，定稿后保留历史版本。',
+    output: '已定稿数据与不可变成果', route: '/portal/monthly-review', action: '查看审核与定稿', videos: ['full'], docs: ['designer', 'binding'],
+    technical: '审核使用静态提交工作簿，不继续连接填报协同房间。审批、季度评分、奖惩与版本锁定由业务服务负责；SpreadJS 负责工作簿展示。定稿后的更正经调整流程生成新版本，不覆盖旧版本。',
+  },
+  {
+    id: 'report', title: '让同一份定稿数据，生成更多业务成果', short: '报表与输出', role: '管理人员 / 报表设计人员',
+    description: '将定稿数据送入月度、季度参考报表和报表工作室，生成可阅读、可分发的报表，并用于经营指标分析。',
+    value: 'ReportSheet 将模板与数据组合成报表，Excel、PDF 与打印能力完成交付。',
+    capabilities: ['ReportSheet', 'Excel / PDF 导出', '打印布局'],
+    proof: '报表工作室设计并生成报表；参考报表查看结果；经营指标仪表盘从已定稿数据展示趋势。',
+    output: '报表 / XLSX / PDF / 经营分析', route: '/portal/report-studio', action: '进入报表工作室', videos: [], docs: ['report', 'excel', 'pdf'],
+    technical: 'ReportSheet 与 DataManager 用于报表生成，和实时填报工作簿分开运行。展示模式在浏览器内用 ReportSheet 与 DataManager 完成报表渲染和 Excel/PDF 导出，成果上传后端保存；普通模式仍可由服务端渲染。经营仪表盘的固定图表由 ECharts 绘制。这里只读取已定稿业务数据。',
+  },
+]

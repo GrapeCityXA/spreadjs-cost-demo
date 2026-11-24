@@ -1,0 +1,47 @@
+/* Explicit application class keeps these rules out of SpreadJS and Designer. */
+html body .el-table.app-data-table {
+  --el-table-header-bg-color: #f8f3f6;
+  --el-table-header-text-color: #6d5a65;
+  --el-table-border-color: #ebeef5;
+  --el-table-row-hover-bg-color: #f8f3f6;
+  --el-table-text-color: #606266;
+  font-size: 14px;
+  border-radius: 8px;
+  background: #fff;
+}
+html body .app-data-table th.el-table__cell {
+  padding: 10px 0;
+  height: 44px;
+  background: #f8f3f6;
+  color: #6d5a65;
+  font-size: 12px;
+  font-weight: 600;
+}
+html body .app-data-table td.el-table__cell { padding: 12px 0; color: #606266; font-size: 14px; }
+html body .app-data-table .cell { padding-left: 12px; padding-right: 12px; line-height: 23px; }
+html body .app-data-table th .cell { overflow: visible; display: flex; align-items: center; gap: 4px; }
+html body .app-data-table th.is-center .cell { justify-content: center; }
+html body .app-data-table th.is-right .cell { justify-content: flex-end; }
+html body .app-data-table .caret-wrapper { display: none; }
+.app-column-heading { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+.app-column-label { overflow-wrap: anywhere; }
+.app-column-control { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 24px; width: 24px; height: 28px; padding: 4px; border: 0; border-radius: 4px; background: transparent; color: #909399; cursor: pointer; vertical-align: middle; }
+.app-column-control svg { width: 16px; height: 16px; }
+.app-column-control:hover, .app-column-control.active { color: #941966; background: #f8ebf3; }
+.app-column-control:focus-visible { outline: 2px solid #941966; outline-offset: 1px; }
+html body .app-data-table .el-table__column-filter-trigger:focus-visible { outline: 2px solid #941966; outline-offset: 1px; }
+html body .app-data-table .el-table__column-filter-trigger { margin-left: 0; line-height: 1; }
+.app-data-table-filter { max-width: min(360px, 90vw); }
+.app-data-table-filter .el-checkbox__label { max-width: 285px; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 800px) {
+  /* Override Element Plus's important sticky rule: fixed actions cover narrow data. */
+  html body .el-table.app-data-table .el-table__cell.el-table-fixed-column--left,
+  html body .el-table.app-data-table .el-table__cell.el-table-fixed-column--right { position: static !important; }
+  html body .app-data-table :is(.el-table-fixed-column--left, .el-table-fixed-column--right)::before { display: none; }
+}
+.app-virtual-filter { max-width: calc(100vw - 32px); box-sizing: border-box; }
+.app-virtual-filter-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+.app-virtual-filter-label { margin: 0; font-weight: 600; color: var(--portal-ink, #303133); overflow-wrap: anywhere; }
+.app-virtual-filter-actions { display: flex; flex-shrink: 0; gap: 8px; }
+.app-virtual-filter-actions .el-button { margin: 0; min-height: 44px; }
+.app-virtual-filter .el-select__wrapper { min-height: 44px; }

@@ -1,0 +1,159 @@
+/* Shared catalog presentation, including non-interactive draft entries. */
+.portal-workbench .field-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 9px 5px;
+  border: 0;
+  border-bottom: 1px solid #edf1f0;
+  background: var(--portal-surface);
+  text-align: left;
+  cursor: pointer;
+  color: #234149;
+}
+.portal-workbench button.field-card:not(:disabled):hover,.portal-workbench .component-card:not(:disabled):hover {
+  background: var(--portal-accent-surface);
+}
+.portal-workbench .field-card:disabled,.portal-workbench .component-card:disabled {
+  cursor: not-allowed;
+  opacity: .6;
+}
+.portal-workbench .field-glyph,.portal-workbench .component-icon {
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  flex: none;
+  border-radius: 7px;
+  background: var(--portal-accent-surface);
+  color: #941966;
+  font-size: var(--portal-text-secondary);
+  font-weight: 700;
+}
+.portal-workbench .field-copy {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.portal-workbench .field-copy strong {
+  font-size: var(--portal-text-secondary);
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.portal-workbench .field-copy small {
+  margin-top: 3px;
+  color: var(--portal-muted, #6d5a65);
+  font-size: var(--portal-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.portal-workbench .field-card .el-tag {
+  font-size: var(--portal-text-secondary);
+}
+.portal-workbench :is(.field-card,.component-card) .el-tag--success {
+  --el-tag-text-color: #39751c;
+}
+.portal-workbench :is(.field-card,.component-card) .el-tag--info {
+  --el-tag-text-color: var(--portal-muted);
+}
+.portal-workbench .draft-card {
+  cursor: default;
+}
+.portal-workbench .draft-card .field-glyph {
+  background: #fcf3e1;
+  color: #be8427;
+}
+.portal-workbench .component-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 3px;
+  border: 0;
+  border-bottom: 1px solid #edf1f0;
+  background: var(--portal-surface);
+  text-align: left;
+  cursor: pointer;
+}
+.portal-workbench .component-icon {
+  background: #f0edf9;
+  color: #7765a8;
+}
+.portal-workbench .field-card:focus-visible,.portal-workbench .component-card:focus-visible {
+  outline: 2px solid var(--portal-focus);
+  outline-offset: -2px;
+}
+/* Keep complete identifying information available without hover or an extra tap.
+   Descriptions use the remaining row width instead of competing with the action. */
+.portal-workbench .catalog-insert-button {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 4px 8px;
+  min-height: var(--portal-touch-target, 44px);
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 8px 4px;
+  border-bottom-color: var(--portal-line, #e8d9e1);
+  color: var(--portal-ink, #2c1b26);
+  text-align: start;
+  font-family: inherit;
+  line-height: 1.5;
+}
+.portal-workbench .catalog-insert-button > :is(.field-glyph, .component-icon) {
+  grid-column: 1;
+  grid-row: 1;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: var(--portal-accent-surface, #f8ebf3);
+  color: var(--portal-focus, #941966);
+}
+.portal-workbench .catalog-insert-button .field-copy { display: contents; }
+.portal-workbench .catalog-insert-button .field-copy strong { grid-column: 2; grid-row: 1; align-self: center; font-weight: 600; }
+.portal-workbench .catalog-insert-button .field-copy small { grid-column: 2 / -1; grid-row: 2; margin: 0; font-variant-numeric: tabular-nums; }
+.portal-workbench .catalog-insert-button .field-copy :is(strong, small) {
+  min-width: 0;
+  white-space: normal;
+  overflow: visible;
+  overflow-wrap: anywhere;
+  text-overflow: clip;
+}
+.portal-workbench .catalog-insert-button > .el-tag { grid-column: 3; grid-row: 1; align-self: start; margin-top: 2px; }
+.portal-workbench .catalog-insert-button > .el-tag--primary {
+  --el-tag-text-color: var(--portal-focus, #941966);
+  --el-tag-bg-color: var(--portal-accent-surface, #f8ebf3);
+  --el-tag-border-color: var(--portal-line, #e8d9e1);
+}
+.portal-workbench .catalog-insert-button:not(:disabled):active {
+  background: var(--portal-accent-surface, #f8ebf3);
+  box-shadow: inset 0 0 0 1px var(--portal-focus, #941966);
+}
+.portal-workbench .catalog-insert-button:focus-visible { outline-color: var(--portal-focus, #941966); }
+@container designer-space (max-width:650px) {
+  .portal-workbench .field-copy strong {
+    font-size: 16px;
+  }
+  .portal-workbench .field-copy small {
+    font-size: 14px;
+  }
+  .portal-workbench .field-card,.portal-workbench .component-card {
+    min-height: var(--portal-touch-target);
+  }
+}
+@media(pointer:coarse) {
+  .portal-workbench .field-card,.portal-workbench .component-card {
+    min-height: var(--portal-touch-target);
+    min-width: var(--portal-touch-target);
+  }
+}
+/* Also cover touch laptops and reuse outside the designer's named container. */
+@media(max-width:650px), (any-pointer:coarse) {
+  .portal-workbench .catalog-insert-button .field-copy strong { font-size: 16px; }
+  .portal-workbench .catalog-insert-button .field-copy small { font-size: 14px; }
+}

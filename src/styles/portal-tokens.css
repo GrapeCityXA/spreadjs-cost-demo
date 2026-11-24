@@ -1,0 +1,15 @@
+/* Semantic tokens for the existing Element Plus portal, not a separate theme. */
+.portal-layout,
+.portal-workbench {
+  --portal-primary: #941966;
+  --portal-ink: #2c1b26;
+  --portal-muted: #6d5a65;
+  --portal-line: #e8d9e1;
+  --portal-paper: #f8f3f6;
+  --portal-surface: #fff;
+  --portal-accent-surface: #f8ebf3;
+  --portal-focus: #941966;
+  --portal-radius-panel: 8px;
+  --portal-touch-target: 44px;
+  --portal-text-secondary: 12px;
+}

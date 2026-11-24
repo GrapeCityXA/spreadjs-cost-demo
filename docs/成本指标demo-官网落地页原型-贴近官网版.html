@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>葡萄城表格技术 - 成本指标填报系统</title>
+<style>
+  :root {
+    --brand: #7d2058;
+    --brand-dark: #5d1541;
+    --brand-soft: #f7edf3;
+    --pink: #b45d86;
+    --ink: #333333;
+    --muted: #6b6b6b;
+    --line: #e5e5e5;
+    --band: #f5f7f9;
+    --white: #fff;
+    --font: "Microsoft YaHei", "微软雅黑", "PingFang SC", "Hiragino Sans GB", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; color: var(--ink); background: #fff; font-family: var(--font); font-size: 14px; line-height: 1.8; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, h4, p { margin: 0; }
+  .wrap { width: min(1200px, calc(100% - 48px)); margin: 0 auto; }
+  .center { text-align: center; }
+
+  /* top bar, simplified from the GrapeCity site */
+  .topbar { background: #7d2058; color: rgba(255,255,255,.9); font-size: 12px; }
+  .topbar .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 34px; gap: 18px; }
+  .topbar nav { display: flex; gap: 18px; flex-wrap: wrap; }
+  .topbar a:hover { color: #fff; }
+  .subnav { border-bottom: 1px solid var(--line); background: #fff; }
+  .subnav .wrap { display: flex; align-items: center; gap: 30px; min-height: 62px; }
+  .subnav .brand { color: var(--brand); font-size: 24px; font-weight: 700; letter-spacing: -.03em; }
+  .subnav .brand span { color: #9b9b9b; font-size: 12px; font-weight: 400; margin-left: 10px; letter-spacing: 0; }
+  .subnav nav { display: flex; gap: 24px; color: #555; font-size: 14px; margin-left: auto; }
+  .subnav nav a:hover { color: var(--brand); }
+  .subnav .download { padding: 7px 18px; border: 1px solid var(--brand); color: var(--brand); font-size: 13px; }
+  .subnav .download:hover { background: var(--brand); color: #fff; }
+
+  /* hero */
+  .hero { padding: 54px 0 0; background: #fff; }
+  .crumb { text-align: center; color: var(--pink); font-size: 14px; }
+  .hero h1 { margin-top: 0; text-align: center; color: var(--pink); font-size: clamp(24px, 2.4vw, 32px); line-height: 1.45; font-weight: 500; letter-spacing: -.02em; }
+  .hero-copy { width: min(980px, 100%); margin: 22px auto 0; color: #4a4a4a; font-size: 14px; line-height: 2; }
+  .hero-copy p + p { margin-top: 10px; }
+  .hero-shot { width: min(1000px, 100%); margin: 34px auto 0; }
+  .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin: 28px 0 44px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 26px; font-size: 14px; border: 1px solid var(--brand); transition: .2s; }
+  .btn-primary { background: var(--brand); color: #fff; }
+  .btn-primary:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
+  .btn-line { color: var(--brand); background: #fff; border-color: #cfa9bd; }
+  .btn-line:hover { background: var(--brand-soft); border-color: var(--brand); }
+
+  /* product mock */
+  .shot-frame { border: 1px solid #dedede; background: #fff; box-shadow: 0 16px 42px rgba(0,0,0,.10); }
+  .shot-bar { display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px; background: #f7f7f7; border-bottom: 1px solid #e6e6e6; }
+  .shot-bar i { display: block; width: 9px; height: 9px; border-radius: 50%; background: #d9d9d9; }
+  .shot-bar i:first-child { background: #c9a3b7; }
+  .shot-bar span { flex: 1; margin-left: 8px; height: 20px; padding: 0 10px; border-radius: 3px; background: #fff; border: 1px solid #ededed; color: #8b8b8b; font-size: 10px; line-height: 20px; }
+  .shot-app { display: grid; grid-template-columns: 150px 1fr; min-height: 460px; }
+  .shot-side { padding: 15px 12px; background: #7d2058; color: #fff; }
+  .shot-logo { font-size: 14px; font-weight: 700; letter-spacing: .02em; }
+  .shot-side .group { margin-top: 24px; color: #d9b7c8; font-size: 10px; }
+  .shot-side a { display: block; margin-top: 12px; padding: 7px 9px; color: #f3dce7; font-size: 11px; border-radius: 3px; }
+  .shot-side a.on { background: #ffffff1c; color: #fff; }
+  .shot-main { min-width: 0; display: flex; flex-direction: column; background: #fff; }
+  .shot-head { display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-bottom: 1px solid #ececec; }
+  .shot-head strong { font-size: 14px; }
+  .shot-head span { color: #888; font-size: 11px; }
+  .shot-head em { margin-left: auto; font-style: normal; color: var(--brand); background: var(--brand-soft); padding: 3px 10px; border-radius: 99px; font-size: 10px; }
+  .shot-tools { display: flex; align-items: center; gap: 12px; padding: 8px 18px; background: #fafafa; border-bottom: 1px solid #ededed; color: #999; font-size: 10px; }
+  .shot-tools b { color: #555; font-weight: 500; }
+  .shot-grid { padding: 16px 18px; flex: 1; }
+  .grid-row, .grid-head { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr; }
+  .grid-head div { padding: 8px 10px; background: #f5f0f3; color: #7c6a74; font-size: 10px; border-right: 1px solid #fff; }
+  .grid-row div { padding: 9px 10px; font-size: 11px; border-bottom: 1px solid #f0f0f0; border-right: 1px solid #f5f5f5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .grid-row div:first-child { color: #4b4b4b; }
+  .grid-row .focus { background: #fdf3f8; box-shadow: inset 0 0 0 1.5px #b45d86; color: var(--brand); }
+  .shot-tabs { display: flex; align-items: center; gap: 4px; height: 38px; padding: 0 16px; border-top: 1px solid #e7e7e7; background: #fafafa; color: #777; font-size: 10px; }
+  .shot-tabs b { align-self: stretch; display: flex; align-items: center; padding: 0 12px; background: #fff; border: 1px solid #e7e7e7; border-bottom: 2px solid var(--brand); color: var(--brand); font-weight: 500; }
+  .shot-badge { display: inline-flex; align-items: center; gap: 5px; margin-left: auto; color: #2c7a5b; font-size: 10px; }
+  .shot-badge::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #2c7a5b; }
+
+  /* generic section */
+  section { padding: 68px 0; }
+  .section-title { text-align: center; font-size: clamp(22px, 2.1vw, 28px); font-weight: 600; letter-spacing: -.02em; }
+  .band { background: var(--band); }
+
+  /* pain points */
+  .pain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 42px; }
+  .pain-col h3 { font-size: 16px; font-weight: 600; color: #333; }
+  .pain-col ul { margin: 18px 0 0; padding: 0; list-style: none; }
+  .pain-col li { position: relative; padding-left: 16px; margin-top: 12px; color: #555; font-size: 13px; line-height: 1.9; }
+  .pain-col li::before { content: ""; position: absolute; left: 0; top: .85em; width: 5px; height: 5px; border-radius: 50%; background: #b9b9b9; }
+  .pain-col li strong { color: #333; font-weight: 600; }
+
+  /* advantages */
+  .advantage-list { width: min(1000px, 100%); margin: 34px auto 0; }
+  .advantage-row { display: grid; grid-template-columns: 250px 1fr; gap: 44px; padding: 28px 0; border-top: 1px solid var(--line); }
+  .advantage-row:first-child { border-top: 0; }
+  .advantage-row h3 { font-size: 15px; font-weight: 600; color: var(--brand); line-height: 1.7; }
+  .advantage-row p { color: #555; font-size: 13px; line-height: 2; }
+
+  /* features */
+  .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 80px; width: min(1000px, 100%); margin: 38px auto 0; }
+  .feature { display: grid; grid-template-columns: 38px 1fr; gap: 14px; align-items: start; }
+  .feature svg { width: 30px; height: 30px; color: #8f8f8f; }
+  .feature h3 { font-size: 15px; font-weight: 600; }
+  .feature p { margin-top: 6px; color: #666; font-size: 12px; line-height: 1.8; }
+
+  /* purple cta */
+  .cta-band { background: #7d2058; color: #fff; padding: 34px 0; }
+  .cta-band .wrap { display: flex; align-items: center; justify-content: center; gap: 30px; flex-wrap: wrap; }
+  .cta-band h2 { font-size: 22px; font-weight: 500; letter-spacing: .01em; }
+  .cta-band .btn { background: transparent; border-color: #fff; color: #fff; min-height: 36px; padding: 0 20px; font-size: 13px; }
+  .cta-band .btn:hover { background: #fff; color: var(--brand); }
+
+  /* scenarios / case rows */
+  .case-list { width: min(1000px, 100%); margin: 36px auto 0; }
+  .case-row { display: grid; grid-template-columns: 150px 1fr; gap: 40px; padding: 26px 0; border-top: 1px solid var(--line); }
+  .case-row:first-child { border-top: 0; }
+  .case-tag { display: flex; align-items: flex-start; gap: 10px; color: #777; font-size: 12px; line-height: 1.6; }
+  .case-tag::before { content: ""; width: 26px; height: 26px; flex: none; border: 1px solid #d8c7d0; background: #faf4f7; }
+  .case-main h3 { font-size: 16px; font-weight: 600; }
+  .case-main p { margin-top: 9px; color: #666; font-size: 13px; line-height: 1.95; }
+  .case-main a { display: inline-block; margin-top: 9px; color: var(--brand); font-size: 12px; }
+  .case-main a:hover { text-decoration: underline; }
+  .case-foot { margin-top: 34px; text-align: center; }
+  .role-strip { width: min(1000px, 100%); margin: 30px auto 0; padding: 14px 18px; border: 1px solid var(--line); color: #666; font-size: 12px; text-align: center; background: #fff; }
+  .role-strip strong { color: var(--brand); font-weight: 600; }
+
+  /* report promo */
+  .promo { background: linear-gradient(110deg, #4d163a, #7d2058 58%, #8d2b63); color: #fff; padding: 40px 0; }
+  .promo .wrap { display: grid; grid-template-columns: 280px 1fr auto; gap: 40px; align-items: center; }
+  .promo-art { position: relative; height: 150px; }
+  .promo-art i { position: absolute; display: block; border-radius: 6px; background: #ffffff18; border: 1px solid #ffffff33; }
+  .promo-art i:nth-child(1) { inset: 30px 60px 20px 10px; transform: rotate(-7deg); }
+  .promo-art i:nth-child(2) { inset: 12px 30px 38px 36px; transform: rotate(4deg); background: #ffffff24; }
+  .promo-art i:nth-child(3) { inset: 44px 10px 8px 70px; transform: rotate(-2deg); background: #ffffff0d; }
+  .promo-art b { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); z-index: 2; font-size: 13px; font-weight: 500; color: #fff; letter-spacing: .04em; }
+  .promo h2 { font-size: 26px; font-weight: 500; }
+  .promo p { margin-top: 8px; color: #ead2df; font-size: 13px; }
+  .promo .btn { border-color: #fff; color: #fff; min-height: 38px; }
+  .promo .btn:hover { background: #fff; color: var(--brand); }
+
+  /* three scenes */
+  .scene-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; width: min(1050px, 100%); margin: 38px auto 0; }
+  .scene { text-align: center; }
+  .scene svg { width: 46px; height: 46px; color: #8d6c7d; }
+  .scene h3 { margin-top: 14px; font-size: 16px; font-weight: 600; }
+  .scene p { margin-top: 8px; color: #666; font-size: 12px; line-height: 1.8; }
+
+  /* footer */
+  footer { background: #4a1735; color: #d9c4ce; padding: 46px 0 26px; font-size: 12px; }
+  .footer-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+  .footer-cols h4 { color: #fff; font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  .footer-cols a { display: block; margin-top: 7px; color: #c9aebb; }
+  .footer-cols a:hover { color: #fff; }
+  .footer-bottom { margin-top: 36px; padding-top: 16px; border-top: 1px solid #ffffff1f; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; color: #b996a7; }
+  .proto-badge { position: fixed; right: 18px; bottom: 18px; z-index: 30; padding: 7px 12px; border-radius: 99px; background: #2b1321e8; color: #fff; font-size: 11px; letter-spacing: .04em; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+
+
+  /* hero video affordance */
+  .hero-shot { position: relative; }
+  .video-hit { position: absolute; inset: 0; z-index: 5; display: block; width: 100%; border: 0; padding: 0; cursor: pointer; background: linear-gradient(180deg, rgba(30,10,23,0) 45%, rgba(30,10,23,.42)); }
+  .video-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 14px; padding: 12px 22px 12px 12px; border-radius: 99px; background: rgba(42,15,32,.78); color: #fff; backdrop-filter: blur(8px); box-shadow: 0 16px 36px rgba(0,0,0,.22); transition: .2s ease; }
+  .video-hit:hover .video-play { background: rgba(125,32,88,.9); transform: translate(-50%, -50%) scale(1.02); }
+  .video-play-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #fff; color: var(--brand); }
+  .video-play-icon svg { width: 22px; height: 22px; margin-left: 2px; }
+  .video-play b { display: block; font-size: 14px; font-weight: 600; }
+  .video-play small { display: block; margin-top: 2px; color: #e4cdda; font-size: 11px; }
+
+  .video-modal { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 24px; }
+  .video-modal[hidden] { display: none; }
+  .video-modal-backdrop { position: absolute; inset: 0; background: rgba(20, 8, 16, .72); }
+  .video-modal-panel { position: relative; width: min(980px, 100%); padding: 18px; background: #fff; border-radius: 6px; box-shadow: 0 30px 90px rgba(0,0,0,.35); }
+  .video-modal-panel h2 { margin: 0 44px 12px 4px; font-size: 17px; font-weight: 600; color: var(--ink); }
+  .video-modal-panel video { display: block; width: 100%; max-height: calc(100dvh - 190px); background: #000; }
+  .video-modal-panel p { margin: 10px 4px 0; color: #888; font-size: 11px; }
+  .video-modal-panel code { color: var(--brand); }
+  .video-modal-close { position: absolute; right: 12px; top: 10px; width: 34px; height: 34px; border: 0; border-radius: 50%; background: #f3edf0; color: #6a4a5c; font-size: 22px; line-height: 1; cursor: pointer; }
+  .video-modal-close:hover { background: var(--brand-soft); color: var(--brand); }
+
+  @media (max-width: 980px) {
+    .subnav nav { display: none; }
+    .pain-grid { grid-template-columns: 1fr; gap: 34px; }
+    .advantage-row, .case-row { grid-template-columns: 1fr; gap: 10px; }
+    .feature-grid { grid-template-columns: 1fr; gap: 26px; }
+    .promo .wrap { grid-template-columns: 1fr; gap: 20px; }
+    .promo-art { height: 80px; width: 220px; }
+    .scene-grid { grid-template-columns: 1fr; gap: 30px; }
+    .footer-cols { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 620px) {
+    .wrap { width: calc(100% - 32px); }
+    .topbar nav { display: none; }
+    .subnav .brand span { display: none; }
+    .hero { padding-top: 36px; }
+    .shot-app { grid-template-columns: 1fr; min-height: 0; }
+    .shot-side { display: none; }
+    .shot-grid { padding: 10px; overflow: hidden; }
+    .grid-row, .grid-head { grid-template-columns: 1.4fr 1fr 1fr; }
+    .grid-row div:nth-child(n+4), .grid-head div:nth-child(n+4) { display: none; }
+    .advantage-row { padding: 22px 0; }
+    .cta-band h2 { font-size: 19px; text-align: center; }
+    .case-tag { align-items: center; }
+    .footer-cols { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <nav aria-label="葡萄城网站导航"><a href="#">产品</a><a href="#">解决方案</a><a href="#">成功案例</a><a href="#">开发者</a><a href="#">服务支持</a></nav>
+    <span><a href="https://demo.grapecity.com.cn/spreadjs/cost-report/login" target="_blank" rel="noopener">登录</a>　|　<a href="#">注册</a></span>
+  </div>
+</div>
+
+<header class="subnav">
+  <div class="wrap">
+    <a class="brand" href="#top">SpreadJS<span>纯前端表格控件</span></a>
+    <nav aria-label="SpreadJS 导航"><a href="#pain">业务难题</a><a href="#advantage">方案价值</a><a href="#feature">演示能力</a><a href="#cases">应用场景</a></nav>
+    <a class="download" href="https://demo.grapecity.com.cn/spreadjs/cost-report/login" target="_blank" rel="noopener">在线体验</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding-bottom:0">
+    <div class="wrap">
+      <h1>葡萄城表格技术 - 成本指标填报系统</h1>
+      <div class="hero-copy">
+        <p>集团成本填报通常要跨多个组织、多个角色和多个轮次完成：模板在财务人员之间反复传递，数据通过邮件和聊天工具汇总，修改记录和审核意见留在不同版本里。业务人员希望继续用熟悉的 Excel，管理者则希望口径统一、过程可见、结果可追溯。</p>
+        <p>这个 Demo 用 SpreadJS 搭建了一套可操作的在线成本指标平台：从模板设计、字段绑定、周期任务，到多人协同填报、提交校验、审核定稿和报表输出，每一步都在浏览器中完成，并且共用同一份业务数据和版本记录。</p>
+      </div>
+
+      <div class="hero-shot" aria-label="成本指标平台界面示意">
+        <div class="shot-frame">
+          <div class="shot-bar"><i></i><i></i><i></i><span>https://demo.grapecity.com.cn/spreadjs/cost-report/</span></div>
+          <div class="shot-app">
+            <div class="shot-side">
+              <div class="shot-logo">成本指标平台</div>
+              <div class="group">工作空间</div>
+              <a href="#">首页</a><a href="#">项目导览</a><a class="on" href="#">月度协同填报</a><a href="#">审核与定稿</a><a href="#">报表工作室</a>
+              <div class="group">配置</div>
+              <a href="#">业务字段目录</a><a href="#">填报计划</a><a href="#">流程中心</a>
+            </div>
+            <div class="shot-main">
+              <div class="shot-head"><strong>月度成本指标填报</strong><span>华东子公司 · 2026-11</span><em>协同编辑中</em></div>
+              <div class="shot-tools"><b>开始</b><span>插入</span><span>公式</span><span>数据</span><span>审阅</span><span>提交前检查</span></div>
+              <div class="shot-grid">
+                <div class="grid-head"><div>成本指标</div><div>预算金额</div><div>实际金额</div><div>差异</div><div>差异率</div></div>
+                <div class="grid-row"><div>材料成本</div><div>100,000.00</div><div>102,400.00</div><div>+2,400.00</div><div>2.40%</div></div>
+                <div class="grid-row"><div>人工成本</div><div>80,000.00</div><div>78,900.00</div><div>-1,100.00</div><div>-1.38%</div></div>
+                <div class="grid-row"><div>制造费用</div><div>60,000.00</div><div class="focus">61,250.00</div><div>+1,250.00</div><div>2.08%</div></div>
+                <div class="grid-row"><div>单位成本</div><div>24.00</div><div>24.26</div><div>+0.26</div><div>1.08%</div></div>
+                <div class="grid-row"><div>成本差异</div><div>—</div><div>2,550.00</div><div>—</div><div>—</div></div>
+                <div class="grid-row"><div>差异率</div><div>—</div><div>0.83%</div><div>正常</div><div>—</div></div>
+              </div>
+              <div class="shot-tabs"><b>成本指标录入</b><span>辅助数据</span><span>填报说明</span><span class="shot-badge">2 人正在协作</span></div>
+            </div>
+          </div>
+        </div>
+        <button class="video-hit" type="button" data-open-video aria-label="播放完整演示视频">
+          <span class="video-play"><span class="video-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span><b>观看完整演示</b><small>点击播放 · 6:14</small></span></span>
+        </button>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://demo.grapecity.com.cn/spreadjs/cost-report/login" target="_blank" rel="noopener">在线体验 成本填报</a>
+        <a class="btn btn-line" href="https://www.grapecity.com.cn/applyonline" target="_blank" rel="noopener">预约技术顾问（讲解示例方案）</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="pain" class="band">
+    <div class="wrap">
+      <h2 class="section-title">成本填报系统的三类难题</h2>
+      <div class="pain-grid">
+        <div class="pain-col">
+          <h3>表样和流程难以复用</h3>
+          <ul>
+            <li><strong>模板跟着人走：</strong>成本表往往以文件形式在个人电脑和邮件中流转，版本多了以后，很难确认哪一份才是最新模板。</li>
+            <li><strong>字段口径靠约定：</strong>字段名称、单位、小数位没有统一约束，汇总时才发现不同组织的填报口径不一致。</li>
+            <li><strong>系统只覆盖单点：</strong>有的系统只能填表，有的只能审批，模板、任务、协同和报表各自维护，流程断点多。</li>
+            <li><strong>每个周期都要重来：</strong>周期、组织或责任人变化时，往往需要开发人员重新配置，业务无法自己调整。</li>
+          </ul>
+        </div>
+        <div class="pain-col">
+          <h3>数据分散，过程缺少治理</h3>
+          <ul>
+            <li><strong>组织之间：</strong>集团、子公司和工厂各自维护成本数据，汇总依赖人工收集，数据来源和更新时点不统一。</li>
+            <li><strong>版本之间：</strong>填报、修改、提交和定稿形成多个版本，缺少稳定的对照关系，审核时很难还原提交现场。</li>
+            <li><strong>过程之中：</strong>谁填了、谁改了、哪些单元格出现异常，管理者缺少统一视图，问题往往在汇总后才暴露。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="advantage">
+    <div class="wrap">
+      <h2 class="section-title">这套方案给成本填报带来的变化</h2>
+      <div class="advantage-list">
+        <div class="advantage-row">
+          <h3>模板从文件变成可治理的资产</h3>
+          <p>模板在平台中统一设计、发布和版本管理。导入 Excel 或直接设计表样后，字段目录负责约束类型、单位和精度，发布检查会核对绑定、权限和公式引用。后续周期复用同一模板版本，业务调整不必每次从文件开始。</p>
+        </div>
+        <div class="advantage-row">
+          <h3>协同从传文件变成同一张表</h3>
+          <p>任务按周期和组织生成，填报、提交、审核和定稿责任提前配置。成员打开的是同一个协同工作簿，修改实时同步，单元格权限由项目侧逐项检查；管理者可以看到在线状态和填写进度。</p>
+        </div>
+        <div class="advantage-row">
+          <h3>提交和审核从口头确认变成可追溯记录</h3>
+          <p>提交前执行必填、公式、精度和勾稽检查，提交后冻结工作簿快照并形成业务修订。审核人员查看与提交时一致的静态版本，意见、退回和定稿都留在同一条业务链路上。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="feature" class="band">
+    <div class="wrap">
+      <h2 class="section-title">Demo 覆盖的六项能力</h2>
+      <div class="feature-grid">
+        <div class="feature">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="5" y="7" width="22" height="18" rx="1.5"/><path d="M5 13h22M13 13v12M19 13v12"/></svg>
+          <div><h3>模板设计</h3><p>导入 Excel、直接设计或组合组件，保留表样、公式和格式，发布前完成结构与权限检查。</p></div>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M16 5l10 5.5v11L16 27 6 21.5v-11z"/><path d="M6 10.5l10 5.5 10-5.5M16 16v11"/></svg>
+          <div><h3>字段与精度治理</h3><p>字段目录统一类型、单位和精度；业务字段与单元格绑定，汇总口径从源头保持一致。</p></div>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="6" y="7" width="20" height="20" rx="2"/><path d="M10 12h12M10 17h8M10 22h10"/></svg>
+          <div><h3>周期任务与责任</h3><p>按报告周期生成任务，配置参与组织、截止时间和填报、提交、审核与定稿责任人。</p></div>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="13" r="4"/><circle cx="22" cy="15" r="3.5"/><path d="M5 26c0-4 3-7 7-7s7 3 7 7M18 26c0-3 2-5 5-5s4 2 4 5"/></svg>
+          <div><h3>实时协同填报</h3><p>多人同时编辑同一工作簿，选区与在线状态同步，隐藏和只读按角色生效，修改可实时观察。</p></div>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M16 5l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/><path d="M11 22l3 5 4-3"/></svg>
+          <div><h3>提交前检查</h3><p>必填、公式、数值精度和勾稽关系在提交前统一检查，问题直接定位到具体单元格。</p></div>
+        </div>
+        <div class="feature">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 25V8M6 25h21"/><path d="M11 21l5-6 4 3 6-9"/></svg>
+          <div><h3>审核定稿与报表</h3><p>静态快照审核、意见与退回记录；定稿数据进入 ReportSheet 月报、季报及 Excel / PDF 输出。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band" id="contact">
+    <div class="wrap">
+      <h2>想看看这套流程怎样落到你的成本报表里？</h2>
+      <a class="btn" href="https://www.grapecity.com.cn/applyonline" target="_blank" rel="noopener">预约演示</a>
+    </div>
+  </div>
+
+  <section id="cases">
+    <div class="wrap">
+      <h2 class="section-title">适合用这套方式改造的成本场景</h2>
+      <div class="case-list">
+        <div class="case-row">
+          <div class="case-tag">集团财务<br>月度填报</div>
+          <div class="case-main">
+            <h3>集团月度成本指标填报</h3>
+            <p>集团发布统一模板和填报周期，各子公司、工厂在浏览器中完成材料、人工、制造费用等指标填报，按组织汇总到集团口径。模板、字段和校验规则由平台统一维护。</p>
+            <a href="https://demo.grapecity.com.cn/spreadjs/cost-report/portal/period-configuration" target="_blank" rel="noopener">查看演示</a>
+          </div>
+        </div>
+        <div class="case-row">
+          <div class="case-tag">制造集团<br>多组织协同</div>
+          <div class="case-main">
+            <h3>多工厂成本汇总与口径核对</h3>
+            <p>多个工厂使用同一模板版本填报，字段类型、单位和精度由字段目录统一约束；管理者查看任务进度、在线状态和已提交版本，减少邮件催报和手工汇总。</p>
+            <a href="https://demo.grapecity.com.cn/spreadjs/cost-report/portal/monthly-filling" target="_blank" rel="noopener">查看演示</a>
+          </div>
+        </div>
+        <div class="case-row">
+          <div class="case-tag">预算管理<br>差异分析</div>
+          <div class="case-main">
+            <h3>预算与实际成本差异分析</h3>
+            <p>在同一张工作簿中完成预算、实际、成本差异和差异率计算，提交前检查公式、必填、精度和勾稽关系，帮助业务人员在提交前发现异常。</p>
+            <a href="https://demo.grapecity.com.cn/spreadjs/cost-report/portal/finalized-data" target="_blank" rel="noopener">查看演示</a>
+          </div>
+        </div>
+        <div class="case-row">
+          <div class="case-tag">经营考核<br>季度评分</div>
+          <div class="case-main">
+            <h3>季度成本考核与评分</h3>
+            <p>季度流程引用已定稿的月度成本数据，结合指标、权重和评分规则开展考核；表格负责呈现与计算，业务服务负责口径、责任和版本治理。</p>
+            <a href="https://demo.grapecity.com.cn/spreadjs/cost-report/portal/quarterly-review" target="_blank" rel="noopener">查看演示</a>
+          </div>
+        </div>
+        <div class="case-row">
+          <div class="case-tag">审核定稿<br>报表交付</div>
+          <div class="case-main">
+            <h3>成本数据审核、定稿与报表交付</h3>
+            <p>提交后生成静态工作簿快照，审核人员查看提交版本、记录意见并退回或定稿；定稿数据继续进入月度、季度参考报表和 Excel / PDF 交付。</p>
+            <a href="https://demo.grapecity.com.cn/spreadjs/cost-report/portal/monthly-review" target="_blank" rel="noopener">查看演示</a>
+          </div>
+        </div>
+      </div>
+      <div class="role-strip"><strong>适用角色：</strong>填报人员 · 提交人员 · 部门审核人员 · 定稿人员 · 系统管理员　　<a href="https://demo.grapecity.com.cn/spreadjs/cost-report/login" target="_blank" rel="noopener" style="color:var(--brand)">在线体验完整流程 →</a></div>
+    </div>
+  </section>
+
+  <div class="promo">
+    <div class="wrap">
+      <div class="promo-art" aria-hidden="true"><i></i><i></i><i></i><b>ReportSheet</b></div>
+      <div>
+        <h2>定稿之后，报表再走一步</h2>
+        <p>用 ReportSheet 把定稿成本数据组织成月报、季报和参考报表，在浏览器内完成 Excel / PDF 输出。</p>
+      </div>
+      <a class="btn" href="https://demo.grapecity.com.cn/spreadjs/cost-report/portal/report-studio" target="_blank" rel="noopener">体验报表输出</a>
+    </div>
+  </div>
+
+  <section class="band">
+    <div class="wrap">
+      <h2 class="section-title">三种可体验的协作方式</h2>
+      <div class="scene-grid">
+        <div class="scene">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="17" r="6"/><circle cx="32" cy="20" r="5"/><path d="M7 39c0-7 5-11 11-11s11 4 11 11M25 39c0-5 4-8 8-8 5 0 8 4 8 8"/></svg>
+          <h3>双人协同填报</h3>
+          <p>两个账号打开同一任务，观察选区、在线状态和修改同步，体验单元格级权限。</p>
+        </div>
+        <div class="scene">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="7" y="8" width="34" height="32" rx="2"/><path d="M7 17h34M17 17v23M7 25h34"/></svg>
+          <h3>从填报到定稿</h3>
+          <p>完成提交前检查，切换审核账号查看静态提交版本，执行退回或定稿。</p>
+        </div>
+        <div class="scene">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 10h28v28H10z"/><path d="M17 20h14M17 26h9M17 32h12"/></svg>
+          <h3>从定稿到报表</h3>
+          <p>把定稿数据生成月报并导出 Excel / PDF，查看数据从填报到交付的完整链路。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-cols">
+      <div><h4>产品</h4><a href="#">SpreadJS 纯前端表格控件</a><a href="#">SpreadJS 报表</a><a href="#">GcExcel 服务端表格组件</a></div>
+      <div><h4>解决方案</h4><a href="#">制造行业</a><a href="#">集团财务</a><a href="#">预算与经营分析</a></div>
+      <div><h4>开发者</h4><a href="https://demo.grapecity.com.cn/spreadjs/cost-report/login" target="_blank" rel="noopener">在线体验</a><a href="#">产品文档</a><a href="#">示例代码</a></div>
+      <div><h4>关于我们</h4><a href="#">关于葡萄城</a><a href="https://www.grapecity.com.cn/applyonline" target="_blank" rel="noopener">预约技术顾问</a><a href="#">联系我们</a></div>
+    </div>
+    <div class="footer-bottom"><span>本页面为成本指标协同填报官网落地页原型，仅用于信息架构和文案评审。</span><span>© 2026 GrapeCity</span></div>
+  </div>
+</footer>
+
+<div class="video-modal" id="videoModal" hidden>
+  <div class="video-modal-backdrop" data-close-video></div>
+  <div class="video-modal-panel" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
+    <button class="video-modal-close" type="button" data-close-video aria-label="关闭视频">×</button>
+    <h2 id="videoModalTitle">成本指标填报完整演示</h2>
+    <video id="demoVideo" controls playsinline preload="metadata" src="../guide-media/full.mp4"></video>
+    <p>原型中引用本地 <code>guide-media/full.mp4</code>；正式页面请替换为最终视频地址与封面。</p>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('demoVideo');
+    if (!modal || !video) return;
+    const open = () => {
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    };
+    const close = () => {
+      modal.hidden = true;
+      video.pause();
+      document.body.style.overflow = '';
+    };
+    document.querySelectorAll('[data-open-video]').forEach(el => el.addEventListener('click', open));
+    document.querySelectorAll('[data-close-video]').forEach(el => el.addEventListener('click', close));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !modal.hidden) close();
+    });
+  })();
+</script>
+
+<div class="proto-badge">原型稿 · 非最终视觉</div>
+
+</body>
+</html>

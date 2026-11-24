@@ -1,0 +1,57 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs/promises');
+const os = require('node:os');
+const path = require('node:path');
+const { chromium, expect } = require('@playwright/test');
+
+let browser;
+(async () => {
+  const base = 'http://127.0.0.1:5176';
+  const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'dashboard-progress-'));
+  console.log('Evidence:', directory);
+  const login = await fetch(base + '/api/auth/login', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ username: 'browser-user', password: 'browser-password' }) }).then(r => r.json());
+  assert.ok(login.token);
+  const workflows = await fetch(base + '/api/workflows', { headers: { authorization: `Bearer ${login.token}` } }).then(r => r.json());
+  const tasks = workflows.items.filter(t => t.taskId && ['monthly', 'quarterly'].includes(t.kind));
+  assert.ok(tasks.some(t => t.kind === 'monthly') && tasks.some(t => t.kind === 'quarterly'));
+  browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage({ viewport: { width: 1600, height: 1100 } });
+  page.setDefaultTimeout(10000);
+  const errors = []; page.on('pageerror', e => errors.push(e.message));
+  await page.goto(base);
+  await page.evaluate(l => { localStorage.setItem('token', l.token); localStorage.setItem('userInfo', JSON.stringify(l.user)); }, login);
+  const url = base + '/portal/management-dashboard';
+  await page.goto(url);
+  const card = page.getByRole('region', { name: '全部填报任务进度' });
+  await expect(card.locator('.flow-steps')).toHaveCount(tasks.length);
+  await expect(page.getByRole('heading', { name: '季度填报进度', exact: true })).toHaveCount(0);
+  const currentCount = tasks.reduce((n, t) => n + t.flow.steps.filter(s => s.state === 'current').length, 0);
+  await expect(card.locator('[aria-current="step"]')).toHaveCount(currentCount);
+  await card.scrollIntoViewIfNeeded();
+  await card.screenshot({ path: path.join(directory, 'all-tasks.png') });
+  await card.locator('.el-select').filter({ has: page.getByRole('combobox', { name: '填报类型' }) }).click();
+  await page.getByRole('option', { name: '月报', exact: true }).click();
+  await expect(card.locator('.flow-steps')).toHaveCount(tasks.filter(t => t.kind === 'monthly').length);
+  await card.getByRole('textbox', { name: '搜索填报任务' }).fill('不存在的任务名称');
+  await expect(card).toContainText('没有匹配的填报任务');
+  await card.getByRole('textbox', { name: '搜索填报任务' }).clear();
+  await card.locator('.el-select').filter({ has: page.getByRole('combobox', { name: '填报类型' }) }).click();
+  await page.getByRole('option', { name: '季报', exact: true }).click();
+  await expect(card.locator('.flow-steps')).toHaveCount(tasks.filter(t => t.kind === 'quarterly').length);
+  await card.getByRole('button', { name: '进入流程中心' }).click();
+  await expect(page).toHaveURL(/workflow-center\?view=manage/);
+  // A task list must remain available even before the first quarterly finalization.
+  await page.route('**/api/management-dashboard/overview', async route => {
+    const response = await route.fetch(), data = await response.json();
+    await route.fulfill({json:{...data, tasks:data.tasks.map(t=>t.kind==='quarterly'?{...t,effectiveRevisionId:null}:t)}});
+  });
+  await page.goto(url);
+  await expect(card.locator('.flow-steps')).toHaveCount(tasks.length);
+  await expect(page.getByText('季度评分与排名', {exact:true})).toHaveCount(0);
+  await page.setViewportSize({ width: 900, height: 850 });
+  await card.scrollIntoViewIfNeeded();
+  await card.screenshot({ path: path.join(directory, 'no-quarter-narrow.png') });
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 2));
+  assert.deepEqual(errors, []);
+  console.log('PASS real all-period monthly/quarterly tasks, current stages, filters, workflow navigation, no-quarter visibility, narrow layout; no page errors.');
+})().catch(e => { console.error(e); process.exitCode = 1; }).finally(async () => { await browser?.close(); });

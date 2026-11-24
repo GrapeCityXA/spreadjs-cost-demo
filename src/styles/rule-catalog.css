@@ -1,0 +1,193 @@
+/* Rule catalog only: do not change shared tables, other dialogs or workbook controls. */
+.rules-page, .rule-catalog-dialog,
+body:has(.rules-page) :is(.app-data-table-filter, .el-select-dropdown) {
+  --el-color-primary: #941966;
+  --el-color-primary-light-3: #7a1454;
+  --el-color-primary-light-5: #c77aa5;
+  --el-color-primary-light-7: #dfaec9;
+  --el-color-primary-light-8: #f8ebf3;
+  --el-color-primary-light-9: #f8ebf3;
+  --el-color-primary-dark-2: #6f114b;
+  --el-color-success: #26734d;
+  --el-color-warning: #855900;
+  --el-color-danger: #b42318;
+  --el-color-error: #b42318;
+  --el-color-info: #6d5a65;
+  --el-text-color-placeholder: #6d5a65;
+  --el-disabled-text-color: #6d5a65;
+  color: #2c1b26; font-family: var(--font-sans); font-size: 14px; line-height: 1.5;
+}
+.rules-page { width: 100%; max-width: 1600px; margin: 0 auto; padding: 24px; }
+.rules-page .page-heading { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+.rules-page h1 { margin: 0 0 8px; font-size: 24px; font-weight: 600; line-height: 1.4; }
+.rules-page .page-heading p { margin: 0; color: #6d5a65; font-size: 14px; }
+.rules-page .heading-actions { display: flex; gap: 8px; flex-shrink: 0; }
+.rules-page .summary-row { display: grid; margin-bottom: 20px; background: #fff; border: 1px solid #e8d9e1; border-radius: 8px; }
+.rules-page .summary-row > div, .rules-page .summary-row > p { padding: 16px; border-inline-end: 1px solid #e8d9e1; }
+.rules-page .summary-row > div span { display: block; color: #6d5a65; font-size: 12px; }
+.rules-page .summary-row > div strong { display: block; margin-top: 4px; color: #941966; font-size: 24px; font-weight: 600; }
+.rules-page .summary-row > p { align-self: center; margin: 0; border-inline-end: 0; color: #6d5a65; font-size: 14px; }
+.rules-page .rules-tabs { background: #fff; border: 1px solid #e8d9e1; border-radius: 8px; padding: 0 20px 16px; }
+.rules-page .rules-tabs .el-tabs__item { height: 52px; }
+.rules-page .subline { display: block; margin-top: 4px; color: #6d5a65; font-size: 12px; overflow-wrap: anywhere; }
+.rules-page .seed-tag { margin-inline-start: 6px; }
+.rules-page .catalog-feedback { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-block: 12px; padding: 12px 16px; border: 1px solid #e8b4ae; border-radius: 6px; background: #fff5f4; color: #922419; }
+.rules-page .catalog-feedback p { flex: 1; min-width: 0; margin: 0; overflow-wrap: anywhere; }
+.rule-catalog-dialog .editor-feedback { margin-bottom: 16px; }
+.rule-catalog-dialog .rule-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; }
+.rule-catalog-dialog .full-row { grid-column: 1 / -1; }
+.rule-catalog-dialog .el-select { width: 100%; }
+.rule-catalog-dialog .test-results { margin-top: 16px; padding: 12px; border: 1px solid #e8d9e1; border-radius: 6px; }
+.rule-catalog-dialog .test-results > strong { margin-inline-end: 12px; }
+.rule-catalog-dialog .test-row { display: grid; grid-template-columns: 140px minmax(0, 1fr) 65px; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid #e8d9e1; font-size: 14px; }
+.rule-catalog-dialog .test-row code { white-space: normal; overflow-wrap: anywhere; color: #6d5a65; }
+.rule-catalog-dialog .preview-result { margin-top: 16px; }
+.rule-catalog-dialog .el-dialog__title { font-size: 20px; font-weight: 600; }
+.rule-catalog-dialog .el-form-item__label { font-weight: 500; color: #2c1b26; }
+.rule-catalog-dialog .el-form-item__error { position: static; width: 100%; padding-top: 6px; font-size: 14px; line-height: 1.5; }
+.rule-catalog-dialog .validator-editor { color: #2c1b26; }
+.rule-catalog-dialog .validator-layout { gap: 24px; }
+.rule-catalog-dialog .pair { gap: 12px; }
+.rule-catalog-dialog .validator-banner { padding: 12px 16px; margin-bottom: 20px; border: 1px solid #e8d9e1; background: #f8f3f6; }
+.rule-catalog-dialog .validator-preview { background: #f8f3f6; border-color: #e8d9e1; }
+.rule-catalog-dialog .business-case { background: #f8f3f6; border-color: #e8d9e1; }
+.rule-catalog-dialog :is(.validator-banner span, .validator-preview p, small),
+.rules-page :is(.catalog-actions > span, .function-meta small) { color: #6d5a65; line-height: 1.6; }
+.rule-catalog-dialog .test-heading { border-color: #e8d9e1; margin-top: 24px; }
+.rule-catalog-dialog .el-input__count, .rule-catalog-dialog .el-textarea .el-input__count { color: #6d5a65; }
+html body :is(.rules-page, .rule-catalog-dialog) .app-data-table th.el-table__cell { color: #6d5a65; }
+:is(.rules-page, .rule-catalog-dialog) .app-column-control { color: #6d5a65; }
+:is(.rules-page, .rule-catalog-dialog) .app-column-control:is(:hover, .active) { color: #941966; background: #f8ebf3; }
+:is(.rules-page, .rule-catalog-dialog) :is(button, [role="tab"], [role="button"]):focus-visible { outline: 2px solid #941966; outline-offset: 2px; }
+.rule-catalog-dialog :is(input, textarea) { caret-color: #941966; }
+.rule-catalog-dialog .el-dialog__body { scrollbar-color: #6d5a65 #f8f3f6; }
+:is(.rules-page, .rule-catalog-dialog) ::selection { color: #2c1b26; background: #f8ebf3; }
+html body .rules-page { min-width: 0; }
+.rules-page .page-heading > div { min-width: 0; }
+.rules-page .rule-scroll-hint { display: none; }
+.rules-page .rule-name-link {
+  border: 0; padding: 4px 0; background: transparent; color: var(--portal-focus, #941966);
+  font: inherit; font-weight: 600; text-align: start; line-height: 1.5;
+  white-space: normal; overflow-wrap: anywhere; cursor: pointer;
+}
+.rules-page .rule-name-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.rules-page .rule-name-link:focus-visible { outline: 2px solid var(--portal-focus, #941966); outline-offset: 2px; }
+.rules-page .summary-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.rules-page .summary-row > div { min-width: 0; }
+.rules-page .summary-row > div:nth-child(3) { border-inline-end: 0; }
+.rules-page .summary-row > p { grid-column: 1 / -1; border-top: 1px solid var(--portal-line, #e8d9e1); }
+.rules-page .summary-row strong { font-variant-numeric: tabular-nums; }
+.rules-page .catalog-actions, .rules-page .catalog-actions > div { flex-wrap: wrap; }
+
+html body .el-dialog.rule-catalog-dialog {
+  display: flex; flex-direction: column; box-sizing: border-box;
+  max-width: calc(100vw - 32px); max-height: calc(100vh - 48px); max-height: calc(100dvh - 48px);
+  margin-block: 24px; padding: 20px; overflow: hidden;
+}
+.rule-catalog-dialog .el-dialog__header { flex: 0 0 auto; padding-inline-end: 40px; }
+.rule-catalog-dialog .el-dialog__title { display: block; overflow-wrap: anywhere; line-height: 1.5; }
+.rule-catalog-dialog .el-dialog__headerbtn { width: 44px; height: 44px; top: 8px; right: 8px; }
+html body .rule-catalog-dialog .el-dialog__body {
+  flex: 1 1 auto; min-height: 0; max-height: none; overflow: auto; padding: 4px 4px 12px;
+  overscroll-behavior: contain; scrollbar-gutter: stable; scroll-padding-block: 16px;
+}
+.rule-catalog-dialog .el-dialog__footer {
+  flex: 0 0 auto; display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px;
+  padding-top: 12px; border-top: 1px solid #e8d9e1;
+}
+.rule-catalog-dialog .el-dialog__footer .el-button + .el-button { margin-inline-start: 0; }
+.rule-catalog-dialog .rule-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; margin: 0 0 24px; border: 1px solid #e8d9e1; }
+.rule-catalog-dialog .rule-facts > div { min-width: 0; padding: 12px; border-bottom: 1px solid #e8d9e1; }
+.rule-catalog-dialog .rule-facts dt { color: #6d5a65; font-size: 14px; }
+.rule-catalog-dialog .rule-facts dd { margin: 4px 0 0; color: #2c1b26; overflow-wrap: anywhere; }
+.rule-catalog-dialog .rule-facts .full-row { grid-column: 1 / -1; border-bottom: 0; }
+.rule-catalog-dialog :is(.validator-layout, .pair) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.rule-catalog-dialog :is(.rule-form, .validator-layout, .pair, .sample-row, .parameter-row) > * { min-width: 0; }
+.rule-catalog-dialog .validator-banner { flex-wrap: wrap; }
+.rule-catalog-dialog .sample-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(120px, .8fr) 56px; }
+.rule-catalog-dialog .parameter-row { flex-wrap: wrap; }
+.rule-catalog-dialog .parameter-row > .el-input { flex: 1 1 140px; }
+.rule-catalog-dialog .parameter-row > label { min-width: 0; overflow-wrap: anywhere; }
+.rule-catalog-dialog .test-row > * { min-width: 0; overflow-wrap: anywhere; }
+.rule-catalog-dialog textarea.el-textarea__inner { font-family: inherit; }
+
+@media (min-width: 1200px) {
+  .rules-page .summary-row { grid-template-columns: 150px 140px 180px minmax(0, 1fr); }
+  .rules-page .summary-row > div:nth-child(3) { border-inline-end: 1px solid #e8d9e1; }
+  .rules-page .summary-row > p { grid-column: auto; border-top: 0; }
+}
+@media (max-width: 1100px) {
+  .rule-catalog-dialog :is(.validator-layout, .rule-form) { grid-template-columns: minmax(0, 1fr); }
+  .rule-catalog-dialog .full-row { grid-column: 1 / -1; }
+  .rules-page .rule-scroll-hint { display: block; margin: 12px 0; color: #6d5a65; font-size: 14px; }
+}
+@media (max-width: 800px), (any-pointer: coarse) {
+  html body :is(.rules-page, .rule-catalog-dialog) .el-button,
+  .rules-page .rule-name-link { min-height: 44px; min-width: 44px; white-space: normal; }
+  html body :is(.rules-page, .rule-catalog-dialog) .el-input__wrapper { min-height: 44px; box-sizing: border-box; }
+  html body :is(.rules-page, .rule-catalog-dialog) .el-select__wrapper { min-height: 44px; }
+  html body :is(.rules-page, .rule-catalog-dialog) :is(.el-input__inner, .el-textarea__inner, .el-select__selected-item) { font-size: 16px; }
+  .rule-catalog-dialog .el-checkbox { height: auto; min-height: 44px; white-space: normal; }
+  .rule-catalog-dialog .el-checkbox__label { line-height: 1.5; white-space: normal; }
+  .rule-catalog-dialog :is(.el-form-item__label, .el-checkbox__label, .validator-banner span, .validator-preview p, small) { font-size: 14px; }
+  html body :is(.rules-page, .rule-catalog-dialog) .app-column-control { width: 44px; height: 44px; flex-basis: 44px; }
+  html body :is(.rules-page, .rule-catalog-dialog) .app-data-table:not(.rule-catalog-table) th .cell { display: grid; grid-template-columns: minmax(44px, 1fr) 44px; gap: 0; padding-inline: 0; }
+  :is(.rules-page, .rule-catalog-dialog) .app-data-table:not(.rule-catalog-table) .app-column-heading { display: contents; }
+  :is(.rules-page, .rule-catalog-dialog) .app-data-table:not(.rule-catalog-table) .app-column-label { grid-column: 1 / -1; padding-inline: 8px; }
+  html body :is(.rules-page, .rule-catalog-dialog) .el-table__column-filter-trigger { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .rule-catalog-dialog .sample-row { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-block: 12px; border-bottom: 1px solid #e8d9e1; }
+  /* Element Plus teleports these menus outside the page; constrain them to this route. */
+  html body:has(.rules-page) .app-data-table-filter .el-checkbox {
+    display: flex; align-items: center; min-height: 44px; height: auto; margin-block: 0;
+  }
+  html body:has(.rules-page) .app-data-table-filter .el-checkbox__label {
+    white-space: normal; overflow-wrap: anywhere; line-height: 1.5; font-size: 16px;
+  }
+  html body:has(.rules-page) .app-data-table-filter button { min-height: 44px; min-width: 64px; font-size: 16px; }
+  html body:has(.rules-page) .app-data-table-filter .el-scrollbar { max-height: min(320px, 50dvh); }
+  html body:has(.rules-page) .el-select-dropdown__item { min-height: 44px; height: auto; padding-block: 10px; line-height: 1.5; font-size: 16px; white-space: normal; }
+}
+/* Keep each label and its two controls together, independently of input type. */
+html body .rules-page .rule-catalog-table th .cell { display: flex; align-items: center; gap: 0; padding-inline: 12px; }
+.rules-page .rule-catalog-table .app-column-heading { display: contents; }
+.rules-page .rule-catalog-table .app-column-label { flex: 0 1 auto; min-width: 0; padding: 0; overflow-wrap: normal; line-height: 24px; }
+html body .rules-page .rule-catalog-table .app-column-control,
+html body .rules-page .rule-catalog-table .el-table__column-filter-trigger {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: 0 0 44px; width: 44px; height: 44px; margin: 0;
+}
+html body .rules-page .rule-catalog-table th.el-table__cell { padding-block: 4px; font-size: 14px; }
+.rules-page .rule-catalog-table th:has(.app-column-control.active) .app-column-label { color: var(--portal-focus, #941966); }
+.rules-page .rule-catalog-table .app-column-control { border: 1px solid transparent; box-sizing: border-box; }
+.rules-page .rule-catalog-table .app-column-control.active { border-color: #c77aa5; }
+html body .rules-page .rule-catalog-table :is(button.app-column-control, .el-table__column-filter-trigger):focus-visible {
+  outline: 2px solid var(--portal-focus, #941966); outline-offset: -2px; border-radius: 4px;
+}
+.rules-page .rule-catalog-table button.app-column-control:active,
+.rules-page .rule-catalog-table .el-table__column-filter-trigger:active .app-column-control { background: #f8ebf3; }
+.rules-page .rule-catalog-table .el-scrollbar__wrap { scrollbar-color: #909399 var(--portal-paper, #f8f3f6); }
+/* An overflowing table scrolls as one surface; sticky actions must not cover controls. */
+html body .rules-page .rule-catalog-table.el-table--scrollable-x .el-table-fixed-column--right { position: static !important; }
+html body .rules-page .rule-catalog-table.el-table--scrollable-x .el-table-fixed-column--right::before { display: none; }
+.rules-page:has(.el-tab-pane[aria-hidden="false"] .rule-catalog-table.el-table--scrollable-x) .rule-scroll-hint { display: block; margin: 12px 0; color: #6d5a65; font-size: 14px; }
+@media (max-width: 600px) {
+  html body .portal-layout .portal-content > .rules-page { padding: 16px 12px; }
+  .rules-page .heading-actions { width: 100%; }
+  .rules-page .heading-actions .el-button { flex: 1; }
+  .rules-page .summary-row > div { padding: 12px 8px; }
+  .rules-page .summary-row > div span { font-size: 14px; }
+  .rules-page .summary-row > p { padding: 12px; font-size: 14px; }
+  .rules-page .rules-tabs { padding-inline: 8px; }
+  .rules-page .el-tabs__item { padding-inline: 12px; }
+  .rules-page .catalog-actions > div { width: 100%; }
+  .rules-page .catalog-actions > div .el-button { flex: 1; }
+  html body .el-dialog.rule-catalog-dialog { width: 100%; max-width: 100%; max-height: 100vh; max-height: 100dvh; margin: 0; border-radius: 0; padding: 16px max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); }
+  .rule-catalog-dialog .rule-facts { grid-template-columns: minmax(0, 1fr); }
+  .rule-catalog-dialog .pair { grid-template-columns: minmax(0, 1fr); }
+  .rule-catalog-dialog .parameter-row { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .rule-catalog-dialog .parameter-row > .el-button { justify-self: end; }
+  .rule-catalog-dialog .test-row { grid-template-columns: minmax(0, 1fr) auto; }
+  .rule-catalog-dialog .test-row code { grid-row: 2; grid-column: 1 / -1; }
+  .rule-catalog-dialog .el-dialog__footer { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rule-catalog-dialog .el-dialog__footer .el-button { width: 100%; margin: 0; padding-inline: 8px; }
+}

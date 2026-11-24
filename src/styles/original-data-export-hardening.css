@@ -1,0 +1,35 @@
+.export-page {
+  --el-color-primary: #941966;
+  --el-color-primary-light-3: #7a1454;
+  --el-color-primary-dark-2: #6f114b;
+  --el-color-danger: #b42318;
+  --el-text-color-placeholder: #656b73;
+}
+.portal-layout .export-page :is(.retention-note, .expiry-note, .running-note) { color: var(--portal-muted); }
+.portal-layout .export-page .job-error { color: #b42318; }
+.export-page :is(.work-panel, .page-intro > div, .form-row, .job-actions) { min-width: 0; }
+.export-page :is(p, small, b, strong, .el-alert__title, .running-note) { overflow-wrap: anywhere; }
+.export-page .el-alert { margin-block: 12px; }
+.export-page .el-alert .el-button { margin-top: 8px; }
+.export-page .job-title .el-tag { flex-shrink: 0; }
+.export-page .el-button { min-height: 44px; white-space: normal; line-height: 1.4; }
+.export-page .el-button .el-icon { margin-inline-end: 6px; flex-shrink: 0; }
+.export-page :is(.el-select__wrapper, .el-input__wrapper) { min-height: 44px; }
+.export-page :is(.el-input__inner, .el-select__input) { caret-color: var(--el-color-primary); }
+.export-page button:focus-visible { outline: 2px solid var(--portal-focus); outline-offset: 2px; }
+.export-page ::selection { background: var(--portal-accent-surface); color: var(--portal-ink); }
+.export-page .el-tag--success { --el-tag-text-color: #28796c; }
+.export-page .el-tag--warning { --el-tag-text-color: #865800; }
+.export-page .el-tag--danger { --el-tag-text-color: #b42318; }
+.export-page .el-tag--info { --el-tag-text-color: #6d5a65; }
+.export-page .el-button--warning { --el-button-text-color: #865800; --el-button-hover-text-color: #fff; --el-button-hover-bg-color: #865800; --el-button-hover-border-color: #865800; --el-button-active-bg-color: #694500; --el-button-active-border-color: #694500; }
+@media (max-width: 767px) {
+  .export-page :is(.el-select__selected-item, .el-select__input) { font-size: 16px; }
+  .portal-layout .export-page :is(.panel-copy, .intro-copy, .job-title b) { font-size: 16px; }
+  .portal-layout .export-page :is(.scope-help, .form-row label, .job-meta, .expiry-note, .running-note, .retention-note) { font-size: 14px; }
+  .export-page .jobs-heading { flex-wrap: wrap; }
+  .export-page .retention-mark { flex-shrink: 0; }
+}
+@media (forced-colors: active) {
+  .export-page button:focus-visible { outline-color: Highlight; }
+}

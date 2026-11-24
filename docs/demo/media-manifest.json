@@ -1,0 +1,53 @@
+{
+  "description": "Optional demo recordings hosted separately from Git. Replace the example host with your own media server before running media:download.",
+  "files": [
+    {
+      "name": "勾稽分析.mp4",
+      "bytes": 1994730,
+      "sha256": "7181a37db7eb12c916b1c8a4171aaa1c6bb88aa20f5c6693fa63460c92a9e48b",
+      "url": "https://media.example.com/assets/%E5%8B%BE%E7%A8%BD%E5%88%86%E6%9E%90-DTL1BMMx.mp4"
+    },
+    {
+      "name": "协同填报.mp4",
+      "bytes": 4749690,
+      "sha256": "dd779f9612ff41404abee5fa138f785816ea217736e5d68d99c84b10d0628591",
+      "url": "https://media.example.com/assets/%E5%8D%8F%E5%90%8C%E5%A1%AB%E6%8A%A5-BmGYWxXy.mp4"
+    },
+    {
+      "name": "协同填报完整流程.mp4",
+      "bytes": 137518187,
+      "sha256": "db84f8025e22c00696d5a57762dfefcfc1a9a6946723eac87e332a1af05db89a",
+      "url": "https://media.example.com/assets/%E5%8D%8F%E5%90%8C%E5%A1%AB%E6%8A%A5%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B-C5xN6fxg.mp4"
+    },
+    {
+      "name": "数据校验集中管理.mp4",
+      "bytes": 2930005,
+      "sha256": "0bb044f38c2563fe46436266b8f454d31cfeb015ad8c9aba4e52f03962b76b25",
+      "url": "https://media.example.com/assets/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C%E9%9B%86%E4%B8%AD%E7%AE%A1%E7%90%86-D0zT8ePe.mp4"
+    },
+    {
+      "name": "模板制作1-直接导入模板.mp4",
+      "bytes": 3355158,
+      "sha256": "2eebae20ecd12eb5de87bbc0718a153cc7a1c135a7c5bc798da84aeb09bb53cf",
+      "url": "https://media.example.com/assets/%E6%A8%A1%E6%9D%BF%E5%88%B6%E4%BD%9C1-%E7%9B%B4%E6%8E%A5%E5%AF%BC%E5%85%A5%E6%A8%A1%E6%9D%BF-zWEC9bPA.mp4"
+    },
+    {
+      "name": "模板制作2-模块化管理.mp4",
+      "bytes": 2970182,
+      "sha256": "a8eae601adf5b1292a2dd2dd0e906fd38f23e9921775e5c7d1e6355cb7c5d0d2",
+      "url": "https://media.example.com/assets/%E6%A8%A1%E6%9D%BF%E5%88%B6%E4%BD%9C2-%E6%A8%A1%E5%9D%97%E5%8C%96%E7%AE%A1%E7%90%86-GQrCXYth.mp4"
+    },
+    {
+      "name": "模板制作3-对接其他系统数据.mp4",
+      "bytes": 5364872,
+      "sha256": "fdf904b6a387cf6adc2b1b0735163f5afc9c78feec62db8a985f94016aca6c09",
+      "url": "https://media.example.com/assets/%E6%A8%A1%E6%9D%BF%E5%88%B6%E4%BD%9C3-%E5%AF%B9%E6%8E%A5%E5%85%B6%E4%BB%96%E7%B3%BB%E7%BB%9F%E6%95%B0%E6%8D%AE-Cs867xUK.mp4"
+    },
+    {
+      "name": "自定义公式.mp4",
+      "bytes": 6685291,
+      "sha256": "151d1844519047853bbd63eebd7dde337496f03b214e3abe0b5593bc3b5ea73a",
+      "url": "https://media.example.com/assets/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%85%AC%E5%BC%8F-S8oJesl0.mp4"
+    }
+  ]
+}

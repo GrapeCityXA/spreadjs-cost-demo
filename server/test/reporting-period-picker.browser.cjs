@@ -1,0 +1,45 @@
+const assert = require('node:assert/strict');
+const { chromium, expect } = require('@playwright/test');
+const fs = require('node:fs/promises'), path = require('node:path'), os = require('node:os');
+let browser;
+(async () => {
+  const base = 'http://127.0.0.1:5176', url = base + '/portal/period-configuration';
+  const evidence = await fs.mkdtemp(path.join(os.tmpdir(), 'reporting-period-picker-')); console.log('Evidence:', evidence);
+  const login = await fetch(base + '/api/auth/login', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:'browser-user',password:'browser-password'})}).then(r=>r.json()); assert.ok(login.token);
+  const headers = {authorization:'Bearer '+login.token};
+  const {reportTypes:types} = await fetch(base+'/api/period-configuration/report-types',{headers}).then(r=>r.json());
+  const monthly = types.find(t=>t.cadence==='monthly'), quarterly = types.find(t=>t.cadence==='quarterly'); assert.ok(monthly && quarterly);
+  const form = {reportTypeId:monthly.id,periodCode:'20261012',templateVersionId:null,organizationIds:[],deadlines:{},targets:[],indicators:[],assignments:[],ruleVersionIds:[],configuration:{referenceCompanySheets:{}}};
+  const draft = {id:'draft-9901',report_type_id:monthly.id,report_type_name:'旧周期草稿',period_code:'20261012',cadence:'monthly',status:'draft',organizations:[],version:1,draftInput:{editorState:form}};
+  const quarterDraft = {...draft,id:'draft-9902',cadence:'quarterly',report_type_id:quarterly.id,period_code:'2031-Q2',draftInput:{editorState:{...form,reportTypeId:quarterly.id,periodCode:'2031-Q2'}}};
+  const locked = {...draft,id:'draft-9903',originalPackageId:9903,period_code:'2030-12',draftInput:{editorState:{...form,periodCode:'2030-12'}}};
+  browser = await chromium.launch({headless:true}); const page = await browser.newPage({viewport:{width:1440,height:1000}}); page.setDefaultTimeout(10000);
+  const errors = [], writes = []; page.on('pageerror',e=>errors.push(e.message));
+  // Capture proposed payloads only. Never create, activate or overwrite real packages.
+  await page.route('**/api/period-configuration/packages**', async route => {
+    const req=route.request();
+    if(req.method()==='GET') return route.fulfill({json:{packages:[draft,quarterDraft,locked]}});
+    assert.ok(['POST','PUT'].includes(req.method()) && !req.url().endsWith('/activate'));
+    writes.push(req.postDataJSON()); return route.fulfill({json:{package:{id:'draft-9999'}}});
+  });
+  await page.goto(base); await page.evaluate(l=>{localStorage.setItem('token',l.token);localStorage.setItem('userInfo',JSON.stringify(l.user))},login);
+  const dialog=page.getByRole('dialog',{name:/填报计划$/});
+  const pickType=async type=>{await dialog.locator('.form-grid .el-select').first().click();await page.getByRole('option',{name:`${type.displayName} · ${type.cadence==='monthly'?'月度':'季度'}`,exact:true}).click()};
+  const pickMonth=async()=>{await page.getByPlaceholder('选择报告月份',{exact:true}).click();await page.locator('.el-picker-panel:visible').getByText('十月',{exact:true}).click()};
+  const save=async()=>{await dialog.getByRole('button',{name:'保存草稿',exact:true}).click();await expect(dialog).not.toBeVisible()};
+  await page.goto(url+'?start=new'); await expect(page.getByPlaceholder('选择报告月份',{exact:true})).toBeDisabled();
+  await pickType(monthly);await pickMonth();await expect(page.getByPlaceholder('选择报告月份',{exact:true})).toHaveValue('2026 年 10 月');await save();assert.equal(writes.at(-1).periodCode,'2026-10');
+  await page.getByRole('button',{name:/新建填报计划/}).click();await pickType(monthly);await pickMonth();await pickType(quarterly);
+  await expect(page.getByPlaceholder('选择年份',{exact:true})).toHaveValue('');
+  await dialog.locator('.quarter-controls .el-select').click();await page.getByRole('option',{name:'第三季度（7—9月）',exact:true}).click();
+  await page.getByPlaceholder('选择年份',{exact:true}).click();await page.locator('.el-picker-panel:visible').getByText('2027',{exact:true}).click();
+  await dialog.screenshot({path:path.join(evidence,'quarter.png')});await save();assert.equal(writes.at(-1).periodCode,'2027-Q3');
+  await page.goto(url+'?packageId=draft-9902');await expect(page.getByPlaceholder('选择年份',{exact:true})).toHaveValue('2031 年');await expect(dialog.locator('.quarter-controls')).toContainText('第二季度');
+  await pickType(monthly);await expect(page.getByPlaceholder('选择报告月份',{exact:true})).toHaveValue('');
+  await dialog.getByRole('button',{name:/04.*检查并激活/}).click();const count=writes.length;await dialog.getByRole('button',{name:'检查并激活',exact:true}).click();await expect(dialog).toContainText('请选择报告月份');assert.equal(writes.length,count);
+  await page.goto(url+'?packageId=draft-9901');await expect(dialog.getByRole('alert').filter({hasText:'20261012'})).toBeVisible();await expect(page.getByPlaceholder('选择报告月份',{exact:true})).toHaveValue('');
+  await dialog.screenshot({path:path.join(evidence,'invalid-draft.png')});await pickMonth();await expect(dialog).not.toContainText('原周期');await save();assert.equal(writes.at(-1).periodCode,'2026-10');assert.equal(writes.at(-1).editorState.periodCode,'2026-10');
+  await page.goto(url+'?packageId=draft-9903');await expect(page.getByPlaceholder('选择报告月份',{exact:true})).toBeDisabled();await expect(page.getByPlaceholder('选择报告月份',{exact:true})).toHaveValue('2030 年 12 月');
+  await page.setViewportSize({width:900,height:850});await dialog.screenshot({path:path.join(evidence,'locked-narrow.png')});assert.ok(await dialog.evaluate(e=>e.scrollWidth<=e.clientWidth+2));assert.deepEqual(errors,[]);
+  console.log('PASS month/quarter selection, canonical payloads, cadence switch, legacy draft repair, activation guidance, locked identities; no real package writes or browser errors.');
+})().catch(e=>{console.error(e.message);process.exitCode=1}).finally(async()=>{await browser?.close()});

@@ -1,0 +1,13 @@
+[Unit]
+Description=Reset cost report demo daily at 02:00 Asia/Shanghai
+
+[Timer]
+OnCalendar=*-*-* 02:00:00 Asia/Shanghai
+AccuracySec=1s
+RandomizedDelaySec=0
+# Do not catch up a missed nighttime reset during daytime startup.
+Persistent=false
+Unit=cost-report-demo-reset.service
+
+[Install]
+WantedBy=timers.target

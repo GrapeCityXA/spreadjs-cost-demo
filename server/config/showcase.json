@@ -1,0 +1,9 @@
+{
+  "guideMediaBaseUrl": "https://videos.grapecity.com.cn/SpreadJS/online/demos/cost-demo/",
+  "showcaseReset": {
+    "enabled": true,
+    "idleHours": 2,
+    "backupRetain": 7
+  },
+  "seedDemoContent": true
+}

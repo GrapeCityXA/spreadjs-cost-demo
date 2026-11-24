@@ -1,0 +1,64 @@
+/* Includes teleported form and confirmation surfaces without changing other pages. */
+:is(.org-admin, .admin-dialog, .org-admin-confirm) {
+  --el-color-primary: #941966;
+  --el-color-danger: #b42318;
+  --el-text-color-secondary: #6d5a65;
+  --el-text-color-placeholder: #656b73;
+}
+.portal-layout .org-admin :is(.summary-strip small, .table-hint, .audit-subline, .audit-hint, .org-name small, .user-cell small, .muted, .role-chip i) { color: #6d5a65; }
+.org-admin :is(.org-name, .user-cell) > div { min-width: 0; }
+.org-admin :is(.org-mark, .avatar) { flex-shrink: 0; }
+:is(.org-admin, .admin-dialog) :is(p, small, strong, .role-chip, .el-alert__title) { overflow-wrap: anywhere; }
+.org-admin .role-chip { flex-wrap: wrap; max-width: 100%; }
+.org-admin .accessible-data-table { min-width: 0; max-width: 100%; }
+.org-admin .el-pagination { flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.org-admin .app-data-table .cell { overflow-wrap: anywhere; }
+.org-admin .accessible-table-scroll { scrollbar-color: #8e9ba8 #f4ecef; }
+.org-admin .app-column-control { color: #6d5a65; }
+.org-admin .app-column-control.active { color: #941966; }
+.org-admin .admin-feedback { margin-block: 12px; }
+.admin-dialog .admin-form-error { padding: 12px; color: #b42318; background: #fff5f4; border: 1px solid #e8b4ae; border-radius: 6px; }
+.admin-dialog .assignment-list { width: 100%; min-width: 0; }
+.admin-dialog .assignment-row { width: 100%; }
+.org-admin .audit-details summary { color: var(--el-color-primary); cursor: pointer; padding-block: 8px; }
+.org-admin .audit-details pre { margin: 8px 0 16px; white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; }
+.org-admin .audit-details summary:hover { text-decoration: underline; text-underline-offset: 3px; }
+:is(.org-admin, .admin-dialog, .org-admin-confirm) :is(button, summary, .accessible-table-scroll, .el-tabs__item):focus-visible { outline: 2px solid #941966; outline-offset: 2px; }
+:is(.org-admin, .admin-dialog) input { caret-color: #941966; }
+:is(.org-admin, .admin-dialog) ::selection { color: #4b0b31; background: #f0c6dd; }
+.admin-dialog.el-dialog { max-width: calc(100vw - 32px); }
+.admin-dialog .el-form-item { min-width: 0; }
+.admin-dialog .admin-field-help { flex-basis: 100%; margin: 6px 0 0; color: #6d5a65; font-size: 13px; line-height: 1.6; }
+.admin-dialog .el-form-item__error { position: static; line-height: 1.5; }
+.admin-dialog .el-dialog__title { font-size: 20px; line-height: 1.4; font-weight: 600; }
+.admin-dialog .el-dialog__header { padding-right: 36px; padding-bottom: 16px; }
+.admin-dialog .el-dialog__headerbtn { width: 44px; height: 44px; }
+.admin-dialog .el-dialog__footer { display: flex; justify-content: flex-end; gap: 8px; padding-top: 16px; border-top: 1px solid var(--el-border-color-light); }
+.admin-dialog .el-dialog__footer .el-button { margin: 0; min-height: 44px; }
+.org-admin-confirm.el-message-box { width: min(420px, calc(100vw - 32px)); }
+@media (max-width: 767px) {
+  .admin-dialog.el-dialog { margin: 12px auto; max-height: calc(100dvh - 24px); display: flex; flex-direction: column; }
+  .admin-dialog .el-dialog__body { overflow-y: auto; min-height: 0; }
+  .admin-dialog :is(.el-dialog__header, .el-dialog__footer) { flex-shrink: 0; }
+  .admin-dialog .el-dialog__header { padding-right: 36px; }
+  .admin-dialog .el-dialog__title { overflow-wrap: anywhere; }
+  .admin-dialog.el-dialog .form-grid, .admin-dialog.el-dialog .capability-grid { grid-template-columns: minmax(0, 1fr); }
+  .admin-dialog.el-dialog .assignment-row { grid-template-columns: minmax(0, 1fr) 60px; }
+  .admin-dialog .assignment-row > :first-child { grid-column: 1 / -1; }
+  .admin-dialog .assignment-row + .assignment-row { padding-top: 16px; border-top: 1px solid var(--el-border-color-light); }
+  .admin-dialog .assignment-row { margin-bottom: 16px; }
+}
+@media (max-width: 1023px), (any-pointer: coarse) {
+  :is(.org-admin, .admin-dialog, .org-admin-confirm) .el-button { min-height: 44px; min-width: 44px; white-space: normal; }
+  :is(.org-admin, .admin-dialog) :is(.el-input__wrapper, .el-select__wrapper) { min-height: 44px; }
+  :is(.org-admin, .admin-dialog) :is(.el-input__inner, .el-select__selected-item) { font-size: 16px; }
+  .org-admin .app-column-control { min-width: 44px; min-height: 44px; }
+  html body .org-admin .app-data-table th .cell { display: grid; grid-template-columns: repeat(2, 44px); }
+  .org-admin .app-column-heading { display: contents; }
+  .org-admin .app-column-label { grid-column: 1 / -1; }
+  .org-admin .el-table__column-filter-trigger { grid-column: 2; }
+  .org-admin .audit-details summary { min-height: 44px; }
+}
+@media (forced-colors: active) {
+  :is(.org-admin, .admin-dialog, .org-admin-confirm) :focus-visible { outline-color: Highlight; }
+}

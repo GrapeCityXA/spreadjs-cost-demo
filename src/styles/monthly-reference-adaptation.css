@@ -1,0 +1,93 @@
+/* Monthly route only; no selectors reach the workbook/designer canvas. */
+.portal-layout .portal-main .portal-content > .reference-page.portal-workbench { max-width: none; margin: 0; }
+.reference-page { container: monthly-reference / inline-size; }
+.portal-content .reference-page .page-head { align-items: flex-start; flex-direction: row; gap: 24px; }
+.portal-content .reference-page .page-head > div { min-width: 0; }
+.portal-content .reference-page .page-head > .el-button { flex-shrink: 0; }
+.portal-content .reference-page .period-controls { display: grid; grid-template-columns: minmax(160px, 280px) minmax(160px, 220px) minmax(180px, 240px) max-content; justify-content: start; align-items: end; gap: 16px; padding-block: 20px; border-bottom: 1px solid var(--portal-line); }
+.portal-content .reference-page .query-field { width: 100%; gap: 8px; }
+.portal-content .reference-page .period-controls > .el-button { margin: 0; }
+.portal-content .reference-page .report-meta { flex-wrap: wrap; gap: 16px 32px; }
+.portal-content .reference-page .report-meta > div:not(.export-actions) { flex: 0 1 auto; max-width: 100%; }
+.portal-content .reference-page .export-actions { flex-wrap: wrap; gap: 8px; }
+.portal-content .reference-page .export-actions .el-button { margin: 0; }
+.portal-content .reference-page .table-heading { align-items: center; flex-wrap: wrap; gap: 8px 16px; }
+.portal-content .reference-page .table-shell, .portal-content .reference-page .traceability-shell { min-width: 0; padding: 20px; }
+.portal-content .reference-page .report-provenance { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 0 24px; margin: 0; }
+.portal-content .reference-page .report-provenance > div { min-width: 0; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; padding-block: 12px; border-top: 1px solid var(--portal-line); }
+.portal-content .reference-page .report-provenance .provenance-wide { grid-column: 1 / -1; }
+.portal-content .reference-page .report-provenance dt { color: var(--portal-muted); }
+.portal-content .reference-page .report-provenance dd { margin: 0; overflow-wrap: anywhere; }
+.monthly-table-hint { display: none; color: var(--portal-muted, #6d5a65); font-size: 14px; margin: 0 0 12px; }
+.portal-content .reference-page .table-shell:has(.el-table--scrollable-x) > .monthly-table-hint { display: block; }
+.monthly-reference-popover.el-popper { max-width: calc(100vw - 32px); overflow-wrap: anywhere; }
+.monthly-reference-popover .revision-popover-body { max-height: min(376px, calc(60dvh - 24px)); overflow: auto; overscroll-behavior: contain; }
+.monthly-reference-popover p { margin: 0; }
+
+.monthly-report-studio { container: monthly-studio / inline-size; min-width: 0; }
+.monthly-report-studio .studio-header { gap: 16px; flex-wrap: wrap; }
+.monthly-report-studio .studio-header > div:first-child { flex: 1 1 240px; min-width: 0; }
+.monthly-report-studio .actions { flex-wrap: wrap; gap: 8px; }
+.monthly-report-studio .actions > .el-button { margin: 0; }
+.monthly-report-studio .studio-tabs { flex-wrap: wrap; gap: 8px; }
+.monthly-report-studio:has(.el-table--scrollable-x) > .monthly-table-hint { display: block; }
+.monthly-reference-dialog.el-dialog { display: flex; flex-direction: column; width: 620px; max-width: calc(100% - 32px); max-height: calc(100dvh - 48px); margin-block: 24px; }
+.monthly-reference-preview.el-dialog { width: 94%; }
+.monthly-reference-dialog .el-dialog__header { flex-shrink: 0; padding-right: 44px; }
+.monthly-reference-dialog .el-dialog__title { overflow-wrap: anywhere; }
+.monthly-reference-dialog .el-dialog__body { min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.monthly-reference-dialog .el-dialog__footer { flex-shrink: 0; padding-top: 16px; border-top: 1px solid var(--portal-line, #e8d9e1); }
+.monthly-reference-dialog .generation-form :is(.el-select, .el-date-editor.el-input, .el-input-number) { width: 100%; min-width: 0; }
+.monthly-reference-dialog .el-form-item__content, .monthly-reference-dialog .el-alert__content { min-width: 0; }
+.monthly-reference-dialog .el-alert__title { overflow-wrap: anywhere; }
+.monthly-reference-dialog .provenance { flex-wrap: wrap; gap: 8px 16px; }
+
+@container monthly-reference (max-width: 800px) {
+  .portal-content .reference-page .page-head { flex-direction: column; gap: 16px; }
+  .portal-content .reference-page .period-controls { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .portal-content .reference-page .period-controls > .query-field:nth-child(3) { grid-column: 1 / -1; }
+  .portal-content .reference-page .period-controls > .el-button { grid-column: 1 / -1; justify-self: start; }
+  .portal-content .reference-page .report-provenance { grid-template-columns: 1fr; }
+  .portal-content .reference-page .metric-totals { grid-template-columns: 1fr; }
+  .portal-content .reference-page .report-meta { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+  .portal-content .reference-page .report-meta > div:first-child { grid-column: 1 / -1; }
+  .portal-content .reference-page .export-actions { grid-column: 1 / -1; width: 100%; margin-left: 0; }
+  html body .portal-content .reference-page .report-table .el-table-fixed-column--left { position: static !important; }
+  .portal-content .reference-page .report-table .el-table-fixed-column--left::before { display: none; }
+}
+@container monthly-reference (max-width: 480px) {
+  .portal-content .reference-page .period-controls { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .portal-content .reference-page .period-controls > .el-button { width: 100%; }
+  .portal-content .reference-page .table-shell, .portal-content .reference-page .traceability-shell, .portal-content .reference-page .total-card { padding: 16px; }
+  .portal-content .reference-page .report-provenance > div { grid-template-columns: 1fr; gap: 4px; }
+  .portal-content .reference-page .export-actions { display: grid; grid-template-columns: 1fr 1fr; }
+}
+@container monthly-studio (max-width: 620px) {
+  .monthly-report-studio .studio-header { flex-direction: column; align-items: stretch; }
+  .monthly-report-studio .studio-header > div:first-child { flex: auto; }
+  .monthly-report-studio .actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .monthly-report-studio .actions > .el-button { width: 100%; }
+}
+@media (max-width: 900px), (any-pointer: coarse) {
+  :is(.reference-page, .monthly-report-studio, .monthly-reference-dialog) .el-button { min-height: 44px; height: auto; min-width: 44px; white-space: normal; line-height: 1.4; }
+  :is(.reference-page, .monthly-report-studio, .monthly-reference-dialog) :is(.el-select__wrapper, .el-input__wrapper) { min-height: 44px; box-sizing: border-box; }
+  :is(.reference-page, .monthly-reference-dialog) .el-date-editor.el-input { height: 44px; }
+  :is(.reference-page, .monthly-reference-dialog) :is(.el-input__inner, .el-select__selected-item) { font-size: 16px; }
+  html body :is(.reference-page, .monthly-report-studio) .app-column-control { width: 44px; height: 44px; flex-basis: 44px; }
+  /* The shared ReportStudio owns its single-line list headers. */
+  html body .reference-page th .cell:has(.app-column-heading) { display: grid; grid-template-columns: 44px 44px; justify-content: start; gap: 0; }
+  .reference-page .app-column-heading { display: contents; }
+  .reference-page .app-column-label { grid-column: 1 / -1; line-height: 24px; }
+  html body :is(.reference-page, .monthly-report-studio) th.el-table__cell { padding-block: 4px; }
+  .monthly-reference-dialog .el-dialog__headerbtn { width: 44px; height: 44px; top: 8px; right: 8px; }
+  .monthly-reference-dialog .el-input-number { line-height: 42px; }
+  .monthly-reference-dialog :is(.el-input-number__decrease, .el-input-number__increase) { width: 44px; }
+}
+@media (max-width: 600px) {
+  .monthly-reference-dialog.el-dialog { width: 100%; max-width: 100%; height: 100dvh; max-height: 100dvh; margin: 0; border-radius: 0; padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); }
+  .monthly-reference-dialog .el-dialog__body { flex: 1; }
+  .monthly-reference-dialog .el-dialog__footer { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .monthly-reference-dialog .el-dialog__footer .el-button { width: 100%; margin: 0; }
+  .monthly-reference-dialog .schedule-fields { grid-template-columns: 1fr; gap: 0; }
+  .portal-content .reference-page .lede, .portal-content .reference-page .report-provenance, .monthly-reference-dialog .el-form-item__label { font-size: 16px; }
+}

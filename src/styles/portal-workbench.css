@@ -1,0 +1,191 @@
+@import './portal-tokens.css';
+/* Shared page chrome. Select named application elements, never SpreadJS internals. */
+.portal-workbench {
+  --ink: var(--portal-ink);
+  --muted: var(--portal-muted);
+  --line: var(--portal-line);
+  --paper: var(--portal-paper);
+  --green: var(--portal-primary);
+  --forest: var(--portal-primary);
+  --gold: #e6a23c;
+  --amber: #e6a23c;
+  width: 100%;
+  min-height: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 24px;
+  color: var(--portal-ink);
+  background: var(--portal-paper);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+}
+/* Higher specificity keeps each routed page on the same portal spacing and type scale. */
+.portal-layout .portal-content > .portal-workbench {
+  --ink: var(--portal-ink);
+  --muted: var(--portal-muted);
+  --line: var(--portal-line);
+  --paper: var(--portal-paper);
+  --teal: var(--portal-primary);
+  max-width: 1600px;
+  padding: 24px;
+  background: #f8f3f6;
+  color: #2c1b26;
+  font-family: var(--font-sans);
+}
+.portal-content .portal-workbench :is(.page-heading, .report-header, .workbench-head, .dashboard-header) {
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+/* Keep page titles close to navigation and content without shrinking controls. */
+.portal-content .portal-workbench :is(.page-heading, .dashboard-header) {
+  margin-bottom: 12px;
+}
+.portal-content .portal-workbench .library-navigation {
+  margin-top: 0;
+}
+.portal-content .portal-workbench :is(.queue-header, .workbench-header) {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+}
+.portal-content .portal-workbench :is(.heading-actions, .head-actions, .report-controls, .period-controls) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+.portal-content .portal-workbench :is(.heading-actions, .head-actions) .el-button + .el-button {
+  margin-left: 0;
+}
+.portal-content .portal-workbench :is(.eyebrow, .panel-kicker) {
+  font-family: inherit;
+  font-size: var(--portal-text-secondary);
+  letter-spacing: .04em;
+}
+.portal-content .portal-workbench :is(.summary-row, .summary-strip, .governance-section, .admin-tabs, .catalog-tabs, .rules-tabs, .ranking-panel, .traceability-shell) {
+  background: var(--portal-surface);
+  border-color: var(--portal-line);
+  border-radius: var(--portal-radius-panel);
+  box-shadow: none;
+}
+.portal-content .portal-workbench :is(.page-summary, .lede, .page-heading p) {
+  color: #6d5a65;
+  font-size: 14px;
+}
+.portal-content .portal-workbench .workbench-titleline {
+  align-items: center;
+  gap: 16px;
+}
+.portal-content .portal-workbench .workbench-titleline > div {
+  min-width: 0;
+}
+.portal-content .portal-workbench .workbench-titleline > .el-tag {
+  flex-shrink: 0;
+  margin: 0;
+  white-space: nowrap;
+}
+.portal-content .portal-workbench .workbench-titleline h1 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+}
+@media (max-width: 900px) {
+  .portal-layout .portal-content > .portal-workbench {
+    padding: 20px;
+  }
+}
+.portal-layout .portal-main .portal-content .portal-workbench h1 {
+  font-family: inherit;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: normal;
+  color: var(--portal-ink);
+}
+.portal-layout .portal-main .portal-content .portal-workbench h2,
+.portal-layout .portal-main .portal-content .portal-workbench h3 {
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: normal;
+  color: var(--portal-ink);
+}
+.portal-layout .portal-main .portal-content .portal-workbench h2 {
+  font-size: 18px;
+}
+.portal-layout .portal-main .portal-content .portal-workbench h3 {
+  font-size: 14px;
+}
+.portal-content .portal-workbench .eyebrow,
+.portal-content .portal-workbench .section-kicker,
+.portal-content .portal-workbench .card-kicker {
+  color: var(--portal-primary);
+}
+.portal-content .portal-workbench .masthead,
+.portal-content .portal-workbench .page-head,
+.portal-content .portal-workbench .page-intro,
+.portal-content .portal-workbench .report-header {
+  padding: 0 0 12px;
+  border-color: var(--portal-line);
+}
+.portal-content .portal-workbench .task-rail,
+.portal-content .portal-workbench .welcome-panel,
+.portal-content .portal-workbench .briefing,
+.portal-content .portal-workbench .review-main,
+.portal-content .portal-workbench .panel,
+.portal-content .portal-workbench .work-panel,
+.portal-content .portal-workbench .task-card,
+.portal-content .portal-workbench .summary-card,
+.portal-content .portal-workbench .chart-card,
+.portal-content .portal-workbench .table-card,
+.portal-content .portal-workbench .detail-card,
+.portal-content .portal-workbench .filter-bar,
+.portal-content .portal-workbench .package-card {
+  background: var(--portal-surface);
+  border-color: var(--portal-line);
+  border-radius: var(--portal-radius-panel);
+  box-shadow: none;
+}
+.portal-content .portal-workbench .task-card.selected {
+  border-color: var(--portal-primary);
+  background: var(--portal-accent-surface);
+}
+.portal-content .portal-workbench .task-rail {
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+.portal-content .portal-workbench .intro-stamp,
+.portal-content .portal-workbench .intro-aside {
+  background: var(--portal-accent-surface);
+  border-color: var(--portal-primary);
+}
+.portal-content .portal-workbench .sheet-toolbar,
+.portal-content .portal-workbench .snapshot-note,
+.portal-content .portal-workbench .finalization-section {
+  background: #f8f3f6;
+}
+.portal-content .portal-workbench .package-mark:not(.quarterly),
+.portal-content .portal-workbench .preview-icon {
+  color: var(--portal-primary);
+  background: var(--portal-accent-surface);
+}
+.portal-content .portal-workbench .org-chips span {
+  color: var(--portal-muted);
+  background: #f8f3f6;
+}
+.portal-content .portal-workbench .task-card-footer {
+  flex-wrap: wrap;
+}
+@media (max-width: 900px) {
+  .portal-workbench {
+    padding: 20px;
+  }
+  .portal-workbench .task-rail {
+    position: static;
+    max-height: 300px;
+  }
+}
+/* The design canvas uses all available portal space; catalogs open on demand. */
+/* Reflow this editor by available workspace width, including sidebar collapse. */

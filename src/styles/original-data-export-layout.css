@@ -1,0 +1,79 @@
+/* The available work area, including sidebar changes, determines the column count. */
+.portal-layout .portal-content > .export-page.portal-workbench {
+  max-width: none;
+  margin: 0;
+  padding: 24px;
+  container: export-workspace / inline-size;
+}
+.portal-layout .export-page .page-intro {
+  display: grid;
+  gap: 8px;
+  padding: 0 0 20px;
+  border-bottom: 1px solid var(--portal-line);
+}
+.export-page .page-intro h1 { margin: 0; }
+.export-page .intro-copy { margin: 8px 0 0; color: var(--portal-muted); font-size: 14px; line-height: 1.6; }
+.export-page .intro-note { display: flex; flex-wrap: wrap; gap: 4px 8px; margin: 0; color: var(--portal-muted); font-size: 12px; }
+.export-page .intro-note strong { font-weight: 500; }
+.export-page .page-alert { margin-block: 16px; }
+.export-page .export-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 16px; margin-top: 20px; }
+.portal-layout .export-page .work-panel { padding: 24px; border: 1px solid var(--portal-line); border-radius: 8px; background: var(--portal-surface); box-shadow: none; }
+.export-page .export-grid > .work-panel { display: flex; flex-direction: column; }
+.export-page .work-panel h2 { margin: 0; }
+.export-page .panel-copy { margin: 8px 0 24px; color: var(--portal-muted); font-size: 14px; line-height: 1.6; }
+.export-page .form-row { display: grid; gap: 8px; }
+.export-page .form-row label { color: var(--portal-ink); font-size: 14px; font-weight: 500; }
+.export-page .form-row .el-select { width: 100%; min-width: 0; }
+.export-page .scope-help { margin: 8px 0 20px; color: var(--portal-muted); font-size: 14px; line-height: 1.6; overflow-wrap: anywhere; }
+.export-page .field-inventory { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0 0 20px; padding: 0; list-style: disc; color: var(--portal-muted); font-size: 12px; }
+.export-page .field-inventory > li { margin-inline-start: 16px; overflow-wrap: anywhere; }
+.export-page .package-preview { display: flex; align-items: center; gap: 12px; margin: 0 0 20px; padding: 16px 0; border-block: 1px solid var(--portal-line); }
+.export-page .preview-icon { display: grid; place-items: center; flex: 0 0 36px; height: 36px; border-radius: 4px; font-size: 20px; }
+.export-page .package-preview > div:nth-child(2) { display: grid; gap: 4px; flex: 1; min-width: 0; }
+.export-page .package-preview b { font-size: 14px; }
+.export-page .package-preview span { color: var(--portal-muted); font-size: 12px; }
+.export-page .zip-badge { flex-shrink: 0; font-weight: 600; }
+.export-page .panel-actions { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--portal-line); }
+.export-page .panel-actions .el-button { max-width: 100%; }
+.export-page .jobs-panel { margin-top: 24px; }
+.export-page .jobs-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.export-page .jobs-heading > div { min-width: 0; }
+.export-page .jobs-heading .scope-help { margin-bottom: 0; }
+.export-page .jobs-heading > .el-button { flex-shrink: 0; }
+.export-page .job-list { margin-top: 20px; }
+.export-page .job-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 20px; border-top: 1px solid var(--portal-line); }
+.export-page .job-row:last-child { padding-bottom: 0; }
+.export-page .job-main { display: flex; flex: 1; flex-direction: column; gap: 8px; min-width: 0; }
+.export-page .job-title { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.export-page .job-title b { min-width: 0; font-size: 14px; }
+.export-page .job-meta, .export-page .expiry-note, .export-page .running-note { color: var(--portal-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.export-page .job-meta { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.export-page .job-meta > span { min-width: 0; overflow-wrap: anywhere; }
+.export-page time, .export-page .timezone { display: inline-block; }
+.export-page .timezone { white-space: nowrap; }
+.export-page .job-main .el-progress { width: 100%; max-width: 460px; margin-top: 4px; }
+.export-page .job-error { font-size: 14px; }
+.export-page .job-actions { flex-shrink: 0; }
+.export-page .empty-jobs { display: grid; justify-items: center; gap: 8px; padding: 32px 16px; color: var(--portal-muted); text-align: center; }
+.export-page .empty-jobs b { color: var(--portal-ink); font-size: 14px; }
+.export-page .empty-jobs > span { font-size: 14px; }
+.export-page .retention-note { display: flex; align-items: flex-start; gap: 8px; margin-top: 16px; color: var(--portal-muted); font-size: 12px; }
+.export-page .retention-mark { flex: 0 0 16px; margin-top: 2px; font-size: 16px; }
+.export-select-menu { max-width: calc(100vw - 32px); }
+.export-select-menu .el-select-dropdown__item { height: auto; min-height: 44px; padding-block: 10px; line-height: 1.5; white-space: normal; overflow-wrap: anywhere; }
+.export-select-menu .el-select-dropdown__item.is-selected { color: var(--portal-focus, #941966); }
+@container export-workspace (max-width: 560px) {
+  .export-page .job-row { align-items: flex-start; flex-direction: column; gap: 16px; }
+  .export-page .job-actions, .export-page .job-actions .el-button { width: 100%; }
+  .export-page .jobs-heading { flex-wrap: wrap; }
+}
+@media (max-width: 767px) {
+  .portal-layout .portal-content > .export-page.portal-workbench { padding: 20px 16px max(24px, env(safe-area-inset-bottom)); }
+  .portal-layout .export-page .work-panel { padding: 20px 16px; }
+  .export-page .page-intro { gap: 12px; }
+  .export-page .intro-note, .export-page .field-inventory, .export-page .package-preview span, .export-page .empty-jobs > span { font-size: 14px; }
+  .export-page .panel-actions .el-button { width: 100%; }
+  .export-page .el-button { font-size: 16px; }
+  .export-page .job-title .el-tag { font-size: 14px; }
+  .export-select-menu .el-select-dropdown__item { font-size: 16px; }
+}

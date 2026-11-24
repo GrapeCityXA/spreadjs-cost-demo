@@ -1,0 +1,85 @@
+/* Readable semantic colors, scoped to the dashboard and its teleported overlays. */
+:is(.dashboard-portal, .operations-dashboard, .dashboard-dialog, .dashboard-select-options, .dashboard-table-filter, .dashboard-notifications) {
+  --el-color-primary: #941966;
+  --el-color-primary-light-3: #941966;
+  --el-text-color-secondary: #6d5a65;
+  --el-text-color-placeholder: #656b73;
+}
+.dashboard-portal .user-role { color: #6d5a65; }
+.operations-dashboard .operations-header .dashboard-load-status {
+  margin: 4px 0 0;
+  min-height: 1.6em;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--el-text-color-regular);
+}
+.operations-dashboard .operations-header > div { min-width: 0; }
+.operations-dashboard .operations-header > div:first-child { flex: 1 1 340px; }
+.portal-layout .operations-dashboard .refresh-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  flex: 0 1 560px;
+  margin-inline-start: auto;
+  gap: 12px;
+  align-items: center;
+}
+.operations-dashboard .refresh-meta { min-width: 0; line-height: 1.6; font-variant-numeric: tabular-nums; }
+.operations-dashboard .refresh-actions { display: flex; gap: 8px; }
+.operations-dashboard .refresh-actions .el-button + .el-button { margin-left: 0; }
+.operations-dashboard .refresh-actions .el-button .el-icon + span { margin-left: 6px; }
+.operations-dashboard :is(h1, h2, p, .el-alert__title),
+.dashboard-dialog :is(p, .snapshot-meta, .function-list, .el-alert__title) { overflow-wrap: anywhere; }
+.accessible-data-table { min-width: 0; max-width: 100%; border-radius: 8px; }
+.accessible-data-table .el-pagination { margin-top: 12px; flex-wrap: wrap; justify-content: center; }
+.accessible-data-table .el-pager { display: flex; flex-wrap: wrap; max-width: 100%; }
+.accessible-data-table .el-pagination :is(button, .number, .more) { min-width: 44px; height: 44px; }
+.dashboard-table-filter .el-checkbox { min-height: 44px; height: auto; padding-block: 6px; }
+.dashboard-table-filter .el-checkbox__label { white-space: normal; overflow-wrap: anywhere; }
+.dashboard-table-filter .el-table-filter__bottom button { min-width: 44px; min-height: 44px; }
+:is(.operations-dashboard, .dashboard-dialog) .app-data-table .cell { overflow-wrap: anywhere; max-width: 36rem; }
+:is(.operations-dashboard, .dashboard-dialog) .app-column-control { color: #6d5a65; }
+:is(.operations-dashboard, .dashboard-dialog) .app-column-control.active { color: #941966; }
+html body :is(.operations-dashboard, .dashboard-dialog) .app-data-table th.el-table__cell {
+  color: #6d5a65;
+  vertical-align: top;
+}
+html body :is(.operations-dashboard, .dashboard-dialog) .app-data-table td.dashboard-numeric-cell {
+  font-variant-numeric: tabular-nums;
+}
+html body :is(.operations-dashboard, .dashboard-dialog) .app-data-table td.dashboard-actions-cell .cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+:is(.operations-dashboard, .dashboard-dialog) .dashboard-actions-cell .el-button + .el-button { margin-left: 0; }
+:is(.operations-dashboard, .dashboard-dialog) .el-button.is-link:not(.is-disabled):hover > span {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+:is(.operations-dashboard, .dashboard-dialog) .accessible-table-scroll { scrollbar-color: #8e9ba8 #f4ecef; }
+:is(.operations-dashboard, .dashboard-dialog) input { caret-color: #941966; }
+:is(.operations-dashboard, .dashboard-dialog) ::selection { background: #f0c6dd; color: #4b0b31; }
+:is(.operations-dashboard, .dashboard-dialog) :is(.el-button, .app-column-control, .accessible-table-scroll, .el-tabs__item):focus-visible {
+  outline: 2px solid #941966;
+  outline-offset: 2px;
+}
+@media (max-width: 1199px) {
+  .portal-layout .operations-dashboard .refresh-controls { flex-basis: auto; width: 100%; margin-inline-start: 0; }
+}
+@media (max-width: 900px) {
+  .portal-layout .operations-dashboard .operations-header > div { flex-basis: auto; width: 100%; }
+  .portal-layout .operations-dashboard .refresh-controls { justify-content: flex-start; }
+}
+@media (max-width: 767px) {
+  .portal-layout .operations-dashboard .refresh-controls { grid-template-columns: minmax(0, 1fr); }
+  .operations-dashboard .refresh-actions .el-button { flex: 1; }
+  .operations-dashboard .operations-header .dashboard-load-status { font-size: 14px; }
+}
+@media (forced-colors: active) {
+  :is(.operations-dashboard, .dashboard-dialog) :is(.overview-cards article, .step-dot, .el-button) { border: 1px solid ButtonText; }
+  :is(.operations-dashboard, .dashboard-dialog) :focus-visible { outline-color: Highlight; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-portal .fade-enter-active, .dashboard-portal .fade-leave-active { transition: none; }
+}

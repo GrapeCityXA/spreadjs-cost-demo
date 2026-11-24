@@ -1,0 +1,170 @@
+/* Page chrome is fluid; the workbook owns its own two-dimensional scrolling. */
+.portal-layout .portal-content > .portal-workbench.template-library {
+  max-width: none;
+  min-width: 0;
+  padding: 24px;
+  --el-color-primary: var(--portal-focus, #941966);
+  --el-color-primary-dark-2: #6f114b;
+  --el-color-primary-light-3: #7a1454;
+  --template-header-control-size: 28px;
+}
+.template-library .page-heading { justify-content: space-between; align-items: center; gap: 16px; }
+.template-library .library-navigation { gap: 12px 24px; margin-top: 0; }
+.template-library .heading-actions { gap: 8px; min-width: 0; }
+.template-library .heading-actions .el-button { margin: 0; white-space: normal; height: auto; min-height: 36px; line-height: 1.5; padding-block: 8px; }
+.template-library .governance-section { margin-top: 24px; padding: 20px; min-width: 0; }
+.template-library .section-heading { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 16px; }
+.template-library .section-heading .el-tag { color: var(--portal-muted, #6d5a65); font-variant-numeric: tabular-nums; }
+.template-library .subline { color: var(--portal-muted, #6d5a65); overflow-wrap: anywhere; }
+.template-library .owner-mark { display: inline-block; margin-inline-start: 6px; }
+.template-library .accessible-table-scroll { min-width: 0; scrollbar-color: #8e9ba8 #f8f3f6; }
+html body .template-library .template-library-table table { min-width: 1000px; width: 100%; table-layout: auto; }
+html body .template-library .app-data-table .cell { overflow-wrap: anywhere; }
+html body .template-library .app-data-table th .cell { display: grid; grid-template-columns: repeat(2, var(--template-header-control-size)); justify-content: start; align-items: center; gap: 4px; }
+html body .template-library .app-data-table th.el-table__cell { vertical-align: top; color: var(--portal-muted, #6d5a65); }
+.template-library .app-column-heading { display: contents; }
+.template-library .app-column-label { grid-column: 1 / -1; width: max-content; max-width: 100%; white-space: nowrap; font-weight: 600; }
+.template-library .app-column-control { width: var(--template-header-control-size); height: var(--template-header-control-size); color: var(--portal-muted, #6d5a65); }
+.template-library .app-column-control:hover, .template-library .app-column-control.active { color: var(--portal-focus, #941966); }
+/* The filter's actual button owns its hit area and focus ring, not the nested icon. */
+html body .template-library .app-data-table .el-table__column-filter-trigger {
+  display: inline-flex; align-items: center; justify-content: center; padding: 0;
+  width: var(--template-header-control-size); height: var(--template-header-control-size);
+  border-radius: 4px; color: var(--portal-muted, #6d5a65);
+}
+html body .template-library .app-data-table .el-table__column-filter-trigger > .el-icon { width: 100%; height: 100%; }
+html body .template-library .app-data-table .el-table__column-filter-trigger:focus-visible {
+  outline: 2px solid var(--portal-focus, #941966); outline-offset: 2px;
+}
+.template-library .el-table__column-filter-trigger:is(:hover, [aria-expanded="true"]) .app-column-control {
+  color: var(--portal-focus, #941966); background: var(--portal-accent-surface, #f8ebf3);
+}
+/* Main library lists keep titles and controls together; dialog tables retain their layout. */
+.template-library .template-library-table { --template-header-control-size: 44px; }
+html body .template-library .template-library-table th .cell {
+  display: flex; flex-wrap: nowrap; align-items: center;
+  min-width: max-content; gap: 0;
+}
+html body .template-library .template-library-table th.el-table__cell {
+  padding-block: 4px; vertical-align: middle; font-size: 14px;
+}
+.template-library .template-library-table .app-column-label {
+  flex: 0 0 auto; width: auto; max-width: none; line-height: 24px; overflow-wrap: normal;
+}
+html body .template-library .template-library-table .app-column-control,
+html body .template-library .template-library-table .el-table__column-filter-trigger {
+  flex: 0 0 var(--template-header-control-size); margin: 0; box-sizing: border-box;
+}
+html body .template-library .template-library-table :is(button.app-column-control, .el-table__column-filter-trigger):focus-visible {
+  outline: 2px solid var(--portal-focus, #941966); outline-offset: -2px; border-radius: 4px;
+}
+.template-library .template-library-table .app-column-control { border: 1px solid transparent; }
+.template-library .template-library-table th:has(.app-column-control.active) .app-column-label { color: var(--portal-focus, #941966); }
+.template-library .template-library-table .app-column-control:is(:hover, .active, [aria-expanded="true"]),
+.template-library .template-library-table .el-table__column-filter-trigger:is(:hover, [aria-expanded="true"]) .app-column-control {
+  color: var(--portal-focus, #941966); background: var(--portal-accent-surface, #f8ebf3);
+}
+.template-library .template-library-table .app-column-control:is(.active, [aria-expanded="true"]),
+.template-library .template-library-table .el-table__column-filter-trigger[aria-expanded="true"] .app-column-control { border-color: var(--portal-focus, #941966); }
+.template-library .template-library-table button.app-column-control:active,
+.template-library .template-library-table .el-table__column-filter-trigger:active .app-column-control { color: var(--el-color-primary-dark-2, #6f114b); border-color: currentColor; }
+.template-library .template-record-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; }
+.template-library .template-record-actions .el-button { margin: 0; height: auto; min-height: 32px; line-height: 1.5; white-space: normal; }
+.template-library .template-record-actions .el-button.is-link:not(.is-disabled):hover { text-decoration: underline; text-underline-offset: 3px; }
+.template-library .el-tag--success { --el-tag-text-color: #2b6a37; --el-tag-bg-color: #f0f8ee; --el-tag-border-color: #cbdcc5; }
+.template-library .el-tag--warning { --el-tag-text-color: #83520b; --el-tag-bg-color: #fdf6ec; }
+.template-library .el-tag--danger { --el-tag-text-color: #b42318; }
+.template-library .el-tag--info { --el-tag-text-color: #6d5a65; }
+.template-library .el-button--success.is-link { --el-button-text-color: #2b6a37; }
+.template-library .el-button--danger.is-link { --el-button-text-color: #b42318; }
+.template-library .el-button--primary:not(.is-link):not(.is-text):not(.is-plain) {
+  --el-button-bg-color: #941966; --el-button-border-color: #941966;
+  --el-button-hover-bg-color: #7a1454; --el-button-hover-border-color: #7a1454;
+  --el-button-active-bg-color: #6f114b; --el-button-active-border-color: #6f114b;
+}
+.template-library :is(button, .accessible-table-scroll):focus-visible { outline: 2px solid var(--portal-focus, #941966); outline-offset: 2px; }
+.template-library .has-responsive-summary > .compact-table-toggle { display: none; }
+.template-library.template-compact .has-responsive-summary:not(.table-expanded) > .accessible-table-scroll { display: none; }
+.template-library.template-compact .has-responsive-summary > .compact-table-toggle { display: inline-flex; min-height: 44px; margin: 0 0 12px; white-space: normal; }
+.template-library.template-compact .has-responsive-summary.table-expanded > .compact-table-toggle { margin-block: 12px; }
+.template-library .template-record-list { list-style: none; margin: 0; padding: 0; }
+.template-library .template-record { min-width: 0; padding-block: 16px; }
+.template-library .template-record + .template-record { border-top: 1px solid var(--portal-line, #e8d9e1); }
+.template-library .template-record-heading { display: flex; align-items: start; flex-wrap: wrap; gap: 8px 16px; }
+.portal-layout .portal-content .template-library .template-record-heading h3 { flex: 1 1 160px; min-width: 0; margin: 0; font-size: 16px; line-height: 1.5; overflow-wrap: anywhere; }
+.template-library .template-record-heading .el-tag { flex-shrink: 0; margin-block-start: 2px; }
+.template-library .template-record-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 24px; margin: 12px 0; font-size: 14px; }
+.template-library .template-record-facts > div { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 8px; min-width: 0; }
+.template-library .template-record-facts dt { color: var(--portal-muted, #6d5a65); }
+.template-library .template-record-facts dd { min-width: 0; margin: 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.template-library .template-summary .el-button { min-height: 44px; min-width: 44px; font-size: 16px; }
+.template-library .template-list-empty { padding: 24px 0; margin: 0; color: var(--portal-muted, #6d5a65); text-align: center; overflow-wrap: anywhere; }
+.template-library .el-pagination { flex-wrap: wrap; justify-content: center; margin-block-start: 16px; }
+
+/* Header and actions remain reachable; only dialog content scrolls. */
+.el-dialog.template-state-dialog, .el-dialog.template-pdf-dialog {
+  --el-color-primary: var(--portal-focus, #941966);
+  --el-color-primary-light-3: #7a1454; --el-color-primary-dark-2: #6f114b;
+  display: flex; flex-direction: column; max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 48px); max-height: calc(100dvh - 48px); margin-block: 24px; padding: 0;
+}
+:is(.template-state-dialog, .template-pdf-dialog) .el-dialog__header { flex: none; padding: 20px 60px 16px 24px; margin: 0; }
+:is(.template-state-dialog, .template-pdf-dialog) .el-dialog__title { font-size: 20px; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+:is(.template-state-dialog, .template-pdf-dialog) .el-dialog__headerbtn { top: 8px; right: 8px; width: 44px; height: 44px; }
+:is(.template-state-dialog, .template-pdf-dialog) .el-dialog__body { min-width: 0; min-height: 0; overflow: auto; padding: 0 24px 16px; overscroll-behavior: contain; }
+.template-state-dialog .el-dialog__footer { flex: none; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; padding: 12px 24px max(12px, env(safe-area-inset-bottom)); border-top: 1px solid var(--portal-line, #e8d9e1); }
+.template-state-dialog .el-dialog__footer .el-button { margin: 0; min-height: 44px; white-space: normal; height: auto; line-height: 1.5; }
+.el-dialog.template-preview-dialog, .el-dialog.template-pdf-dialog { height: calc(100vh - 48px); height: calc(100dvh - 48px); }
+:is(.template-preview-dialog, .template-pdf-dialog) .el-dialog__body { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+.template-preview-dialog :is(.preview-owner, .preview-footnote) { margin: 0; flex: none; }
+.template-preview-dialog .preview-owner { color: var(--portal-muted, #6d5a65); overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.template-preview-dialog .el-alert { flex: none; }
+.template-preview-dialog .template-preview-host { flex: 1 0 140px; height: auto; min-height: 140px; margin: 0; min-width: 0; overflow: hidden; }
+.template-pdf-dialog .pdf-preview-frame { flex: 1; min-height: 0; width: 100%; height: 100%; border: 0; }
+.template-state-dialog .role-preview-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; }
+.template-state-dialog .role-preview-bar .el-select { width: min(220px, 100%); min-width: 0; }
+.template-state-dialog .accessible-table-scroll { min-width: 0; }
+.template-state-dialog .publication-issues table, .template-state-dialog [aria-label="角色权限预览"] table { min-width: 560px; }
+
+@media (max-width: 900px), (any-pointer: coarse) {
+  .portal-layout .portal-content > .portal-workbench.template-library { --template-header-control-size: 44px; }
+  .template-library :is(.heading-actions .el-button, .el-radio-button__inner, .template-record-actions .el-button) { min-height: 44px; min-width: 44px; }
+  .template-library .el-radio-button__inner { display: inline-flex; align-items: center; justify-content: center; }
+  .template-state-dialog .el-select__wrapper { min-height: 44px; }
+  .template-state-dialog .el-select__selected-item { font-size: 16px; }
+}
+@media (max-width: 600px) {
+  .portal-layout .portal-content > .portal-workbench.template-library { padding: 16px; }
+  .template-library .page-heading { align-items: stretch; gap: 16px; }
+  .template-library .page-heading > div { width: 100%; }
+  .template-library .page-heading .el-radio-group { display: flex; width: 100%; }
+  .template-library .el-radio-button { flex: 1; }
+  .template-library .el-radio-button__inner { width: 100%; }
+  .template-library .library-navigation { gap: 12px; }
+  .template-library .library-navigation .heading-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+  .template-library .heading-actions > .el-button:first-of-type { grid-column: 1 / -1; }
+  .template-library .governance-section { margin-top: 16px; padding: 16px; }
+  .template-library .template-record-facts { grid-template-columns: minmax(0, 1fr); }
+  .template-library .section-heading { align-items: baseline; }
+  .template-library .section-heading h2 { font-size: 18px; }
+  .el-dialog.template-preview-dialog, .el-dialog.template-pdf-dialog { width: 100% !important; max-width: none; height: 100vh; height: 100dvh; max-height: 100dvh; margin: 0; border-radius: 0; }
+  :is(.template-state-dialog, .template-pdf-dialog) .el-dialog__header { padding: 16px 60px 12px 16px; }
+  :is(.template-state-dialog, .template-pdf-dialog) .el-dialog__body { padding-inline: 16px; }
+  .template-state-dialog .el-dialog__footer { padding-inline: 16px; }
+  .template-preview-dialog .el-dialog__footer { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .template-preview-dialog .el-dialog__footer .el-button:first-child { grid-column: 1 / -1; }
+}
+@media (max-height: 500px) and (min-width: 601px) {
+  .el-dialog.template-state-dialog, .el-dialog.template-pdf-dialog { max-height: calc(100dvh - 16px); margin-block: 8px; }
+  .el-dialog.template-preview-dialog, .el-dialog.template-pdf-dialog { height: calc(100dvh - 16px); }
+  :is(.template-state-dialog, .template-pdf-dialog) .el-dialog__header { padding-block: 12px; }
+}
+
+.template-library-filter { max-width: calc(100vw - 32px); --el-color-primary: var(--portal-focus, #941966); }
+.template-library-filter .el-checkbox__label { white-space: normal; overflow-wrap: anywhere; }
+@media (max-width: 900px), (any-pointer: coarse) {
+  .template-library-filter .el-checkbox { height: auto; min-height: 44px; }
+  .template-library-filter .el-checkbox__label { font-size: 16px; line-height: 1.5; }
+  .template-library-filter .el-table-filter__bottom button,
+  .template-library-filter .el-button { min-height: 44px; min-width: 44px; }
+}

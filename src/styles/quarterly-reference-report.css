@@ -1,0 +1,92 @@
+.portal-layout .portal-content > .quarter-report.portal-workbench {
+  max-width: none;
+  min-width: 0;
+  container: quarter-report-space / inline-size;
+}
+.quarter-report {
+  --el-color-primary: var(--portal-focus, #941966);
+  --el-color-primary-light-3: #7a1454;
+  --el-color-primary-dark-2: #6f114b;
+  --el-color-primary-light-9: var(--portal-accent-surface, #f8ebf3);
+  --ink: var(--portal-ink, #2c1b26);
+  --muted: var(--portal-muted, #6d5a65);
+  --line: var(--portal-line, #e8d9e1);
+  color: var(--ink);
+}
+.quarter-report .report-header { display: block; padding: 0; border: 0; margin-bottom: 24px; }
+h1 { margin: 0 0 8px; font-size: 24px; }
+.lede { margin: 0; max-width: 72ch; font-size: 14px; line-height: 1.7; color: var(--muted); }
+.quarter-report .report-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 16px 24px; min-width: 0; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+.query-controls { display: grid; grid-template-columns: minmax(240px, 480px) max-content; gap: 8px 12px; flex: 1 1 420px; min-width: 0; }
+.query-controls label { grid-column: 1 / -1; font-size: 13px; font-weight: 600; }
+.query-controls :deep(.el-select) { min-width: 0; width: 100%; }
+.summary-downloads, .company-downloads { display: flex; flex-wrap: wrap; gap: 8px; }
+.report-controls :deep(.el-button), .company-downloads :deep(.el-button) { margin-left: 0; }
+.report-controls :deep(.el-select__placeholder) { color: var(--muted); }
+.report-alert { margin: 16px 0; overflow-wrap: anywhere; }
+.report-alert :deep(.el-button) { margin-top: 8px; }
+.request-status { margin: 16px 0; color: var(--muted); }
+.request-status:empty { margin: 0; }
+.report-ribbon { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(180px, 1.5fr); gap: 16px; margin: 24px 0; }
+.report-ribbon > div { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.report-ribbon span, .quiet-note, .subline, .report-foot { color: var(--muted); font-size: 12px; line-height: 1.6; }
+.report-ribbon strong { font-size: 14px; overflow-wrap: anywhere; }
+.ranking-panel { min-width: 0; padding: 20px; border: 1px solid var(--line); border-radius: 8px; background: var(--portal-surface, #fff); }
+.section-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; margin-bottom: 16px; }
+.section-heading h2 { margin: 0; font-size: 18px; }
+.ranking-table { width: 100%; min-width: 0; }
+.quarter-report :deep(.ranking-table .el-tag--success) { --el-tag-text-color: #236449; --el-tag-border-color: #b8d4c1; --el-tag-bg-color: #f0f7f2; }
+.rank-badge { display: inline-grid; place-items: center; min-width: 32px; min-height: 28px; border-radius: 4px; background: var(--portal-accent-surface, #f8ebf3); color: var(--portal-focus, #941966); font-weight: 700; }
+.subline { display: block; margin-top: 4px; overflow-wrap: anywhere; }
+.report-foot { padding: 16px 0; overflow-wrap: anywhere; }
+.empty-state { margin: 48px 0; }
+.empty-state :deep(.el-empty__description p) { color: var(--muted); }
+.export-host { position: fixed; left: -10000px; top: 0; width: 1px; height: 1px; overflow: hidden; pointer-events: none; }
+.quarter-report :deep(button:focus-visible), .company-entry > summary:focus-visible { outline: 2px solid var(--portal-focus, #941966); outline-offset: 2px; }
+.quarter-report :deep(.el-table), .report-ribbon, .company-score, .company-meta { font-variant-numeric: tabular-nums; }
+.company-summary, .ranking-panel > :deep(.has-responsive-summary > .compact-table-toggle) { display: none; }
+.ranking-panel > :deep(.has-responsive-summary:not(.table-expanded) > .accessible-table-scroll) { display: var(--ranking-table-display, block); }
+.ranking-panel > :deep(.has-responsive-summary:not(.table-expanded) > .company-summary) { display: var(--ranking-summary-display, none); }
+.ranking-panel > :deep(.has-responsive-summary > .compact-table-toggle) { display: var(--ranking-toggle-display, none); min-height: 44px; margin: 0 0 12px; white-space: normal; }
+.ranking-panel > :deep(.table-expanded > .compact-table-toggle) { margin-top: 12px; }
+.company-entry { border-top: 1px solid var(--line); }
+.company-entry:last-child { border-bottom: 1px solid var(--line); }
+.company-entry > summary { display: grid; grid-template-columns: 32px minmax(0, 1fr) auto auto; align-items: start; gap: 12px; padding: 16px 0; list-style: none; cursor: pointer; border-radius: 4px; }
+.company-entry > summary::-webkit-details-marker { display: none; }
+@media (hover: hover) {
+  .company-entry > summary:hover { background: var(--portal-accent-surface, #f8ebf3); }
+}
+.company-entry[open] > summary { background: var(--portal-paper, #f8f3f6); }
+.company-identity { min-width: 0; overflow-wrap: anywhere; font-size: 14px; line-height: 1.6; }
+.company-score { display: grid; gap: 4px; min-width: 6ch; text-align: right; }
+.company-score small { color: var(--muted); font-size: 12px; }
+.company-score strong { font-size: 16px; }
+.detail-cue { color: var(--portal-focus, #941966); font-size: 12px; }
+.company-meta { display: flex; align-items: end; flex-wrap: wrap; gap: 16px 24px; padding: 16px 0 20px; }
+.company-meta dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px 24px; margin: 0; flex: 1 1 280px; }
+.company-meta dt { color: var(--muted); font-size: 12px; }
+.company-meta dd { margin: 4px 0 0; font-size: 13px; overflow-wrap: anywhere; }
+.quarter-report :deep(::selection) { color: var(--ink); background: var(--portal-accent-surface, #f8ebf3); }
+.quarter-report :deep(input) { caret-color: var(--portal-focus, #941966); }
+@container quarter-report-space (max-width: 1150px) {
+  .ranking-panel { --ranking-table-display: none; --ranking-summary-display: block; --ranking-toggle-display: inline-flex; }
+}
+@container quarter-report-space (max-width: 760px) {
+  .report-ribbon { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; }
+  .source-stamp { grid-column: 1 / -1; }
+  .summary-downloads { width: 100%; }
+  .report-controls :deep(.el-button), .report-controls :deep(.el-select__wrapper), .company-downloads :deep(.el-button) { min-height: 44px; }
+  .report-controls :deep(.el-select__input) { font-size: 16px; }
+}
+@container quarter-report-space (max-width: 460px) {
+  .query-controls { grid-template-columns: minmax(0, 1fr); flex-basis: 100%; }
+  .summary-downloads > :deep(.el-button) { flex: 1 1 120px; }
+  .ranking-panel { padding: 16px 12px; }
+  .company-entry > summary { grid-template-columns: 32px minmax(0, 1fr) auto; gap: 8px; }
+  .detail-cue { grid-column: 2 / -1; }
+  .company-downloads { width: 100%; }
+  .company-downloads > :deep(.el-button) { flex: 1; }
+}
+@media (any-pointer: coarse) {
+  .report-controls :deep(.el-button), .report-controls :deep(.el-select__wrapper), .report-alert :deep(.el-button), .ranking-table :deep(.el-button) { min-height: 44px; }
+}

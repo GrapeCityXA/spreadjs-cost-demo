@@ -1,0 +1,48 @@
+@font-face {
+  font-family: "gcicons";
+  src: url("./fonts/gcicons.woff") format("woff");
+  font-display: swap;
+}
+@font-face {
+  font-family: "gcicons-cn";
+  src: url("./fonts/icomoon.ttf") format("truetype");
+  font-display: swap;
+}
+[class^="gcicon-"],
+[class*=" gcicon-"] {
+  font-family: gcicons, gcicons-cn;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+}
+.gcicon-fragment::before { content: "\e91d"; font-family: gcicons-cn; }
+.gcicon-calculate::before { content: "\e919"; font-family: gcicons-cn; }
+.gcicon-report::before { content: "\e91f"; font-family: gcicons-cn; }
+.gcicon-paper::before { content: "\e912"; font-family: gcicons-cn; }
+.gcicon-excel::before { content: "\e926"; font-family: gcicons-cn; }
+.gcicon-adaptive::before { content: "\e90e"; }
+.gcicon-reporting::before { content: "\e935"; }
+.gcicon-royaltyfree::before { content: "\e938"; }
+
+@font-face {
+  font-family: "FontAwesome";
+  src: url("./fonts/fontawesome-webfont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+.fa-linux::before { content: "\f17c"; }
+.fa-cloud::before { content: "\f0c2"; }
+.fa-html5::before { content: "\f13b"; }
+.fa-code::before { content: "\f121"; }
+.fa-users::before { content: "\f0c0"; }
+.fa-file-excel-o::before { content: "\f1c3"; }

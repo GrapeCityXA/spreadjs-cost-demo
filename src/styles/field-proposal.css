@@ -1,0 +1,142 @@
+/* Both proposal entry points share the same viewport and touch behavior. */
+.el-dialog.field-proposal-dialog {
+  --el-color-primary: var(--portal-focus, #941966);
+  --el-text-color-placeholder: var(--portal-muted, #6d5a65);
+  display: flex;
+  flex-direction: column;
+  max-width: calc(100% - 32px);
+  max-height: 84vh;
+  max-height: 84dvh;
+  margin-top: 8vh;
+  margin-top: 8dvh;
+  margin-bottom: 0;
+  padding: 0;
+}
+.field-proposal-dialog .el-dialog__header {
+  flex: none;
+  margin: 0;
+  padding: 24px 60px 16px 24px;
+}
+.field-proposal-dialog .el-dialog__title { color: var(--portal-ink, #2c1b26); font-size: 20px; font-weight: 600; line-height: 24px; overflow-wrap: anywhere; }
+.field-proposal-dialog .el-dialog__headerbtn { top: 14px; right: 12px; width: 44px; height: 44px; }
+.field-proposal-dialog .el-dialog__body {
+  min-height: 0;
+  padding: 0 24px;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-gutter: stable;
+  scrollbar-color: var(--portal-muted, #6d5a65) transparent;
+}
+.field-proposal-dialog .el-dialog__footer {
+  flex: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px max(16px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--portal-line, #e8d9e1);
+}
+.field-proposal-dialog .el-dialog__footer .el-button + .el-button { margin-left: 0; }
+.el-dialog.field-proposal-dialog .field-proposal-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+}
+.field-proposal-form .el-form-item,
+.field-proposal-form .el-form-item__content { min-width: 0; }
+.field-proposal-form .el-form-item { margin-bottom: 0; }
+.field-proposal-form { padding-bottom: 24px; }
+.field-proposal-form .el-form-item__content { display: block; }
+.field-proposal-form .el-form-item__label { height: auto; color: var(--portal-ink, #2c1b26); font-weight: 500; line-height: 1.5; overflow-wrap: anywhere; }
+.field-proposal-form .el-select { width: 100%; min-width: 0; }
+.field-proposal-form .el-input-number { max-width: 100%; }
+.field-proposal-form .el-input-number .el-input__inner { font-variant-numeric: tabular-nums; }
+.field-proposal-form .el-textarea__inner { resize: vertical; }
+.field-proposal-form .full-row { grid-column: 1 / -1; }
+.field-proposal-hint { margin: 0 0 16px; color: var(--portal-muted, #6d5a65); font-size: 14px; line-height: 1.6; overflow-wrap: anywhere; }
+.field-proposal-form .field-proposal-hint { width: 100%; margin: 6px 0 0; }
+.field-proposal-error { width: 100%; margin: 6px 0 0; color: #b42318; font-size: 14px; line-height: 1.6; overflow-wrap: anywhere; }
+.field-proposal-form .has-error :is(.el-input__wrapper, .el-select__wrapper, .el-textarea__inner) { box-shadow: 0 0 0 1px #b42318 inset; }
+.field-proposal-status { margin-bottom: 16px; padding: 12px 16px; border: 1px solid #e8b4ae; border-radius: 6px; background: #fff5f4; color: #922419; overflow-wrap: anywhere; }
+.field-proposal-status p { margin: 0; line-height: 1.6; }
+.field-proposal-status ul { padding-inline-start: 20px; margin: 8px 0 0; }
+.field-proposal-status button { min-height: 44px; border: 0; padding: 4px 0; background: none; color: inherit; font: inherit; text-align: start; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.field-proposal-saving { align-self: center; color: var(--portal-muted, #6d5a65); font-size: 14px; }
+.field-proposal-confirm {
+  --el-color-primary: var(--portal-focus, #941966);
+  --el-messagebox-padding-primary: 16px;
+  max-width: min(420px, calc(100vw - 32px));
+}
+.field-proposal-confirm .el-message-box__header { padding-right: 32px; padding-bottom: 12px; }
+.field-proposal-confirm .el-message-box__title { line-height: 1.5; overflow-wrap: anywhere; }
+.field-proposal-confirm .el-message-box__headerbtn { top: 2px; right: 2px; width: 44px; height: 44px; }
+.field-proposal-confirm .el-message-box__message { line-height: 1.6; overflow-wrap: anywhere; }
+.field-proposal-confirm .el-message-box__btns { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 16px; }
+.field-proposal-confirm .el-message-box__btns .el-button { min-height: 44px; margin: 0; }
+.field-proposal-dialog .el-button--primary,
+.field-proposal-confirm .el-button--primary {
+  --el-button-bg-color: var(--portal-focus, #941966);
+  --el-button-border-color: var(--portal-focus, #941966);
+  --el-button-hover-bg-color: #7a1454;
+  --el-button-hover-border-color: #7a1454;
+  --el-button-active-bg-color: #6f114b;
+  --el-button-active-border-color: #6f114b;
+}
+.field-proposal-dialog :is(input, textarea) { caret-color: var(--portal-focus, #941966); }
+.field-proposal-dialog ::selection { color: var(--portal-ink, #2c1b26); background: var(--portal-accent-surface, #f8ebf3); }
+.field-proposal-dialog button:focus-visible,
+.field-proposal-confirm button:focus-visible,
+.field-proposal-form .el-switch:has(input:focus-visible) .el-switch__core,
+.field-proposal-form :is(.el-input__wrapper, .el-select__wrapper):has(input:focus-visible),
+.field-proposal-form textarea:focus-visible { outline: 2px solid var(--portal-focus, #941966); outline-offset: 2px; }
+.field-proposal-select-menu { max-width: calc(100vw - 32px); }
+.field-proposal-select-menu .el-select-dropdown__item {
+  height: auto;
+  min-height: 34px;
+  padding-block: 7px;
+  line-height: 1.5;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.field-proposal-select-menu .el-select-dropdown__item.is-selected { color: var(--portal-focus, #941966); }
+.field-proposal-select-menu .el-select-dropdown__wrap { max-height: min(274px, calc(100dvh - 120px)); }
+
+@media (min-width: 641px) {
+  .el-dialog.field-proposal-dialog .field-proposal-form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .el-dialog.field-proposal-dialog {
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
+    margin: 0;
+    border-radius: 0;
+  }
+  .field-proposal-dialog .el-dialog__header { padding: max(16px, env(safe-area-inset-top)) 60px 16px max(16px, env(safe-area-inset-left)); }
+  .field-proposal-dialog .el-dialog__headerbtn { top: max(6px, env(safe-area-inset-top)); right: max(4px, env(safe-area-inset-right)); }
+  .field-proposal-dialog .el-dialog__body {
+    flex: 1;
+    padding-inline: max(16px, env(safe-area-inset-left)) max(16px, env(safe-area-inset-right));
+    scrollbar-gutter: auto;
+  }
+  .field-proposal-dialog .el-dialog__footer { padding-inline: max(16px, env(safe-area-inset-left)) max(16px, env(safe-area-inset-right)); }
+  .field-proposal-dialog .el-dialog__footer .el-button { flex: 1; min-width: 0; }
+  .field-proposal-saving { flex-basis: 100%; }
+}
+@media (max-width: 900px), (any-pointer: coarse) {
+  .field-proposal-dialog .el-button { min-width: 44px; min-height: 44px; }
+  .field-proposal-dialog .el-input__wrapper,
+  .field-proposal-dialog .el-select__wrapper { min-height: 44px; box-sizing: border-box; }
+  .field-proposal-dialog :is(.el-form-item__label, .el-input__inner, .el-textarea__inner, .el-select__selected-item, .el-switch__label, .el-button) { font-size: 16px; }
+  .field-proposal-dialog .el-input-number { width: 180px; height: 46px; line-height: 44px; }
+  .field-proposal-dialog .el-input-number__decrease,
+  .field-proposal-dialog .el-input-number__increase { width: 44px; min-height: 44px; }
+  .field-proposal-dialog .el-input-number .el-input__wrapper { padding-inline: 48px; }
+  .field-proposal-dialog .el-switch { min-height: 44px; }
+  .field-proposal-dialog .el-switch__core { min-width: 44px; }
+  .field-proposal-select-menu .el-select-dropdown__item { display: flex; align-items: center; min-height: 44px; font-size: 16px; }
+}

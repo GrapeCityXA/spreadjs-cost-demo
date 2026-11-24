@@ -1,0 +1,241 @@
+/* The list workspace and its dialogs share a layout; the designer keeps its own host. */
+.report-studio:not(.studio-editor-open) {
+  container: report-studio / inline-size;
+  min-width: 0;
+  padding: 24px;
+  color: var(--portal-ink, #2c1b26);
+  --el-color-primary: #941966;
+  --el-color-primary-dark-2: #6f114b;
+  --el-color-primary-light-3: #7a1454;
+  --studio-heading: #4b0b31;
+  --studio-table-heading: #6d5a65;
+  --studio-success: #2b6a37;
+  --studio-danger: #b42318;
+}
+.report-studio .studio-header { display: flex; align-items: center; flex-wrap: wrap; gap: 16px 24px; }
+.report-studio .studio-header h1 { margin: 0; font-size: 24px; line-height: 1.35; color: var(--studio-heading); }
+.report-studio .studio-header > div { min-width: 0; }
+.report-studio .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-inline-start: auto; }
+.report-studio .actions .el-button { margin: 0; }
+.report-studio .studio-tabs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 24px 0 16px; }
+.report-studio .studio-tabs .el-button { margin: 0; }
+.report-studio .studio-tabs [aria-pressed="true"] { font-weight: 600; }
+.report-studio .tab-count { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; padding-inline: 4px; margin-inline-start: 8px; border-radius: 4px; background: #f4ecef; color: var(--portal-muted, #6d5a65); font-size: 12px; line-height: 20px; font-variant-numeric: tabular-nums; }
+.report-studio .studio-tabs [aria-pressed="true"] .tab-count { background: rgb(255 255 255 / 16%); color: #fff; }
+.report-studio .studio-tab-actions { display: flex; justify-content: flex-end; margin: -4px 0 12px; }
+.report-studio .studio-tabs .el-button.is-circle { color: var(--portal-muted, #6d5a65); }
+.report-studio .studio-tabs .el-icon { font-size: 16px; }
+.report-studio > .el-alert { margin-block: 16px; }
+.report-studio .studio-record-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; }
+.report-studio .studio-record-actions .el-button { margin: 0; white-space: normal; height: auto; line-height: 1.5; }
+.report-studio .studio-record-actions .el-button.is-link { min-height: 32px; }
+.report-studio .studio-record-actions .studio-download { color: var(--portal-muted, #6d5a65); }
+.report-studio .studio-record-actions .el-button.is-link:not(.is-disabled):is(:hover, :focus-visible) { color: var(--el-color-primary); text-decoration: underline; text-underline-offset: 4px; }
+.report-studio .accessible-table-scroll { border: 1px solid var(--portal-line, #e8d9e1); border-radius: 8px; scrollbar-color: #8e9ba8 #f4ecef; }
+html body .report-studio .app-data-table table { width: 100%; table-layout: auto; }
+html body .report-studio .app-data-table .cell { overflow-wrap: anywhere; }
+html body .report-studio .app-data-table th.el-table__cell { padding-block: 4px; vertical-align: middle; color: var(--studio-table-heading); font-size: 14px; }
+html body .report-studio .app-data-table td.studio-title-cell { color: var(--portal-ink, #2c1b26); font-weight: 500; }
+html body .report-studio .app-data-table td.studio-date-cell { font-variant-numeric: tabular-nums; }
+/* Let the complete label and controls determine the column's minimum width. */
+html body .report-studio .app-data-table th .cell { display: flex; flex-wrap: nowrap; align-items: center; min-width: max-content; gap: 0; padding-inline: 12px; }
+.report-studio .app-column-heading { display: contents; }
+.report-studio .app-column-label { flex: 0 0 auto; white-space: nowrap; overflow-wrap: normal; line-height: 24px; }
+html body .report-studio .app-data-table .app-column-control,
+html body .report-studio .app-data-table .el-table__column-filter-trigger {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: 0 0 44px; width: 44px; height: 44px; margin: 0; box-sizing: border-box;
+}
+html body .report-studio .app-data-table .el-table__column-filter-trigger > .el-icon { width: 100%; height: 100%; }
+html body .report-studio .app-data-table :is(button.app-column-control, .el-table__column-filter-trigger):focus-visible { outline: 2px solid var(--portal-focus, #941966); outline-offset: -2px; border-radius: 4px; }
+.report-studio .app-data-table .app-column-control { color: var(--portal-muted, #6d5a65); border: 1px solid transparent; }
+.report-studio .app-data-table th:has(.app-column-control.active) .app-column-label { color: var(--portal-focus, #941966); }
+.report-studio .app-data-table .app-column-control:is(:hover, .active, [aria-expanded="true"]),
+.report-studio .app-data-table .el-table__column-filter-trigger:is(:hover, [aria-expanded="true"]) .app-column-control {
+  color: var(--portal-focus, #941966);
+  background: var(--portal-accent-surface, #f8ebf3);
+}
+.report-studio .app-data-table .app-column-control:is(.active, [aria-expanded="true"]),
+.report-studio .app-data-table .el-table__column-filter-trigger[aria-expanded="true"] .app-column-control { border-color: var(--portal-focus, #941966); }
+.report-studio .app-data-table button.app-column-control:active,
+.report-studio .app-data-table .el-table__column-filter-trigger:active .app-column-control { color: var(--el-color-primary-dark-2, #6f114b); border-color: currentColor; }
+.report-studio:not(.studio-editor-open) .el-tag--success { --el-tag-text-color: var(--studio-success); --el-tag-bg-color: #f0f8ee; --el-tag-border-color: #cbdcc5; }
+.report-studio:not(.studio-editor-open) .el-tag--danger { --el-tag-text-color: var(--studio-danger); --el-tag-bg-color: #fff5f4; --el-tag-border-color: #e8b4ae; }
+.report-studio:not(.studio-editor-open) .el-tag--info { --el-tag-text-color: #6d5a65; --el-tag-bg-color: #f8f3f6; --el-tag-border-color: #dcdfe6; }
+html body .report-studio .studio-table-templates { min-width: 720px; }
+html body .report-studio .studio-table-schedules, html body .report-studio .studio-table-results { min-width: 1120px; }
+.report-studio .studio-summary, .report-studio .compact-table-toggle { display: none; }
+.report-studio .has-responsive-summary:not(.table-expanded) > .accessible-table-scroll { display: var(--studio-table-display, block); }
+.report-studio .has-responsive-summary:not(.table-expanded) > .studio-summary { display: var(--studio-summary-display, none); }
+.report-studio .has-responsive-summary > .compact-table-toggle { display: var(--studio-toggle-display, none); margin: 0 0 12px; min-height: 44px; white-space: normal; }
+.report-studio .table-expanded > .compact-table-toggle { margin-top: 12px; }
+.studio-record-list { list-style: none; padding: 0; margin: 0; border: 1px solid var(--portal-line, #e8d9e1); border-radius: 8px; background: var(--portal-surface, #fff); }
+.studio-record { padding: 16px; min-width: 0; }
+.studio-record + .studio-record { border-top: 1px solid var(--portal-line, #e8d9e1); }
+.studio-record-heading { display: flex; align-items: start; gap: 12px; justify-content: space-between; }
+.studio-record-heading h2 { min-width: 0; overflow-wrap: anywhere; margin: 0; font-size: 16px; line-height: 1.5; font-weight: 600; }
+.studio-record-heading .el-tag { flex-shrink: 0; }
+.studio-record-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 24px; margin: 12px 0; }
+.studio-record-facts > div { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 8px; min-width: 0; }
+.studio-record-facts dt { color: var(--portal-muted, #6d5a65); }
+.studio-record-facts dd { margin: 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.studio-record-error { margin: 12px 0; color: var(--studio-danger); overflow-wrap: anywhere; line-height: 1.6; }
+.studio-empty { display: grid; place-items: center; min-height: 144px; box-sizing: border-box; margin: 0; padding: 32px 24px; border: 1px solid var(--portal-line, #e8d9e1); border-radius: 8px; text-align: center; line-height: 1.6; background: #fff; color: var(--portal-muted, #6d5a65); }
+.report-studio .studio-summary .el-button { min-height: 44px; min-width: 44px; }
+.report-studio .el-button--primary:not(.is-link):not(.is-text):not(.is-plain) {
+  --el-button-bg-color: #941966; --el-button-border-color: #941966;
+  --el-button-hover-bg-color: #7a1454; --el-button-hover-border-color: #7a1454;
+  --el-button-active-bg-color: #6f114b; --el-button-active-border-color: #6f114b;
+}
+.report-studio :is(.el-button, .app-column-control, .accessible-table-scroll):focus-visible { outline: 2px solid #941966; outline-offset: 2px; }
+.report-studio :is(.studio-form-dialog, .studio-preview-dialog).el-dialog {
+  display: flex; flex-direction: column; max-width: calc(100vw - 32px);
+  max-height: calc(100dvh - 48px); margin-block: 24px; padding: 24px;
+}
+.report-studio :is(.studio-form-dialog, .studio-preview-dialog) .el-dialog__header { flex-shrink: 0; padding: 0 40px 16px 0; margin: 0; }
+.report-studio :is(.studio-form-dialog, .studio-preview-dialog) .el-dialog__title { overflow-wrap: anywhere; font-size: 20px; font-weight: 600; line-height: 1.4; color: var(--studio-heading); }
+.report-studio :is(.studio-form-dialog, .studio-preview-dialog) .el-dialog__body { min-height: 0; overflow: auto; overscroll-behavior: contain; padding: 0; }
+.report-studio .studio-form-dialog .el-dialog__footer { flex-shrink: 0; padding: 16px 0 0; margin-top: 16px; border-top: 1px solid var(--portal-line, #e8d9e1); }
+.report-studio .generation-form { padding-top: 4px; }
+.report-studio .generation-form .el-form-item { margin-bottom: 24px; }
+.report-studio .generation-form :is(.el-select, .el-date-editor, .el-input-number) { width: 100%; max-width: 100%; min-width: 0; }
+.report-studio .schedule-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.report-studio .generation-form .el-form-item__content { min-width: 0; }
+.report-studio .generation-form .el-form-item__label { color: var(--portal-ink, #2c1b26); }
+.report-studio .studio-form-dialog .el-alert { margin: 0; }
+.report-studio .studio-form-dialog .el-alert--info .el-alert__title { color: var(--portal-muted, #6d5a65); line-height: 1.6; }
+.report-studio .studio-form-dialog .el-alert--info { border: 1px solid var(--portal-line, #e8d9e1); }
+.report-studio:not(.studio-editor-open) input { caret-color: var(--el-color-primary); }
+.report-studio:not(.studio-editor-open) ::selection { background: #f0c6dd; color: #4b0b31; }
+.report-studio .preview-status { padding-block: 24px; overflow-wrap: anywhere; }
+.report-studio .provenance { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; margin-bottom: 16px; color: var(--portal-muted, #6d5a65); font-size: 14px; }
+.studio-source-popover { max-width: calc(100vw - 32px); overflow-wrap: anywhere; }
+.studio-source-list { max-height: min(360px, 60dvh); overflow: auto; overscroll-behavior: contain; }
+.studio-source-list p { line-height: 1.6; }
+/* Workbook previews own their container-based layout across dialog sizes. */
+@container report-studio (max-width: 1130px) {
+  .accessible-data-table:has(.studio-table-results), .accessible-data-table:has(.studio-table-schedules) { --studio-table-display: none; --studio-summary-display: block; --studio-toggle-display: inline-flex; }
+}
+@container report-studio (max-width: 740px) {
+  .accessible-data-table:has(.studio-table-templates) { --studio-table-display: none; --studio-summary-display: block; --studio-toggle-display: inline-flex; }
+  .report-studio .studio-header { align-items: start; }
+  .studio-record-facts { grid-template-columns: 1fr; }
+}
+@container report-studio (max-width: 520px) {
+  .report-studio .studio-header { flex-direction: column; gap: 16px; align-items: stretch; }
+  .report-studio .actions { margin: 0; }
+  .report-studio .actions > .el-button { flex: 1 1 auto; }
+  .report-studio .studio-tabs { gap: 8px; margin-top: 16px; }
+  .report-studio .studio-tabs .el-button { padding-inline: 12px; }
+  .report-studio .studio-tab-actions { justify-content: stretch; margin-top: 0; }
+  .report-studio .studio-tab-actions .el-button { width: 100%; }
+}
+@media (max-width: 900px), (any-pointer: coarse) {
+  .report-studio:not(.studio-editor-open) :is(.el-button, .el-dialog__headerbtn) { min-height: 44px; min-width: 44px; }
+  .report-studio .generation-form :is(.el-input__wrapper, .el-select__wrapper) { min-height: 44px; box-sizing: border-box; }
+  .report-studio .generation-form :is(input, .el-select__selected-item) { font-size: 16px; }
+  .report-studio .generation-form .el-date-editor { height: 44px; }
+  .report-studio .generation-form .el-input-number { line-height: 42px; }
+  .report-studio .generation-form :is(.el-input-number__decrease, .el-input-number__increase) { width: 44px; }
+}
+@media (max-width: 600px) {
+  .report-studio:not(.studio-editor-open) { padding: 16px; }
+  .studio-record-facts { font-size: 14px; line-height: 1.6; }
+  .studio-record-error { font-size: 14px; }
+  .report-studio .studio-record-actions .el-button { font-size: 16px; }
+  .report-studio :is(.studio-form-dialog, .studio-preview-dialog).el-dialog { width: 100%; max-width: 100%; height: 100dvh; max-height: 100dvh; margin: 0; border-radius: 0; padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); }
+  .report-studio :is(.studio-form-dialog, .studio-preview-dialog) .el-dialog__body { flex: 1; }
+  .report-studio .studio-form-dialog .el-dialog__footer { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .report-studio .studio-form-dialog .el-dialog__footer .el-button { width: 100%; margin: 0; }
+  .report-studio .schedule-fields { grid-template-columns: 1fr; gap: 0; }
+  .report-studio .generation-form .el-form-item__label { font-size: 16px; }
+  .report-studio .provenance { gap: 8px 16px; }
+}
+@media (max-height: 500px) {
+  .report-studio :is(.studio-form-dialog, .studio-preview-dialog).el-dialog { max-height: calc(100dvh - 16px); margin-block: 8px; }
+}
+
+/* Blocking overlay while the browser renders and exports a report. */
+.report-generating-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgb(15 35 30 / 42%);
+  backdrop-filter: blur(2px);
+  cursor: wait;
+  outline: none;
+}
+.report-generating-card {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  width: min(360px, 100%);
+  padding: 28px 24px;
+  border: 1px solid var(--portal-line, #e8d9e1);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 18px 60px rgb(0 0 0 / 22%);
+  color: #263238;
+  text-align: center;
+}
+.report-generating-card strong { font-size: 16px; }
+.report-generating-card p { margin: 0; color: #6d5a65; font-size: 13px; line-height: 1.6; }
+.report-generating-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #d8e6df;
+  border-top-color: #941966;
+  border-radius: 50%;
+  animation: report-generating-spin .8s linear infinite;
+}
+@keyframes report-generating-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .report-generating-spinner { animation-duration: 2s; }
+}
+
+/* Preview fits the dialog instead of growing past it: the header/provenance stay
+   fixed and the workbook takes the remaining height, keeping the sheet tabs visible. */
+.studio-preview-dialog .el-dialog__body,
+.report-studio .studio-preview-dialog .el-dialog__body { display: flex; flex-direction: column; overflow: hidden; }
+.studio-preview-dialog .result-preview { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.studio-preview-dialog .preview-header { flex: none; }
+.studio-preview-dialog .result-preview > :last-child { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.studio-preview-dialog .preview-layout { flex: 1; height: auto; min-height: 0; grid-template-rows: minmax(0, 1fr); }
+.studio-preview-dialog .report-preview { height: 100%; min-height: 0; }
+.studio-preview-dialog .dependency-panel { min-height: 0; overflow: auto; }
+
+/* Compact the preview chrome so the analysis graph gets the available height. */
+.studio-preview-dialog .result-preview { --preview-control-height: 32px; --preview-action-size: 13px; --preview-body-size: 13px; --preview-note-size: 12px; }
+.studio-preview-dialog .preview-header { margin-block: 0 8px; }
+.studio-preview-dialog .preview-guidance { display: none; }
+.studio-preview-dialog .workbook-preview-status { font-size: 12px; }
+.studio-preview-dialog .provenance { margin-bottom: 8px; font-size: 12px; gap: 6px 16px; }
+.studio-preview-dialog .dependency-panel { gap: 8px; padding: 10px; overflow: hidden; }
+.studio-preview-dialog .dependency-panel > *:not(.dependency-chart) { flex-shrink: 0; }
+.studio-preview-dialog .cell-detail { padding: 8px 10px; gap: 4px; }
+.studio-preview-dialog .cell-detail > .cell-identity { padding-bottom: 4px; }
+.studio-preview-dialog .analysis-footnote { display: none; }
+
+/* Maximized graph hides the per-cell detail so the tree uses the panel height. */
+.studio-preview-dialog .preview-layout.analysis-expanded .cell-detail,
+.studio-preview-dialog .preview-layout.analysis-expanded .analysis-hint,
+.studio-preview-dialog .preview-layout.analysis-expanded .analysis-footnote { display: none; }
+.studio-preview-dialog .preview-layout.with-analysis.analysis-expanded { height: 100%; min-height: 0; grid-template-rows: minmax(0, 1fr); }
+
+/* Give the preview dialog a stable full working height so the graph can fill it. */
+.report-studio .studio-preview-dialog.el-dialog { height: min(820px, calc(100dvh - 48px)); }
+.studio-preview-dialog .el-dialog__body { flex: 1 1 auto; }
+@media (max-width: 600px) {
+  .report-studio .studio-preview-dialog.el-dialog { height: 100dvh; max-height: 100dvh; }
+}
+.studio-preview-dialog .cell-detail { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+.studio-preview-dialog .cell-detail > div { display: flex; align-items: baseline; gap: 4px; min-width: 0; }
+.studio-preview-dialog .cell-detail > .cell-identity { border: 0; padding: 0; }
+.studio-preview-dialog .result-preview .cell-detail { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+.studio-preview-dialog .result-preview .cell-detail > div { display: flex; align-items: baseline; gap: 4px; min-width: 0; }
+.studio-preview-dialog .result-preview .cell-detail > .cell-identity { border: 0; padding: 0; }
+.studio-preview-dialog .result-preview:has(.analysis-expanded) .preview-header { display: none; }
+.studio-preview-dialog .el-dialog__body:has(.analysis-expanded) .provenance { display: none; }

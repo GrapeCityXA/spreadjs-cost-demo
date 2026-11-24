@@ -1,0 +1,123 @@
+/* Task progress owns its layout; do not change the other dashboard tables. */
+.task-progress-card { container: dashboard-panel / inline-size; }
+html body .operations-dashboard .task-progress-card .progress-heading {
+  align-items: flex-start;
+  gap: 16px;
+}
+.task-progress-card .progress-heading > div { flex: 1 1 280px; }
+.task-progress-card .progress-heading > .el-button { flex: 0 0 auto; }
+
+.task-progress-card .progress-filters,
+html body .operations-dashboard .task-progress-card .progress-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px 16px;
+  margin-block: 16px 12px;
+}
+.task-progress-card .progress-filter-fields {
+  display: grid;
+  grid-template-columns: minmax(192px, 1.6fr) repeat(3, minmax(128px, 1fr));
+  gap: 8px;
+  min-width: 0;
+}
+.task-progress-card .progress-field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.task-progress-card .progress-field > :is(.el-input, .el-select) { flex: 0 0 auto; }
+.task-progress-card .progress-field > label { font-size: 14px; line-height: 24px; color: var(--el-text-color-regular); }
+.task-progress-card .task-action { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 0; }
+.task-progress-card .dashboard-actions-cell .task-action { gap: 0; }
+.task-progress-card .task-action-hint { font-size: 12px; line-height: 1.5; color: var(--el-text-color-secondary); overflow-wrap: anywhere; }
+.task-progress-card .summary-actions > .task-action { flex: 1 1 120px; }
+.task-progress-card .summary-actions .task-action > .el-button { width: 100%; }
+.task-progress-card .summary-actions .task-action-hint { font-size: 14px; }
+html body .operations-dashboard .task-progress-card .progress-filter-fields :is(.el-input, .el-select) {
+  grid-column: auto;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+.task-progress-card .progress-filter-meta {
+  align-self: end;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  min-width: 0;
+}
+.task-progress-card .task-count {
+  margin: 0;
+  font-size: 14px;
+  line-height: 24px;
+  font-variant-numeric: tabular-nums;
+}
+.task-progress-card .progress-filter-meta .el-button { margin: 0; }
+
+@media (any-pointer: coarse), (max-width: 1023px) {
+  .task-progress-card .progress-filter-meta { min-height: 44px; }
+}
+
+/* Auto table layout respects the full label + two controls as one unit. */
+html body .task-progress-card .app-data-table.progress-table th .cell {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  min-width: max-content;
+  gap: 0;
+}
+.task-progress-card .app-data-table.progress-table .app-column-heading { display: contents; }
+.task-progress-card .app-data-table.progress-table .app-column-label {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  font-size: 14px;
+  line-height: 24px;
+}
+html body .task-progress-card .app-data-table.progress-table :is(.app-column-control, .el-table__column-filter-trigger) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+}
+.task-progress-card .app-data-table.progress-table .el-table__column-filter-trigger > .el-icon { width: 100%; height: 100%; }
+html body .task-progress-card .app-data-table.progress-table th.el-table__cell {
+  padding-block: 4px;
+  vertical-align: middle;
+}
+html body .task-progress-card .app-data-table.progress-table :is(button.app-column-control, .el-table__column-filter-trigger):focus-visible {
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+.task-progress-card .accessible-data-table { display: flex; flex-direction: column; }
+/* In AppDataTable DOM order the return control follows the table. Keep it there. */
+.operations-dashboard .task-progress-card .table-expanded > .compact-table-toggle { margin-block: 12px 0; align-self: flex-start; }
+
+@container dashboard-panel (max-width: 1140px) {
+  .operations-dashboard .task-progress-card .has-responsive-summary {
+    --summary-display: block;
+    --table-display: none;
+    --toggle-display: inline-flex;
+  }
+  html body .operations-dashboard .task-progress-card .progress-filters { grid-template-columns: minmax(0, 1fr); }
+  .task-progress-card .progress-filter-meta { justify-content: space-between; }
+}
+@container dashboard-panel (max-width: 760px) {
+  .task-progress-card .progress-filter-meta { min-height: 44px; }
+  .task-progress-card .progress-filter-fields { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .task-progress-card .progress-filter-fields > .progress-field-search { grid-column: 1 / -1; }
+  .task-progress-card .progress-filter-fields :is(.el-input__wrapper, .el-select__wrapper) { min-height: 44px; font-size: 16px; }
+  .task-progress-card .progress-filter-fields .el-input__inner { font-size: 16px; }
+  .task-progress-card .progress-heading > .el-button { min-height: 44px; }
+}
+@container dashboard-panel (max-width: 520px) {
+  .task-progress-card .progress-filter-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .task-progress-card .progress-filter-fields > .progress-field-status { grid-column: 1 / -1; }
+  .task-progress-card .compact-flow li { display: flex; flex-wrap: wrap; gap: 4px 12px; }
+  .operations-dashboard .task-progress-card .compact-flow li span + span { margin: 0; }
+}
+@container dashboard-panel (max-width: 300px) {
+  .task-progress-card .progress-filter-fields { grid-template-columns: minmax(0, 1fr); }
+  .task-progress-card .progress-filter-meta > .el-button { width: 100%; min-height: 44px; }
+}

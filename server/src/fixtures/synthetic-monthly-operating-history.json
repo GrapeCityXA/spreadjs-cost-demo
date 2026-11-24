@@ -1,0 +1,5512 @@
+{
+  "synthetic": true,
+  "fixtureVersion": 2,
+  "unit": "万元",
+  "description": "全合成演示月度记录；按项目内两份 XLSX 的组织、指标、月度季节分布、累计和目标结构缩放生成。2025/2026 年 1-6 月借用样表的月度分布比例，7 月通过样表 1-7 月累计差额推导；8-12 月是按样表季节分布及年度目标/前七月均值外推的假数据。所有金额经组织和指标固定比例缩放，绝不代表真实主体或正式数据。",
+  "sourceFiles": [
+    "样例表-集团专业化子公司2026年1-7月收入、利润完成情况统计表.xlsx",
+    "样例表-2026年专业化子公司二季度考核.xlsx"
+  ],
+  "sourceSheets": [
+    {
+      "file": "样例表-集团专业化子公司2026年1-7月收入、利润完成情况统计表.xlsx",
+      "sheet": "分月数据",
+      "purpose": "月度季节分布/指标列"
+    },
+    {
+      "file": "样例表-集团专业化子公司2026年1-7月收入、利润完成情况统计表.xlsx",
+      "sheet": "Sheet1",
+      "purpose": "1-7月累计、上年同期累计、序时目标"
+    },
+    {
+      "file": "样例表-集团专业化子公司2026年1-7月收入、利润完成情况统计表.xlsx",
+      "sheet": "1-7月收入、利润完成情况统计表",
+      "purpose": "年度目标及指标口径参考"
+    },
+    {
+      "file": "样例表-2026年专业化子公司二季度考核.xlsx",
+      "sheet": "附件1 2026年度经营业绩目标分解表",
+      "purpose": "年度目标/考核指标参考"
+    }
+  ],
+  "periodCoverage": [
+    "2025-01",
+    "2025-02",
+    "2025-03",
+    "2025-04",
+    "2025-05",
+    "2025-06",
+    "2025-07",
+    "2025-08",
+    "2025-09",
+    "2025-10",
+    "2025-11",
+    "2025-12",
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05",
+    "2026-06",
+    "2026-07",
+    "2026-08",
+    "2026-09",
+    "2026-10",
+    "2026-11",
+    "2026-12"
+  ],
+  "organizationScaleFactors": [
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "scaleFactors": {
+        "revenue": 0.78,
+        "profit": 0.84
+      }
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "scaleFactors": {
+        "revenue": 0.805,
+        "profit": 0.858
+      }
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "scaleFactors": {
+        "revenue": 0.83,
+        "profit": 0.876
+      }
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "scaleFactors": {
+        "revenue": 0.855,
+        "profit": 0.894
+      }
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "scaleFactors": {
+        "revenue": 0.88,
+        "profit": 0.912
+      }
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "scaleFactors": {
+        "revenue": 0.905,
+        "profit": 0.93
+      }
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "scaleFactors": {
+        "revenue": 0.93,
+        "profit": 0.948
+      }
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "scaleFactors": {
+        "revenue": 0.955,
+        "profit": 0.966
+      }
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "scaleFactors": {
+        "revenue": 0.98,
+        "profit": 0.984
+      }
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "scaleFactors": {
+        "revenue": 1.005,
+        "profit": 1.002
+      }
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "scaleFactors": {
+        "revenue": 1.03,
+        "profit": 1.02
+      }
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "scaleFactors": {
+        "revenue": 1.055,
+        "profit": 1.038
+      }
+    }
+  ],
+  "targets": [
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "fieldCode": "revenue",
+      "annualTarget": 865020.0,
+      "throughJulyTarget": 413595.0,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "fieldCode": "profit",
+      "annualTarget": 0.0,
+      "throughJulyTarget": 1176.0,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "fieldCode": "revenue",
+      "annualTarget": 36708.0,
+      "throughJulyTarget": 21413.0,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "fieldCode": "profit",
+      "annualTarget": 0.0,
+      "throughJulyTarget": 7007.0,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "fieldCode": "revenue",
+      "annualTarget": 5976.0,
+      "throughJulyTarget": 3486.0,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "fieldCode": "profit",
+      "annualTarget": 0.0,
+      "throughJulyTarget": 367.92,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "fieldCode": "revenue",
+      "annualTarget": 77676.75,
+      "throughJulyTarget": 45311.4375,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "fieldCode": "profit",
+      "annualTarget": 0.0,
+      "throughJulyTarget": 3389.75,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "fieldCode": "revenue",
+      "annualTarget": 70400.0,
+      "throughJulyTarget": 41066.666667,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "fieldCode": "profit",
+      "annualTarget": 0.0,
+      "throughJulyTarget": 2128.0,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "fieldCode": "revenue",
+      "annualTarget": 60816.0,
+      "throughJulyTarget": 24653.708333,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "fieldCode": "profit",
+      "annualTarget": 0.0,
+      "throughJulyTarget": -423.15,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "fieldCode": "revenue",
+      "annualTarget": 1953.0,
+      "throughJulyTarget": 1139.25,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "fieldCode": "profit",
+      "annualTarget": 0.0,
+      "throughJulyTarget": 553.0,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "fieldCode": "revenue",
+      "annualTarget": 22920.0,
+      "throughJulyTarget": 13370.0,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "fieldCode": "profit",
+      "annualTarget": 0.0,
+      "throughJulyTarget": 1070.65,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "fieldCode": "revenue",
+      "annualTarget": 1226225.0,
+      "throughJulyTarget": 370925.916667,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "fieldCode": "profit",
+      "annualTarget": 0.0,
+      "throughJulyTarget": -3323.46,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "fieldCode": "revenue",
+      "annualTarget": 60802.5,
+      "throughJulyTarget": 35468.125,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "fieldCode": "profit",
+      "annualTarget": 0.0,
+      "throughJulyTarget": 292.25,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "fieldCode": "revenue",
+      "annualTarget": 11330.0,
+      "throughJulyTarget": 6609.166667,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "fieldCode": "profit",
+      "annualTarget": 0.0,
+      "throughJulyTarget": -714.0,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "fieldCode": "revenue",
+      "annualTarget": 39562.5,
+      "throughJulyTarget": 23632.0,
+      "sourcePeriod": "2026-07"
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "fieldCode": "profit",
+      "annualTarget": 0.0,
+      "throughJulyTarget": 1265.495,
+      "sourcePeriod": "2026-07"
+    }
+  ],
+  "records": [
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-01",
+      "fieldCode": "revenue",
+      "value": 47570.544437,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-02",
+      "fieldCode": "revenue",
+      "value": 34157.565831,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-03",
+      "fieldCode": "revenue",
+      "value": 57659.449733,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-04",
+      "fieldCode": "revenue",
+      "value": 58239.1758,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-05",
+      "fieldCode": "revenue",
+      "value": 46720.115146,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-06",
+      "fieldCode": "revenue",
+      "value": 64931.580438,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-07",
+      "fieldCode": "revenue",
+      "value": 58596.00425,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-01",
+      "fieldCode": "revenue",
+      "value": 21498.615227,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-02",
+      "fieldCode": "revenue",
+      "value": 12700.884475,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-03",
+      "fieldCode": "revenue",
+      "value": 31676.214346,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-04",
+      "fieldCode": "revenue",
+      "value": 27225.077944,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-05",
+      "fieldCode": "revenue",
+      "value": 32275.251298,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-06",
+      "fieldCode": "revenue",
+      "value": 51014.035511,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-07",
+      "fieldCode": "revenue",
+      "value": 39308.367077,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-08",
+      "fieldCode": "revenue",
+      "value": 97026.550666,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-08",
+      "fieldCode": "revenue",
+      "value": 56890.270593,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-09",
+      "fieldCode": "revenue",
+      "value": 90558.113955,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-09",
+      "fieldCode": "revenue",
+      "value": 53097.585887,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-10",
+      "fieldCode": "revenue",
+      "value": 99798.737828,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-10",
+      "fieldCode": "revenue",
+      "value": 58515.706896,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-11",
+      "fieldCode": "revenue",
+      "value": 103494.987377,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-11",
+      "fieldCode": "revenue",
+      "value": 60682.955299,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-12",
+      "fieldCode": "revenue",
+      "value": 106267.174539,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-12",
+      "fieldCode": "revenue",
+      "value": 62308.391602,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-01",
+      "fieldCode": "profit",
+      "value": 69.073712,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-02",
+      "fieldCode": "profit",
+      "value": -406.640832,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-03",
+      "fieldCode": "profit",
+      "value": 713.887119,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-04",
+      "fieldCode": "profit",
+      "value": 223.8012,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-05",
+      "fieldCode": "profit",
+      "value": 12.266327,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-06",
+      "fieldCode": "profit",
+      "value": 85.970314,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-07",
+      "fieldCode": "profit",
+      "value": -58.870836,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-01",
+      "fieldCode": "profit",
+      "value": 84.176551,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-02",
+      "fieldCode": "profit",
+      "value": 11.818979,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-03",
+      "fieldCode": "profit",
+      "value": 258.783684,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-04",
+      "fieldCode": "profit",
+      "value": 32.220841,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-05",
+      "fieldCode": "profit",
+      "value": 319.777954,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-06",
+      "fieldCode": "profit",
+      "value": 361.933365,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-07",
+      "fieldCode": "profit",
+      "value": -67.369728,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-08",
+      "fieldCode": "profit",
+      "value": 95.923051,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-08",
+      "fieldCode": "profit",
+      "value": 150.201247,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-09",
+      "fieldCode": "profit",
+      "value": 89.528181,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-09",
+      "fieldCode": "profit",
+      "value": 140.18783,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-10",
+      "fieldCode": "profit",
+      "value": 98.663709,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-10",
+      "fieldCode": "profit",
+      "value": 154.492711,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-11",
+      "fieldCode": "profit",
+      "value": 102.317921,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-11",
+      "fieldCode": "profit",
+      "value": 160.214663,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2026-12",
+      "fieldCode": "profit",
+      "value": 105.058579,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_01",
+      "organizationName": "航天电工",
+      "period": "2025-12",
+      "fieldCode": "profit",
+      "value": 164.506128,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-01",
+      "fieldCode": "revenue",
+      "value": 2299.9494,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-02",
+      "fieldCode": "revenue",
+      "value": 3225.9409,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-03",
+      "fieldCode": "revenue",
+      "value": 3823.35555,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-04",
+      "fieldCode": "revenue",
+      "value": 2976.3104,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-05",
+      "fieldCode": "revenue",
+      "value": 2602.9031,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-06",
+      "fieldCode": "revenue",
+      "value": 3132.42405,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-07",
+      "fieldCode": "revenue",
+      "value": 3362.5172,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-01",
+      "fieldCode": "revenue",
+      "value": 3273.3876,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-02",
+      "fieldCode": "revenue",
+      "value": 3621.8238,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-03",
+      "fieldCode": "revenue",
+      "value": 2382.03525,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-04",
+      "fieldCode": "revenue",
+      "value": 3367.6853,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-05",
+      "fieldCode": "revenue",
+      "value": 2558.18535,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-06",
+      "fieldCode": "revenue",
+      "value": 2317.4018,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-07",
+      "fieldCode": "revenue",
+      "value": 3974.95315,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-08",
+      "fieldCode": "revenue",
+      "value": 2986.533541,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-08",
+      "fieldCode": "revenue",
+      "value": 2996.580704,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-09",
+      "fieldCode": "revenue",
+      "value": 2787.431305,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-09",
+      "fieldCode": "revenue",
+      "value": 2796.808657,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-10",
+      "fieldCode": "revenue",
+      "value": 3071.863071,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-10",
+      "fieldCode": "revenue",
+      "value": 3082.197296,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-11",
+      "fieldCode": "revenue",
+      "value": 3185.635777,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-11",
+      "fieldCode": "revenue",
+      "value": 3196.352751,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-12",
+      "fieldCode": "revenue",
+      "value": 3270.965307,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-12",
+      "fieldCode": "revenue",
+      "value": 3281.969342,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-01",
+      "fieldCode": "profit",
+      "value": 963.08784,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-02",
+      "fieldCode": "profit",
+      "value": 1240.668,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-03",
+      "fieldCode": "profit",
+      "value": 929.62584,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-04",
+      "fieldCode": "profit",
+      "value": 1022.21262,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-05",
+      "fieldCode": "profit",
+      "value": 885.33588,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-06",
+      "fieldCode": "profit",
+      "value": 1497.64758,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-07",
+      "fieldCode": "profit",
+      "value": 1262.01504,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-01",
+      "fieldCode": "profit",
+      "value": 1633.56336,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-02",
+      "fieldCode": "profit",
+      "value": 1418.19678,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-03",
+      "fieldCode": "profit",
+      "value": 574.2594,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-04",
+      "fieldCode": "profit",
+      "value": 1825.74678,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-05",
+      "fieldCode": "profit",
+      "value": 1125.5244,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-06",
+      "fieldCode": "profit",
+      "value": 672.98088,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-07",
+      "fieldCode": "profit",
+      "value": 2017.22664,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-08",
+      "fieldCode": "profit",
+      "value": 1170.08892,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-08",
+      "fieldCode": "profit",
+      "value": 1390.124736,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-09",
+      "fieldCode": "profit",
+      "value": 1092.082992,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-09",
+      "fieldCode": "profit",
+      "value": 1297.449754,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-10",
+      "fieldCode": "profit",
+      "value": 1203.520032,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-10",
+      "fieldCode": "profit",
+      "value": 1429.842586,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-11",
+      "fieldCode": "profit",
+      "value": 1248.094848,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-11",
+      "fieldCode": "profit",
+      "value": 1482.799718,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2026-12",
+      "fieldCode": "profit",
+      "value": 1281.52596,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_02",
+      "organizationName": "大桥集团",
+      "period": "2025-12",
+      "fieldCode": "profit",
+      "value": 1522.517568,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-01",
+      "fieldCode": "revenue",
+      "value": 583.5979,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-02",
+      "fieldCode": "revenue",
+      "value": 1264.505,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-03",
+      "fieldCode": "revenue",
+      "value": 178.3587,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-04",
+      "fieldCode": "revenue",
+      "value": 208.9774,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-05",
+      "fieldCode": "revenue",
+      "value": 495.2859,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-06",
+      "fieldCode": "revenue",
+      "value": 320.2887,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-07",
+      "fieldCode": "revenue",
+      "value": 436.6298,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-01",
+      "fieldCode": "revenue",
+      "value": 879.7751,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-02",
+      "fieldCode": "revenue",
+      "value": 607.5849,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-03",
+      "fieldCode": "revenue",
+      "value": 238.791,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-04",
+      "fieldCode": "revenue",
+      "value": 415.2407,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-05",
+      "fieldCode": "revenue",
+      "value": 226.4489,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-06",
+      "fieldCode": "revenue",
+      "value": 765.6584,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-07",
+      "fieldCode": "revenue",
+      "value": 367.5074,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-08",
+      "fieldCode": "revenue",
+      "value": 486.195641,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-08",
+      "fieldCode": "revenue",
+      "value": 488.058513,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-09",
+      "fieldCode": "revenue",
+      "value": 453.782599,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-09",
+      "fieldCode": "revenue",
+      "value": 455.521279,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-10",
+      "fieldCode": "revenue",
+      "value": 500.086945,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-10",
+      "fieldCode": "revenue",
+      "value": 502.003042,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-11",
+      "fieldCode": "revenue",
+      "value": 518.608684,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-11",
+      "fieldCode": "revenue",
+      "value": 520.595747,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-12",
+      "fieldCode": "revenue",
+      "value": 532.499988,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-12",
+      "fieldCode": "revenue",
+      "value": 534.540276,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-01",
+      "fieldCode": "profit",
+      "value": 61.86312,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-02",
+      "fieldCode": "profit",
+      "value": 173.0538,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-03",
+      "fieldCode": "profit",
+      "value": 17.81784,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-04",
+      "fieldCode": "profit",
+      "value": 31.50096,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-05",
+      "fieldCode": "profit",
+      "value": 15.13728,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-06",
+      "fieldCode": "profit",
+      "value": 156.6288,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-07",
+      "fieldCode": "profit",
+      "value": 12.69324,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-01",
+      "fieldCode": "profit",
+      "value": 81.67824,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-02",
+      "fieldCode": "profit",
+      "value": 17.57256,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-03",
+      "fieldCode": "profit",
+      "value": 92.3742,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-04",
+      "fieldCode": "profit",
+      "value": 37.03728,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-05",
+      "fieldCode": "profit",
+      "value": 27.04212,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-06",
+      "fieldCode": "profit",
+      "value": 218.09772,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-07",
+      "fieldCode": "profit",
+      "value": 5.00196,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-08",
+      "fieldCode": "profit",
+      "value": 70.304256,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-08",
+      "fieldCode": "profit",
+      "value": 71.820612,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-09",
+      "fieldCode": "profit",
+      "value": 65.617306,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-09",
+      "fieldCode": "profit",
+      "value": 67.032571,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-10",
+      "fieldCode": "profit",
+      "value": 72.312949,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-10",
+      "fieldCode": "profit",
+      "value": 73.872629,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-11",
+      "fieldCode": "profit",
+      "value": 74.991206,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-11",
+      "fieldCode": "profit",
+      "value": 76.608653,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2026-12",
+      "fieldCode": "profit",
+      "value": 76.999899,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_03",
+      "organizationName": "城发投资 （信息管网）",
+      "period": "2025-12",
+      "fieldCode": "profit",
+      "value": 78.66067,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-01",
+      "fieldCode": "revenue",
+      "value": 3032.52255,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-02",
+      "fieldCode": "revenue",
+      "value": 8369.4069,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-03",
+      "fieldCode": "revenue",
+      "value": 10383.7869,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-04",
+      "fieldCode": "revenue",
+      "value": 4246.4943,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-05",
+      "fieldCode": "revenue",
+      "value": 7392.7404,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-06",
+      "fieldCode": "revenue",
+      "value": 8621.4267,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-07",
+      "fieldCode": "revenue",
+      "value": 8140.0275,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-01",
+      "fieldCode": "revenue",
+      "value": 5897.69595,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-02",
+      "fieldCode": "revenue",
+      "value": 6114.98565,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-03",
+      "fieldCode": "revenue",
+      "value": 3183.87465,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-04",
+      "fieldCode": "revenue",
+      "value": 4136.32755,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-05",
+      "fieldCode": "revenue",
+      "value": 3172.22955,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-06",
+      "fieldCode": "revenue",
+      "value": 2532.07395,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-07",
+      "fieldCode": "revenue",
+      "value": 1982.8989,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-08",
+      "fieldCode": "revenue",
+      "value": 6996.246085,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-08",
+      "fieldCode": "revenue",
+      "value": 3766.740641,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-09",
+      "fieldCode": "revenue",
+      "value": 6529.829679,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-09",
+      "fieldCode": "revenue",
+      "value": 3515.624599,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-10",
+      "fieldCode": "revenue",
+      "value": 7196.13883,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-10",
+      "fieldCode": "revenue",
+      "value": 3874.361802,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-11",
+      "fieldCode": "revenue",
+      "value": 7462.662491,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-11",
+      "fieldCode": "revenue",
+      "value": 4017.856684,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-12",
+      "fieldCode": "revenue",
+      "value": 7662.555236,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-12",
+      "fieldCode": "revenue",
+      "value": 4125.477845,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-01",
+      "fieldCode": "profit",
+      "value": 308.80548,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-02",
+      "fieldCode": "profit",
+      "value": 133.09872,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-03",
+      "fieldCode": "profit",
+      "value": 1019.66064,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-04",
+      "fieldCode": "profit",
+      "value": 497.40372,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-05",
+      "fieldCode": "profit",
+      "value": 535.5507,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-06",
+      "fieldCode": "profit",
+      "value": 470.00262,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-07",
+      "fieldCode": "profit",
+      "value": 586.6875,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-01",
+      "fieldCode": "profit",
+      "value": -31.13802,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-02",
+      "fieldCode": "profit",
+      "value": 175.54584,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-03",
+      "fieldCode": "profit",
+      "value": 797.23344,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-04",
+      "fieldCode": "profit",
+      "value": -401.96028,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-05",
+      "fieldCode": "profit",
+      "value": -43.52886,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-06",
+      "fieldCode": "profit",
+      "value": 1466.2047,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-07",
+      "fieldCode": "profit",
+      "value": 599.48958,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-08",
+      "fieldCode": "profit",
+      "value": 532.681407,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-08",
+      "fieldCode": "profit",
+      "value": 384.27696,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-09",
+      "fieldCode": "profit",
+      "value": 497.169313,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-09",
+      "fieldCode": "profit",
+      "value": 358.658496,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-10",
+      "fieldCode": "profit",
+      "value": 547.900876,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-10",
+      "fieldCode": "profit",
+      "value": 395.256302,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-11",
+      "fieldCode": "profit",
+      "value": 568.193501,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-11",
+      "fieldCode": "profit",
+      "value": 409.895424,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2026-12",
+      "fieldCode": "profit",
+      "value": 583.41297,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_04",
+      "organizationName": "城房集团",
+      "period": "2025-12",
+      "fieldCode": "profit",
+      "value": 420.874766,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-01",
+      "fieldCode": "revenue",
+      "value": 2401.564,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-02",
+      "fieldCode": "revenue",
+      "value": 6021.8664,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-03",
+      "fieldCode": "revenue",
+      "value": 4014.4808,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-04",
+      "fieldCode": "revenue",
+      "value": 1528.2168,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-05",
+      "fieldCode": "revenue",
+      "value": -1592.14,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-06",
+      "fieldCode": "revenue",
+      "value": 3404.9928,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-07",
+      "fieldCode": "revenue",
+      "value": 2350.2776,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-01",
+      "fieldCode": "revenue",
+      "value": 9700.3456,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-02",
+      "fieldCode": "revenue",
+      "value": 3061.6168,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-03",
+      "fieldCode": "revenue",
+      "value": 11939.6728,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-04",
+      "fieldCode": "revenue",
+      "value": 3131.524,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-05",
+      "fieldCode": "revenue",
+      "value": 9604.4696,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-06",
+      "fieldCode": "revenue",
+      "value": 9359.5656,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-07",
+      "fieldCode": "revenue",
+      "value": 3941.1328,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-08",
+      "fieldCode": "revenue",
+      "value": 10201.538788,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-08",
+      "fieldCode": "revenue",
+      "value": 28551.03069,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-09",
+      "fieldCode": "revenue",
+      "value": 9521.436202,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-09",
+      "fieldCode": "revenue",
+      "value": 26647.628644,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-10",
+      "fieldCode": "revenue",
+      "value": 10493.011325,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-10",
+      "fieldCode": "revenue",
+      "value": 29366.774425,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-11",
+      "fieldCode": "revenue",
+      "value": 10881.641374,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-11",
+      "fieldCode": "revenue",
+      "value": 30454.432737,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-12",
+      "fieldCode": "revenue",
+      "value": 11173.113911,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-12",
+      "fieldCode": "revenue",
+      "value": 31270.176471,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-01",
+      "fieldCode": "profit",
+      "value": -41.52336,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-02",
+      "fieldCode": "profit",
+      "value": 269.11296,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-03",
+      "fieldCode": "profit",
+      "value": 397.28544,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-04",
+      "fieldCode": "profit",
+      "value": -218.3328,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-05",
+      "fieldCode": "profit",
+      "value": 1181.485056,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-06",
+      "fieldCode": "profit",
+      "value": 221.36976,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-07",
+      "fieldCode": "profit",
+      "value": 12.687744,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-01",
+      "fieldCode": "profit",
+      "value": 269.97024,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-02",
+      "fieldCode": "profit",
+      "value": -105.45456,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-03",
+      "fieldCode": "profit",
+      "value": 1255.88784,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-04",
+      "fieldCode": "profit",
+      "value": -70.8624,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-05",
+      "fieldCode": "profit",
+      "value": 144.43344,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-06",
+      "fieldCode": "profit",
+      "value": 295.65216,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-07",
+      "fieldCode": "profit",
+      "value": 43.10112,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-08",
+      "fieldCode": "profit",
+      "value": 273.31272,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-08",
+      "fieldCode": "profit",
+      "value": 274.909176,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-09",
+      "fieldCode": "profit",
+      "value": 255.091872,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-09",
+      "fieldCode": "profit",
+      "value": 256.581898,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-10",
+      "fieldCode": "profit",
+      "value": 281.121655,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-10",
+      "fieldCode": "profit",
+      "value": 282.763724,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-11",
+      "fieldCode": "profit",
+      "value": 291.533568,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-11",
+      "fieldCode": "profit",
+      "value": 293.236454,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2026-12",
+      "fieldCode": "profit",
+      "value": 299.342503,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_05",
+      "organizationName": "城发建工",
+      "period": "2025-12",
+      "fieldCode": "profit",
+      "value": 301.091002,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-01",
+      "fieldCode": "revenue",
+      "value": 5025.36545,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-02",
+      "fieldCode": "revenue",
+      "value": 4302.30665,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-03",
+      "fieldCode": "revenue",
+      "value": 5089.13175,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-04",
+      "fieldCode": "revenue",
+      "value": 4867.6692,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-05",
+      "fieldCode": "revenue",
+      "value": 4148.14895,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-06",
+      "fieldCode": "revenue",
+      "value": 7038.86375,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-07",
+      "fieldCode": "revenue",
+      "value": -6282.0394,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-01",
+      "fieldCode": "revenue",
+      "value": 4620.43225,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-02",
+      "fieldCode": "revenue",
+      "value": 4885.2443,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-03",
+      "fieldCode": "revenue",
+      "value": 5107.3313,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-04",
+      "fieldCode": "revenue",
+      "value": 4597.06515,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-05",
+      "fieldCode": "revenue",
+      "value": 4546.0865,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-06",
+      "fieldCode": "revenue",
+      "value": 6515.7466,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-07",
+      "fieldCode": "revenue",
+      "value": -5818.776241,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-08",
+      "fieldCode": "revenue",
+      "value": 7148.30508,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-08",
+      "fieldCode": "revenue",
+      "value": 7226.227086,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-09",
+      "fieldCode": "revenue",
+      "value": 6671.751408,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-09",
+      "fieldCode": "revenue",
+      "value": 6744.478613,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-10",
+      "fieldCode": "revenue",
+      "value": 7352.542368,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-10",
+      "fieldCode": "revenue",
+      "value": 7432.690717,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-11",
+      "fieldCode": "revenue",
+      "value": 7624.858752,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-11",
+      "fieldCode": "revenue",
+      "value": 7707.975558,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-12",
+      "fieldCode": "revenue",
+      "value": 7829.09604,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-12",
+      "fieldCode": "revenue",
+      "value": 7914.439189,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-01",
+      "fieldCode": "profit",
+      "value": -112.867151,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-02",
+      "fieldCode": "profit",
+      "value": 213.567551,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-03",
+      "fieldCode": "profit",
+      "value": 245.518321,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-04",
+      "fieldCode": "profit",
+      "value": 603.292679,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-05",
+      "fieldCode": "profit",
+      "value": -141.0066,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-06",
+      "fieldCode": "profit",
+      "value": 103.23,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-07",
+      "fieldCode": "profit",
+      "value": -135.9846,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-01",
+      "fieldCode": "profit",
+      "value": -0.742387,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-02",
+      "fieldCode": "profit",
+      "value": 465.268087,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-03",
+      "fieldCode": "profit",
+      "value": 1353.3453,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-04",
+      "fieldCode": "profit",
+      "value": 421.5039,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-05",
+      "fieldCode": "profit",
+      "value": 875.6229,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-06",
+      "fieldCode": "profit",
+      "value": 886.1412,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-07",
+      "fieldCode": "profit",
+      "value": -813.761099,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-08",
+      "fieldCode": "profit",
+      "value": 116.36253,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-08",
+      "fieldCode": "profit",
+      "value": 478.106685,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-09",
+      "fieldCode": "profit",
+      "value": 108.605028,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-09",
+      "fieldCode": "profit",
+      "value": 446.232906,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-10",
+      "fieldCode": "profit",
+      "value": 119.687174,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-10",
+      "fieldCode": "profit",
+      "value": 491.766876,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-11",
+      "fieldCode": "profit",
+      "value": 124.120032,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-11",
+      "fieldCode": "profit",
+      "value": 509.980464,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2026-12",
+      "fieldCode": "profit",
+      "value": 127.444676,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_06",
+      "organizationName": "城发城运",
+      "period": "2025-12",
+      "fieldCode": "profit",
+      "value": 523.640655,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-01",
+      "fieldCode": "revenue",
+      "value": 129.2328,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-02",
+      "fieldCode": "revenue",
+      "value": 65.2209,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-03",
+      "fieldCode": "revenue",
+      "value": 225.4413,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-04",
+      "fieldCode": "revenue",
+      "value": 225.7947,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-05",
+      "fieldCode": "revenue",
+      "value": 143.0526,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-06",
+      "fieldCode": "revenue",
+      "value": 343.1049,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-07",
+      "fieldCode": "revenue",
+      "value": 304.7052,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-01",
+      "fieldCode": "revenue",
+      "value": 43.524,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-02",
+      "fieldCode": "revenue",
+      "value": 12.4434,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-03",
+      "fieldCode": "revenue",
+      "value": 64.2723,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-04",
+      "fieldCode": "revenue",
+      "value": 43.9797,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-05",
+      "fieldCode": "revenue",
+      "value": 26.5236,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-06",
+      "fieldCode": "revenue",
+      "value": 201.5496,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-07",
+      "fieldCode": "revenue",
+      "value": 34.5216,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-08",
+      "fieldCode": "revenue",
+      "value": 200.262881,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-08",
+      "fieldCode": "revenue",
+      "value": 59.500121,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-09",
+      "fieldCode": "revenue",
+      "value": 186.912022,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-09",
+      "fieldCode": "revenue",
+      "value": 55.533446,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-10",
+      "fieldCode": "revenue",
+      "value": 205.984678,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-10",
+      "fieldCode": "revenue",
+      "value": 61.200124,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-11",
+      "fieldCode": "revenue",
+      "value": 213.61374,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-11",
+      "fieldCode": "revenue",
+      "value": 63.466796,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-12",
+      "fieldCode": "revenue",
+      "value": 219.335536,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-12",
+      "fieldCode": "revenue",
+      "value": 65.166799,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-01",
+      "fieldCode": "profit",
+      "value": 20.40096,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-02",
+      "fieldCode": "profit",
+      "value": -0.55932,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-03",
+      "fieldCode": "profit",
+      "value": 123.3822,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-04",
+      "fieldCode": "profit",
+      "value": 117.81744,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-05",
+      "fieldCode": "profit",
+      "value": 566.22144,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-06",
+      "fieldCode": "profit",
+      "value": 275.9628,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-07",
+      "fieldCode": "profit",
+      "value": 110.46096,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-01",
+      "fieldCode": "profit",
+      "value": -80.69376,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-02",
+      "fieldCode": "profit",
+      "value": -50.3862,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-03",
+      "fieldCode": "profit",
+      "value": 8.82588,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-04",
+      "fieldCode": "profit",
+      "value": -56.65248,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-05",
+      "fieldCode": "profit",
+      "value": 450.46116,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-06",
+      "fieldCode": "profit",
+      "value": 162.74316,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-07",
+      "fieldCode": "profit",
+      "value": -95.61528,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-08",
+      "fieldCode": "profit",
+      "value": 182.052972,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-08",
+      "fieldCode": "profit",
+      "value": 50.802372,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-09",
+      "fieldCode": "profit",
+      "value": 169.916107,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-09",
+      "fieldCode": "profit",
+      "value": 47.415547,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-10",
+      "fieldCode": "profit",
+      "value": 187.254485,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-10",
+      "fieldCode": "profit",
+      "value": 52.253868,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-11",
+      "fieldCode": "profit",
+      "value": 194.189837,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-11",
+      "fieldCode": "profit",
+      "value": 54.189197,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2026-12",
+      "fieldCode": "profit",
+      "value": 199.39135,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_07",
+      "organizationName": "城发资本",
+      "period": "2025-12",
+      "fieldCode": "profit",
+      "value": 55.640693,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-01",
+      "fieldCode": "revenue",
+      "value": 1307.06075,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-02",
+      "fieldCode": "revenue",
+      "value": 2911.05965,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-03",
+      "fieldCode": "revenue",
+      "value": 1211.23605,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-04",
+      "fieldCode": "revenue",
+      "value": 549.78395,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-05",
+      "fieldCode": "revenue",
+      "value": 1051.0348,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-06",
+      "fieldCode": "revenue",
+      "value": 732.278911,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-07",
+      "fieldCode": "revenue",
+      "value": 1558.126239,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-01",
+      "fieldCode": "revenue",
+      "value": 4761.88785,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-02",
+      "fieldCode": "revenue",
+      "value": 482.2941,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-03",
+      "fieldCode": "revenue",
+      "value": 995.7785,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-04",
+      "fieldCode": "revenue",
+      "value": 527.8285,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-05",
+      "fieldCode": "revenue",
+      "value": 638.4748,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-06",
+      "fieldCode": "revenue",
+      "value": 1673.2364,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-07",
+      "fieldCode": "revenue",
+      "value": 892.22785,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-08",
+      "fieldCode": "revenue",
+      "value": 2654.161828,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-08",
+      "fieldCode": "revenue",
+      "value": 2839.584963,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-09",
+      "fieldCode": "revenue",
+      "value": 2477.217706,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-09",
+      "fieldCode": "revenue",
+      "value": 2650.279299,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-10",
+      "fieldCode": "revenue",
+      "value": 2729.995023,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-10",
+      "fieldCode": "revenue",
+      "value": 2920.715962,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-11",
+      "fieldCode": "revenue",
+      "value": 2831.105949,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-11",
+      "fieldCode": "revenue",
+      "value": 3028.890628,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-12",
+      "fieldCode": "revenue",
+      "value": 2906.939145,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-12",
+      "fieldCode": "revenue",
+      "value": 3110.021627,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-01",
+      "fieldCode": "profit",
+      "value": 154.7049,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-02",
+      "fieldCode": "profit",
+      "value": 443.2491,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-03",
+      "fieldCode": "profit",
+      "value": 36.87222,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-04",
+      "fieldCode": "profit",
+      "value": 56.71386,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-05",
+      "fieldCode": "profit",
+      "value": 205.275,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-06",
+      "fieldCode": "profit",
+      "value": -248.90922,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-07",
+      "fieldCode": "profit",
+      "value": 458.37666,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-01",
+      "fieldCode": "profit",
+      "value": 198.16524,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-02",
+      "fieldCode": "profit",
+      "value": 461.93154,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-03",
+      "fieldCode": "profit",
+      "value": -143.17086,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-04",
+      "fieldCode": "profit",
+      "value": -3.35202,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-05",
+      "fieldCode": "profit",
+      "value": 104.60814,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-06",
+      "fieldCode": "profit",
+      "value": 230.38134,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-07",
+      "fieldCode": "profit",
+      "value": 9.19632,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-08",
+      "fieldCode": "profit",
+      "value": 165.942378,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-08",
+      "fieldCode": "profit",
+      "value": 128.663955,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-09",
+      "fieldCode": "profit",
+      "value": 154.879553,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-09",
+      "fieldCode": "profit",
+      "value": 120.086358,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-10",
+      "fieldCode": "profit",
+      "value": 170.683589,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-10",
+      "fieldCode": "profit",
+      "value": 132.340068,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-11",
+      "fieldCode": "profit",
+      "value": 177.005203,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-11",
+      "fieldCode": "profit",
+      "value": 137.241552,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2026-12",
+      "fieldCode": "profit",
+      "value": 181.746414,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_08",
+      "organizationName": "三峡设计",
+      "period": "2025-12",
+      "fieldCode": "profit",
+      "value": 140.917665,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-01",
+      "fieldCode": "revenue",
+      "value": 140355.8058,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-02",
+      "fieldCode": "revenue",
+      "value": 65902.648,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-03",
+      "fieldCode": "revenue",
+      "value": 76862.287808,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-04",
+      "fieldCode": "revenue",
+      "value": 73450.041395,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-05",
+      "fieldCode": "revenue",
+      "value": 62882.6506,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-06",
+      "fieldCode": "revenue",
+      "value": 54031.8394,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-07",
+      "fieldCode": "revenue",
+      "value": 29810.308596,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-01",
+      "fieldCode": "revenue",
+      "value": 108866.6418,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-02",
+      "fieldCode": "revenue",
+      "value": 28624.3692,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-03",
+      "fieldCode": "revenue",
+      "value": 49210.3864,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-04",
+      "fieldCode": "revenue",
+      "value": 42814.116304,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-05",
+      "fieldCode": "revenue",
+      "value": 37701.5114,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-06",
+      "fieldCode": "revenue",
+      "value": 47475.6296,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-07",
+      "fieldCode": "revenue",
+      "value": 5673.588696,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-08",
+      "fieldCode": "revenue",
+      "value": 141092.172736,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-08",
+      "fieldCode": "revenue",
+      "value": 89810.383808,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-09",
+      "fieldCode": "revenue",
+      "value": 131686.027887,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-09",
+      "fieldCode": "revenue",
+      "value": 83823.024888,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-10",
+      "fieldCode": "revenue",
+      "value": 145123.377671,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-10",
+      "fieldCode": "revenue",
+      "value": 92376.394774,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-11",
+      "fieldCode": "revenue",
+      "value": 150498.317585,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-11",
+      "fieldCode": "revenue",
+      "value": 95797.742729,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-12",
+      "fieldCode": "revenue",
+      "value": 154529.52252,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-12",
+      "fieldCode": "revenue",
+      "value": 98363.753695,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-01",
+      "fieldCode": "profit",
+      "value": -764.80416,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-02",
+      "fieldCode": "profit",
+      "value": 158.04024,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-03",
+      "fieldCode": "profit",
+      "value": -1784.939842,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-04",
+      "fieldCode": "profit",
+      "value": -401.672037,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-05",
+      "fieldCode": "profit",
+      "value": -72.26496,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-06",
+      "fieldCode": "profit",
+      "value": -876.81288,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-07",
+      "fieldCode": "profit",
+      "value": -1169.727516,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-01",
+      "fieldCode": "profit",
+      "value": -354.06288,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-02",
+      "fieldCode": "profit",
+      "value": 196.51464,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-03",
+      "fieldCode": "profit",
+      "value": -198.237207,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-04",
+      "fieldCode": "profit",
+      "value": -525.018514,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-05",
+      "fieldCode": "profit",
+      "value": -83.886,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-06",
+      "fieldCode": "profit",
+      "value": -427.97112,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-07",
+      "fieldCode": "profit",
+      "value": -747.59796,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-08",
+      "fieldCode": "profit",
+      "value": -736.827173,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-08",
+      "fieldCode": "profit",
+      "value": -321.038856,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-09",
+      "fieldCode": "profit",
+      "value": -687.705362,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-09",
+      "fieldCode": "profit",
+      "value": -299.636266,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-10",
+      "fieldCode": "profit",
+      "value": -757.879378,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-10",
+      "fieldCode": "profit",
+      "value": -330.211395,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-11",
+      "fieldCode": "profit",
+      "value": -785.948985,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-11",
+      "fieldCode": "profit",
+      "value": -342.441446,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2026-12",
+      "fieldCode": "profit",
+      "value": -807.00119,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_09",
+      "organizationName": "矿产能源 （三峡物流）",
+      "period": "2025-12",
+      "fieldCode": "profit",
+      "value": -351.613985,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-01",
+      "fieldCode": "revenue",
+      "value": 3585.4983,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-02",
+      "fieldCode": "revenue",
+      "value": 4903.72665,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-03",
+      "fieldCode": "revenue",
+      "value": 3350.17755,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-04",
+      "fieldCode": "revenue",
+      "value": 3654.8634,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-05",
+      "fieldCode": "revenue",
+      "value": 3682.7421,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-06",
+      "fieldCode": "revenue",
+      "value": 3531.6906,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-07",
+      "fieldCode": "revenue",
+      "value": 3528.3339,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-01",
+      "fieldCode": "revenue",
+      "value": 5872.314213,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-02",
+      "fieldCode": "revenue",
+      "value": 3415.884127,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-03",
+      "fieldCode": "revenue",
+      "value": 3719.93715,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-04",
+      "fieldCode": "revenue",
+      "value": 3178.947504,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-05",
+      "fieldCode": "revenue",
+      "value": 3689.274443,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-06",
+      "fieldCode": "revenue",
+      "value": 5257.031387,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-07",
+      "fieldCode": "revenue",
+      "value": 3632.12035,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-08",
+      "fieldCode": "revenue",
+      "value": 6746.04849,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-08",
+      "fieldCode": "revenue",
+      "value": 7396.168745,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-09",
+      "fieldCode": "revenue",
+      "value": 6296.311924,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-09",
+      "fieldCode": "revenue",
+      "value": 6903.090828,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-10",
+      "fieldCode": "revenue",
+      "value": 6938.792732,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-10",
+      "fieldCode": "revenue",
+      "value": 7607.487852,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-11",
+      "fieldCode": "revenue",
+      "value": 7195.785056,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-11",
+      "fieldCode": "revenue",
+      "value": 7889.246661,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-12",
+      "fieldCode": "revenue",
+      "value": 7388.529298,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-12",
+      "fieldCode": "revenue",
+      "value": 8100.565768,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-01",
+      "fieldCode": "profit",
+      "value": 97.12386,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-02",
+      "fieldCode": "profit",
+      "value": 32.95578,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-03",
+      "fieldCode": "profit",
+      "value": -48.88758,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-04",
+      "fieldCode": "profit",
+      "value": 98.25612,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-05",
+      "fieldCode": "profit",
+      "value": 17.47488,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-06",
+      "fieldCode": "profit",
+      "value": 140.18982,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-07",
+      "fieldCode": "profit",
+      "value": -35.49084,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-01",
+      "fieldCode": "profit",
+      "value": -22.644452,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-02",
+      "fieldCode": "profit",
+      "value": -101.991987,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-03",
+      "fieldCode": "profit",
+      "value": 108.286148,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-04",
+      "fieldCode": "profit",
+      "value": -54.620932,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-05",
+      "fieldCode": "profit",
+      "value": -60.420861,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-06",
+      "fieldCode": "profit",
+      "value": 271.330554,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-07",
+      "fieldCode": "profit",
+      "value": -34.889356,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-08",
+      "fieldCode": "profit",
+      "value": 45.243306,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-08",
+      "fieldCode": "profit",
+      "value": 15.757367,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-09",
+      "fieldCode": "profit",
+      "value": 42.227086,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-09",
+      "fieldCode": "profit",
+      "value": 14.706876,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-10",
+      "fieldCode": "profit",
+      "value": 46.535972,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-10",
+      "fieldCode": "profit",
+      "value": 16.207578,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-11",
+      "fieldCode": "profit",
+      "value": 48.259526,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-11",
+      "fieldCode": "profit",
+      "value": 16.807858,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2026-12",
+      "fieldCode": "profit",
+      "value": 49.552192,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_10",
+      "organizationName": "三峡人才",
+      "period": "2025-12",
+      "fieldCode": "profit",
+      "value": 17.258069,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-01",
+      "fieldCode": "revenue",
+      "value": 895.4614,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-02",
+      "fieldCode": "revenue",
+      "value": 761.4584,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-03",
+      "fieldCode": "revenue",
+      "value": 988.5425,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-04",
+      "fieldCode": "revenue",
+      "value": 975.101,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-05",
+      "fieldCode": "revenue",
+      "value": 1161.016,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-06",
+      "fieldCode": "revenue",
+      "value": 923.6422,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-07",
+      "fieldCode": "revenue",
+      "value": 1018.0417,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-01",
+      "fieldCode": "revenue",
+      "value": 928.6789,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-02",
+      "fieldCode": "revenue",
+      "value": 811.5473,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-03",
+      "fieldCode": "revenue",
+      "value": 1034.6041,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-04",
+      "fieldCode": "revenue",
+      "value": 1053.6797,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-05",
+      "fieldCode": "revenue",
+      "value": 925.2284,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-06",
+      "fieldCode": "revenue",
+      "value": 964.3581,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-07",
+      "fieldCode": "revenue",
+      "value": 900.5908,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-08",
+      "fieldCode": "revenue",
+      "value": 937.257881,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-08",
+      "fieldCode": "revenue",
+      "value": 922.679456,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-09",
+      "fieldCode": "revenue",
+      "value": 874.774022,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-09",
+      "fieldCode": "revenue",
+      "value": 861.167493,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-10",
+      "fieldCode": "revenue",
+      "value": 964.036678,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-10",
+      "fieldCode": "revenue",
+      "value": 949.041727,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-11",
+      "fieldCode": "revenue",
+      "value": 999.74174,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-11",
+      "fieldCode": "revenue",
+      "value": 984.19142,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-12",
+      "fieldCode": "revenue",
+      "value": 1026.520536,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-12",
+      "fieldCode": "revenue",
+      "value": 1010.55369,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-01",
+      "fieldCode": "profit",
+      "value": -133.1508,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-02",
+      "fieldCode": "profit",
+      "value": -151.4394,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-03",
+      "fieldCode": "profit",
+      "value": -113.0568,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-04",
+      "fieldCode": "profit",
+      "value": -46.2264,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-05",
+      "fieldCode": "profit",
+      "value": 109.0176,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-06",
+      "fieldCode": "profit",
+      "value": -260.5794,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-07",
+      "fieldCode": "profit",
+      "value": -132.0084,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-01",
+      "fieldCode": "profit",
+      "value": -229.3062,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-02",
+      "fieldCode": "profit",
+      "value": -459.8262,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-03",
+      "fieldCode": "profit",
+      "value": 614.1624,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-04",
+      "fieldCode": "profit",
+      "value": 306.9792,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-05",
+      "fieldCode": "profit",
+      "value": -1167.8184,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-06",
+      "fieldCode": "profit",
+      "value": -459.051,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-07",
+      "fieldCode": "profit",
+      "value": -38.7192,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-08",
+      "fieldCode": "profit",
+      "value": -109.11654,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-08",
+      "fieldCode": "profit",
+      "value": -215.03691,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-09",
+      "fieldCode": "profit",
+      "value": -101.842104,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-09",
+      "fieldCode": "profit",
+      "value": -200.701116,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-10",
+      "fieldCode": "profit",
+      "value": -112.234155,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-10",
+      "fieldCode": "profit",
+      "value": -221.180822,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-11",
+      "fieldCode": "profit",
+      "value": -116.390976,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-11",
+      "fieldCode": "profit",
+      "value": -229.372704,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2026-12",
+      "fieldCode": "profit",
+      "value": -119.508591,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_11",
+      "organizationName": "公交集团",
+      "period": "2025-12",
+      "fieldCode": "profit",
+      "value": -235.516616,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-01",
+      "fieldCode": "revenue",
+      "value": 3394.779,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-02",
+      "fieldCode": "revenue",
+      "value": 3247.29,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-03",
+      "fieldCode": "revenue",
+      "value": 5305.71105,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-04",
+      "fieldCode": "revenue",
+      "value": 3297.6557,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-05",
+      "fieldCode": "revenue",
+      "value": 3562.5029,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-06",
+      "fieldCode": "revenue",
+      "value": 3664.29985,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-07",
+      "fieldCode": "revenue",
+      "value": 1958.38595,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-01",
+      "fieldCode": "revenue",
+      "value": 1636.4949,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-02",
+      "fieldCode": "revenue",
+      "value": 888.8586,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-03",
+      "fieldCode": "revenue",
+      "value": 1044.31285,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-04",
+      "fieldCode": "revenue",
+      "value": 7066.2212,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-05",
+      "fieldCode": "revenue",
+      "value": 2627.8573,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-06",
+      "fieldCode": "revenue",
+      "value": 3645.4048,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-07",
+      "fieldCode": "revenue",
+      "value": 1625.8394,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-08",
+      "fieldCode": "revenue",
+      "value": 3405.756197,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-08",
+      "fieldCode": "revenue",
+      "value": 2583.873938,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-09",
+      "fieldCode": "revenue",
+      "value": 3178.705783,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-09",
+      "fieldCode": "revenue",
+      "value": 2411.615676,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-10",
+      "fieldCode": "revenue",
+      "value": 3503.063516,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-10",
+      "fieldCode": "revenue",
+      "value": 2657.698908,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-11",
+      "fieldCode": "revenue",
+      "value": 3632.80661,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-11",
+      "fieldCode": "revenue",
+      "value": 2756.132201,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-12",
+      "fieldCode": "revenue",
+      "value": 3730.11393,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-12",
+      "fieldCode": "revenue",
+      "value": 2829.95717,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-01",
+      "fieldCode": "profit",
+      "value": 272.58918,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-02",
+      "fieldCode": "profit",
+      "value": 161.69964,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-03",
+      "fieldCode": "profit",
+      "value": 170.21124,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-04",
+      "fieldCode": "profit",
+      "value": 206.0949,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-05",
+      "fieldCode": "profit",
+      "value": 271.77954,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-06",
+      "fieldCode": "profit",
+      "value": 258.74226,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-07",
+      "fieldCode": "profit",
+      "value": 139.46568,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-01",
+      "fieldCode": "profit",
+      "value": 89.62092,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-02",
+      "fieldCode": "profit",
+      "value": -112.78908,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-03",
+      "fieldCode": "profit",
+      "value": 46.71,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-04",
+      "fieldCode": "profit",
+      "value": 74.80866,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-05",
+      "fieldCode": "profit",
+      "value": 125.21394,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-06",
+      "fieldCode": "profit",
+      "value": 86.89098,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-07",
+      "fieldCode": "profit",
+      "value": 60.50502,
+      "synthetic": true,
+      "projection": false
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-08",
+      "fieldCode": "profit",
+      "value": 222.087366,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-08",
+      "fieldCode": "profit",
+      "value": 55.644066,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-09",
+      "fieldCode": "profit",
+      "value": 207.281542,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-09",
+      "fieldCode": "profit",
+      "value": 51.934462,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-10",
+      "fieldCode": "profit",
+      "value": 228.432719,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-10",
+      "fieldCode": "profit",
+      "value": 57.233896,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-11",
+      "fieldCode": "profit",
+      "value": 236.89319,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-11",
+      "fieldCode": "profit",
+      "value": 59.35367,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2026-12",
+      "fieldCode": "profit",
+      "value": 243.238544,
+      "synthetic": true,
+      "projection": true
+    },
+    {
+      "organizationCode": "SAMPLE_ORG_12",
+      "organizationName": "城发实业",
+      "period": "2025-12",
+      "fieldCode": "profit",
+      "value": 60.943501,
+      "synthetic": true,
+      "projection": true
+    }
+  ]
+}

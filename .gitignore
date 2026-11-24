@@ -1,0 +1,57 @@
+node_modules/
+dist/
+/LICENSE.js
+.env
+.env.*
+!.env.example
+!.env.showcase
+server/data/*.db
+server/data/*.db-*
+server/data/backups/retired-tables-*/
+server/data/backups/default-retirement-*/
+server/data/demo/
+server/data/demo-reset-backups/
+server/templates/*.json
+/*.xlsx
+
+# Local credentials and licensed runtime configuration
+**/LICENSE.js
+*.lic
+*.pem
+*.key
+*.p12
+*.pfx
+.npmrc
+!.npmrc.example
+
+# Runtime data, exports and backups (never publish demo/production snapshots)
+server/data/
+server/templates/
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.log
+
+# Local investigation, generated documentation and deployment evidence
+/.scratch/
+/.zread/
+/.impeccable/
+/CONTEXT.md
+/docs/demo/线上部署记录.md
+/docs/demo/evidence/
+
+# Recordings are downloaded separately; see npm run media:download
+/*.mp4
+*.download
+/guide-media/
+
+# Generated release bundles
+/release/
+
+# Local deployment helpers (not part of the public repository)
+*.bat
+Dockerfile
+docker-compose*.yml
+.dockerignore

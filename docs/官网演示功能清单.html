@@ -1,0 +1,946 @@
+<title>SpreadJS 演示取舍清单</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #f4f6f5;
+    --surface: #ffffff;
+    --surface-soft: #eef1ef;
+    --ink: #182019;
+    --muted: #5c6a61;
+    --faint: #8b968e;
+    --line: #dbe1dc;
+    --line-strong: #c3ccc5;
+    --accent: #146356;
+    --accent-ink: #0d4a40;
+    --accent-soft: #e2efe9;
+    --warn: #9a5a12;
+    --warn-soft: #f6ecdd;
+    --crit: #9c352a;
+    --crit-soft: #f7e6e3;
+    --info: #35597f;
+    --info-soft: #e6edf4;
+    --shadow: 0 1px 2px rgba(24, 32, 25, .06), 0 8px 24px rgba(24, 32, 25, .05);
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #121714;
+      --surface: #19201c;
+      --surface-soft: #202923;
+      --ink: #e6ece7;
+      --muted: #9faea4;
+      --faint: #7c8b81;
+      --line: #2c3730;
+      --line-strong: #3d4a42;
+      --accent: #6fc7b4;
+      --accent-ink: #a5e0d2;
+      --accent-soft: #1c332d;
+      --warn: #d9a15f;
+      --warn-soft: #32271a;
+      --crit: #e08c80;
+      --crit-soft: #35211e;
+      --info: #8db2d6;
+      --info-soft: #1c2833;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #121714;
+    --surface: #19201c;
+    --surface-soft: #202923;
+    --ink: #e6ece7;
+    --muted: #9faea4;
+    --faint: #7c8b81;
+    --line: #2c3730;
+    --line-strong: #3d4a42;
+    --accent: #6fc7b4;
+    --accent-ink: #a5e0d2;
+    --accent-soft: #1c332d;
+    --warn: #d9a15f;
+    --warn-soft: #32271a;
+    --crit: #e08c80;
+    --crit-soft: #35211e;
+    --info: #8db2d6;
+    --info-soft: #1c2833;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  button, input, textarea { font: inherit; color: inherit; }
+  a { color: var(--accent); }
+
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 28px 24px 132px;
+  }
+
+  /* ---------- header ---------- */
+  .masthead {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 24px;
+    align-items: end;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 8px;
+  }
+  h1 {
+    font-family: Archivo, "Microsoft YaHei", sans-serif;
+    font-weight: 700;
+    font-size: clamp(26px, 3.4vw, 38px);
+    line-height: 1.12;
+    letter-spacing: -.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .lede {
+    max-width: 62ch;
+    margin: 10px 0 0;
+    color: var(--muted);
+  }
+  .tally {
+    display: flex;
+    gap: 22px;
+    align-items: flex-end;
+    font-variant-numeric: tabular-nums;
+  }
+  .tally div { text-align: right; }
+  .tally span {
+    display: block;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 2px;
+  }
+  .tally strong {
+    font-family: Archivo, sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .tally .kept strong { color: var(--accent); }
+  .tally .cut strong { color: var(--crit); }
+
+  .progress {
+    grid-column: 1 / -1;
+    height: 4px;
+    background: var(--surface-soft);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress > i {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: var(--accent);
+    transition: width .18s ease;
+  }
+
+  /* ---------- toolbar ---------- */
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin: 18px 0 6px;
+    padding: 10px 0;
+    background: color-mix(in srgb, var(--ground) 88%, transparent);
+    backdrop-filter: blur(8px);
+  }
+  .search {
+    flex: 1 1 260px;
+    min-width: 200px;
+    position: relative;
+  }
+  .search input {
+    width: 100%;
+    padding: 9px 12px 9px 34px;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--ink);
+    outline: none;
+  }
+  .search input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .search svg {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    stroke: var(--faint);
+    fill: none;
+    stroke-width: 2;
+  }
+  .seg {
+    display: inline-flex;
+    padding: 3px;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    background: var(--surface);
+  }
+  .seg button {
+    border: 0;
+    background: transparent;
+    padding: 5px 12px;
+    border-radius: 6px;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 13px;
+  }
+  .seg button[aria-pressed="true"] {
+    background: var(--ink);
+    color: var(--ground);
+  }
+  .seg button:focus-visible, .ghost:focus-visible, .copy:focus-visible, .module-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .ghost {
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    color: var(--muted);
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  .ghost:hover { color: var(--ink); border-color: var(--faint); }
+
+  /* ---------- layout ---------- */
+  .workspace {
+    display: grid;
+    grid-template-columns: 208px minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+  }
+  .index {
+    position: sticky;
+    top: 66px;
+    padding: 14px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  .index h2 {
+    margin: 0 0 10px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--faint);
+    font-weight: 500;
+  }
+  .index ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+  .index a {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+  }
+  .index a:hover { background: var(--surface-soft); color: var(--ink); }
+  .index a b { font-weight: 500; }
+  .index a span {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    color: var(--faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .index a.has-cut span { color: var(--crit); }
+
+  /* ---------- modules ---------- */
+  main { display: grid; gap: 22px; min-width: 0; }
+  .module {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    scroll-margin-top: 72px;
+  }
+  .module-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, var(--surface), var(--surface-soft));
+  }
+  .module-key {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: .08em;
+  }
+  .module-head h2 {
+    margin: 0;
+    font-family: Archivo, "Microsoft YaHei", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -.005em;
+  }
+  .module-head .count {
+    margin-left: auto;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    color: var(--faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .module-toggle {
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--muted);
+    border-radius: 6px;
+    padding: 3px 9px;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  .module-toggle:hover { color: var(--ink); }
+
+  .items { display: grid; }
+  .item {
+    display: grid;
+    grid-template-columns: 22px 56px minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: start;
+    padding: 11px 18px;
+    border-top: 1px solid var(--line);
+    cursor: pointer;
+  }
+  .items .item:first-child { border-top: 0; }
+  .item:hover { background: var(--surface-soft); }
+  .item input[type="checkbox"] {
+    appearance: none;
+    width: 17px;
+    height: 17px;
+    margin: 2px 0 0;
+    border: 1.5px solid var(--line-strong);
+    border-radius: 4px;
+    background: var(--surface);
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    flex: none;
+  }
+  .item input[type="checkbox"]:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .item input[type="checkbox"]:checked::after {
+    content: "";
+    width: 9px;
+    height: 5px;
+    border-left: 2px solid var(--surface);
+    border-bottom: 2px solid var(--surface);
+    transform: translateY(-1px) rotate(-45deg);
+  }
+  .item input[type="checkbox"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .item.cut .name { text-decoration: line-through; text-decoration-color: var(--faint); color: var(--faint); }
+  .item.cut .desc { color: var(--faint); }
+  .id {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    color: var(--faint);
+    padding-top: 2px;
+    letter-spacing: .03em;
+  }
+  .name {
+    font-weight: 500;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+  .desc {
+    display: block;
+    color: var(--muted);
+    font-size: 12.5px;
+    line-height: 1.45;
+    margin-top: 2px;
+    overflow-wrap: anywhere;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: flex-end;
+    max-width: 240px;
+  }
+  .chip {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .04em;
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+    border: 1px solid transparent;
+  }
+  .chip.ok { color: var(--accent); background: var(--accent-soft); }
+  .chip.warn { color: var(--warn); background: var(--warn-soft); }
+  .chip.info { color: var(--info); background: var(--info-soft); }
+  .chip.back { color: var(--faint); background: var(--surface-soft); border-color: var(--line); }
+  .chip.cap { color: var(--muted); background: transparent; border-color: var(--line-strong); }
+  .chip.v-high { color: var(--accent-ink); background: var(--accent-soft); }
+  .chip.v-mid { color: var(--muted); background: var(--surface-soft); }
+  .chip.v-low { color: var(--faint); background: transparent; border-color: var(--line); }
+
+  .empty {
+    padding: 40px 18px;
+    text-align: center;
+    color: var(--muted);
+  }
+
+  /* ---------- footer ---------- */
+  .dock {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+    border-top: 1px solid var(--line-strong);
+    background: color-mix(in srgb, var(--surface) 94%, transparent);
+    backdrop-filter: blur(10px);
+  }
+  .dock-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 10px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  .dock .stat {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .dock .stat b { color: var(--ink); font-weight: 500; }
+  .dock .stat .cut { color: var(--crit); }
+  .dock-spacer { flex: 1; }
+  .copy {
+    border: 0;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 8px;
+    padding: 9px 16px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  :root[data-theme="dark"] .copy { color: #10201b; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .copy { color: #10201b; }
+  }
+  .copy:hover { background: var(--accent-ink); }
+  .copy:active { transform: translateY(1px); }
+  .output {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px 12px;
+    display: none;
+  }
+  .output.open { display: block; }
+  body.has-output .page { padding-bottom: 260px; }
+  .output textarea {
+    width: 100%;
+    min-height: 92px;
+    resize: vertical;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    background: var(--surface-soft);
+    color: var(--ink);
+    padding: 10px 12px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .notes {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px 12px;
+  }
+  .notes label {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+  .notes textarea {
+    width: 100%;
+    min-height: 48px;
+    resize: vertical;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--ink);
+    padding: 9px 12px;
+  }
+
+  @media (max-width: 900px) {
+    .workspace { grid-template-columns: 1fr; }
+    .index { position: static; }
+    .index ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .masthead { grid-template-columns: 1fr; }
+    .tally { justify-content: flex-start; }
+  }
+  @media (max-width: 620px) {
+    .page { padding: 20px 14px 150px; }
+    .item { grid-template-columns: 22px 44px minmax(0, 1fr); }
+    .chips { grid-column: 2 / -1; justify-content: flex-start; max-width: none; }
+    .dock-inner { padding: 10px 14px; }
+    .output, .notes { padding-inline: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+
+<div class="page">
+  <header class="masthead">
+    <div>
+      <p class="eyebrow">Showcase scope review</p>
+      <h1>官网演示要留什么</h1>
+      <p class="lede">这份清单把项目里能拆出来的功能全部列出（业务能力、协同与社交、平台能力）。默认全部勾选为“保留”；把不想要的取消勾选，最后点底部按钮生成一份可回传的取舍结果。</p>
+    </div>
+    <div class="tally" aria-live="polite">
+      <div class="kept"><span>保留</span><strong id="keptCount">0</strong></div>
+      <div class="cut"><span>移除</span><strong id="cutCount">0</strong></div>
+      <div><span>合计</span><strong id="totalCount">0</strong></div>
+    </div>
+    <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+  </header>
+
+  <div class="toolbar">
+    <div class="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+      <input id="search" type="search" placeholder="搜索功能、模块或说明…" aria-label="搜索功能">
+    </div>
+    <div class="seg" role="group" aria-label="筛选">
+      <button type="button" data-filter="all" aria-pressed="true">全部</button>
+      <button type="button" data-filter="kept" aria-pressed="false">保留</button>
+      <button type="button" data-filter="cut" aria-pressed="false">已移除</button>
+    </div>
+    <button type="button" class="ghost" id="reset">恢复默认</button>
+  </div>
+
+  <div class="workspace">
+    <aside class="index" aria-label="模块索引">
+      <h2>模块</h2>
+      <ol id="indexList"></ol>
+    </aside>
+    <main id="modules"></main>
+  </div>
+</div>
+
+<footer class="dock">
+  <div class="output" id="output"><textarea id="result" readonly aria-label="生成的取舍结果"></textarea></div>
+  <div class="notes">
+    <label for="notes">补充说明（可选，会一起保存）</label>
+    <textarea id="notes" placeholder="例如：季度考核整体不要；协同演示希望保留双窗口；登录必须保留…"></textarea>
+  </div>
+  <div class="dock-inner">
+    <span class="stat">保留 <b id="dockKept">0</b> · 移除 <b class="cut" id="dockCut">0</b></span>
+    <span class="dock-spacer"></span>
+    <button type="button" class="ghost" id="clearAll">全部清空</button>
+    <button type="button" class="copy" id="copy">生成并复制结果</button>
+  </div>
+</footer>
+
+<script>
+const MODULES = [
+  { key: 'A', title: '门户与导航', items: [
+    { id: 'A01', name: '登录页', desc: '账号密码登录 + 6 个演示账号一键登录', status: 'ok', value: '高' },
+    { id: 'A02', name: '免登录游客进入', desc: '当前没有，需要新增的官网入口方式', status: 'new', value: '高' },
+    { id: 'A03', name: '门户首页', desc: '账号、角色、待办入口、无权限提示', status: 'ok', value: '中' },
+    { id: 'A04', name: '项目导览 Guide', desc: '8 步业务故事 + 8 段录屏 + 官方文档链接', status: 'ok', value: '高' },
+    { id: 'A05', name: '侧栏导航与面包屑', desc: '菜单可见性、当前页高亮、用户菜单', status: 'ok', value: '高' },
+    { id: 'A06', name: '流程中心：待办 / 我发起 / 我办结', desc: '把各类业务事项聚合成列表', status: 'ok', value: '中' },
+    { id: 'A07', name: '流程中心：流程管理', desc: '管理视角的总览列表', status: 'ok', value: '低' },
+    { id: 'A08', name: '流程中心：发起流程', desc: '5 类业务卡片入口（周期、字段、规则、模板、报表）', status: 'ok', value: '低' },
+    { id: 'A09', name: '顶部通知铃铛', desc: '流程事件站内通知 + WebSocket 实时刷新', status: 'ok', value: '中' },
+    { id: 'A10', name: '旧版路由重定向提示', desc: '旧地址自动跳新页面并提示', status: 'ok', value: '低' }
+  ]},
+  { key: 'B', title: '模板与组件', items: [
+    { id: 'B01', name: 'Excel 直接导入为模板', desc: '把已有 xlsx 表样带进浏览器继续设计', status: 'ok', value: '高', cap: 'Excel IO' },
+    { id: 'B02', name: '空白工作簿设计', desc: '从零开始搭表样', status: 'ok', value: '中', cap: 'Designer' },
+    { id: 'B03', name: '组件库（表头 / 表体 / 表尾）', desc: '可复用组件及其版本', status: 'ok', value: '中' },
+    { id: 'B04', name: '组件组合成模板', desc: '把组件拖进模板拼装完整表样', status: 'ok', value: '中' },
+    { id: 'B05', name: '模板 / 组件版本链', desc: '新建版本、历史版本追溯', status: 'ok', value: '低' },
+    { id: 'B06', name: '发布检查', desc: '结构、映射、权限、公式的发布前校验', status: 'ok', value: '中' },
+    { id: 'B07', name: '模板提交审核与批准 / 退回', desc: '设计者提交，管理员审批', status: 'ok', value: '低' },
+    { id: 'B08', name: '设计器完整 Ribbon', desc: '开始、插入、页面布局、公式、数据、视图、设置', status: 'ok', value: '高', cap: 'Designer' },
+    { id: 'B09', name: '字段拖入与单元格绑定', desc: '从字段目录拖字段到单元格并建立映射', status: 'ok', value: '高', cap: 'DataManager' },
+    { id: 'B10', name: 'DataManager 表 / 区域绑定', desc: '数模分离，模板结构与任务数据分开', status: 'ok', value: '高', cap: 'DataManager' },
+    { id: 'B11', name: '辅助数据（远程只读接口）', desc: '配置 GET 接口与响应路径，把外部数据带进表', status: 'ok', value: '中' },
+    { id: 'B12', name: '命名区域与公式映射', desc: '用命名区域承载字段与计算', status: 'ok', value: '中' },
+    { id: 'B13', name: '业务公式（系统计算字段）', desc: '由服务端权威公式计算并校验结果', status: 'ok', value: '高', cap: '公式引擎' },
+    { id: 'B14', name: '单元格数据校验', desc: '原生 validator：必填、范围、列表等', status: 'ok', value: '高', cap: 'DataValidation' },
+    { id: 'B15', name: '单元格权限（四级）', desc: '表 / 行 / 列 / 单元格分别配置', status: 'ok', value: '高' },
+    { id: 'B16', name: '权限对象：人员 / 角色 / 部门', desc: '控制谁能看、谁能改', status: 'ok', value: '高' },
+    { id: 'B17', name: '隐藏与脱敏', desc: '无权限时隐藏内容或显示 ••••', status: 'ok', value: '中' },
+    { id: 'B18', name: '签名单元格', desc: '手写签名画板，签名存进单元格', status: 'ok', value: '中' },
+    { id: 'B19', name: '设计器内 PDF 预览', desc: '发布前直接看打印效果', status: 'ok', value: '中', cap: 'PDF' },
+    { id: 'B20', name: '季度参考工作簿导入', desc: '导入参考模板并为每个组织映射公司页', status: 'ok', value: '低' }
+  ]},
+  { key: 'C', title: '字段与规则', items: [
+    { id: 'C01', name: '业务字段目录', desc: '已批准字段的统一清单', status: 'ok', value: '中' },
+    { id: 'C02', name: '字段提案与审批', desc: '设计者提案，管理员批准', status: 'ok', value: '低' },
+    { id: 'C03', name: '字段新版本', desc: '已批准字段通过新版本修订，不覆盖历史', status: 'ok', value: '低' },
+    { id: 'C04', name: '字段属性', desc: '类型、精度、单位、枚举选项、是否可编辑', status: 'ok', value: '中' },
+    { id: 'C05', name: '业务规则目录', desc: '校验规则、异常规则、业务公式', status: 'ok', value: '中' },
+    { id: 'C06', name: '规则编辑与测试', desc: '表达式编辑器、测试用例、试算', status: 'ok', value: '中' },
+    { id: 'C07', name: '规则复核发布与版本', desc: '草稿 → 提交复核 → 发布 → 历史版本', status: 'ok', value: '低' },
+    { id: 'C08', name: '受控函数目录', desc: '把自定义函数纳入治理，限制可引用范围', status: 'ok', value: '中', cap: '自定义函数' },
+    { id: 'C09', name: '函数试炼场', desc: '查看源码、序列化模板、在线运行', status: 'ok', value: '中', cap: 'AsyncFunction' }
+  ]},
+  { key: 'D', title: '任务下发与组织', items: [
+    { id: 'D01', name: '报告类型', desc: '月度或季度的业务口径，创建后周期不可改', status: 'ok', value: '中' },
+    { id: 'D02', name: '周期配置包四步向导', desc: '周期与模板 → 组织与期限 → 责任与规则 → 检查发起', status: 'ok', value: '中' },
+    { id: 'D03', name: '参与组织与截止时间', desc: '选择参与组织，逐组织设置截止时间', status: 'ok', value: '中' },
+    { id: 'D04', name: '目标定义', desc: '年度 / 月度 / 季度目标，年度可均摊 12 个月', status: 'ok', value: '低' },
+    { id: 'D05', name: '季度指标配置', desc: '类别、权重、最高分、审核人、命名区域', status: 'ok', value: '低' },
+    { id: 'D06', name: '责任分配', desc: '填报、提交、审核、定稿、评分、审批六类责任人', status: 'ok', value: '中' },
+    { id: 'D07', name: '规则版本与预警阈值', desc: '把规则版本和同比 / 环比 / 完成率阈值钉进任务', status: 'ok', value: '低' },
+    { id: 'D08', name: '激活生成任务与协同房间', desc: '每个组织生成一条任务和一个协同房间', status: 'ok', value: '中' },
+    { id: 'D09', name: '组织管理', desc: '组织树、类型、上下级、生效时间', status: 'ok', value: '低' },
+    { id: 'D10', name: '用户管理', desc: '新建、编辑、停用、重置密码', status: 'ok', value: '低' },
+    { id: 'D11', name: '角色分配', desc: '内置与自定义角色，可绑定组织范围', status: 'ok', value: '低' },
+    { id: 'D12', name: '自定义角色', desc: '把能力码组合成新的业务角色', status: 'ok', value: '低' },
+    { id: 'D13', name: '业务审计查询与导出', desc: '按操作、对象、结果查询审计事件', status: 'ok', value: '低' }
+  ]},
+  { key: 'E', title: '协同与社交', items: [
+    { id: 'E01', name: '实时协同编辑', desc: '多人同时改同一张表，操作实时同步', status: 'ok', value: '高', cap: 'OT' },
+    { id: 'E02', name: '在线协作者头像与人数', desc: '谁在线、几个人正在协作', status: 'ok', value: '高', cap: 'Presence' },
+    { id: 'E03', name: '选区同步', desc: '看到同事正在选哪块区域', status: 'ok', value: '中', cap: 'Presence' },
+    { id: 'E04', name: '分享链接', desc: '复制任务链接，另一个窗口直接进入同一房间', status: 'ok', value: '中' },
+    { id: 'E05', name: '双窗口同房间演示', desc: '两个浏览器窗口模拟两位同事', status: 'ok', value: '高' },
+    { id: 'E06', name: '协同中强制单元格权限', desc: '每次变更逐单元格校验可编辑性', status: 'ok', value: '高' },
+    { id: 'E07', name: '协同历史与快照', desc: '操作留存、版本号、里程碑快照', status: 'ok', value: '中' },
+    { id: 'E08', name: '填报端手写签名', desc: '点击签名单元格弹出签名板', status: 'ok', value: '中' },
+    { id: 'E09', name: '站内通知', desc: '流程事件推给相关处理人', status: 'ok', value: '中' },
+    { id: 'E10', name: '任务提醒', desc: '截止前 3 / 1 天、截止日、逾期提醒', status: 'ok', value: '低' },
+    { id: 'E11', name: '附件下载', desc: '审核页下载提交证据附件', status: 'ok', value: '低' },
+    { id: 'E12', name: '附件上传', desc: '接口已有，页面入口未接线', status: 'warn', value: '低' },
+    { id: 'E13', name: '批注与 @提及', desc: '旧版用户管理器代码仍在，但没有接入任何页面', status: 'warn', value: '低' }
+  ]},
+  { key: 'F', title: '填报与提交', items: [
+    { id: 'F01', name: '任务队列', desc: '按组织、周期、截止时间列出分配给我的任务', status: 'ok', value: '高' },
+    { id: 'F02', name: '定位填报项', desc: '从下拉直接跳到对应单元格', status: 'ok', value: '中' },
+    { id: 'F03', name: '必填完整度', desc: '实时显示还差多少必填项', status: 'ok', value: '高' },
+    { id: 'F04', name: '提交前检查', desc: '阻断项与预警项分开显示，逐条定位', status: 'ok', value: '高' },
+    { id: 'F05', name: '服务端公式复核', desc: '服务端重算系统字段，与工作簿结果比对', status: 'ok', value: '高' },
+    { id: 'F06', name: '异常说明填写', desc: '每条预警必须写说明才能提交', status: 'ok', value: '中' },
+    { id: 'F07', name: '提交', desc: '冻结房间、抽取结构化数值、生成快照与校验报告', status: 'ok', value: '高' },
+    { id: 'F08', name: '撤回提交', desc: '尚未审核前可以撤回继续编辑', status: 'ok', value: '中' },
+    { id: 'F09', name: '编辑历史与修订时间线', desc: '谁在什么时候提交、退回、重新提交', status: 'ok', value: '中' },
+    { id: 'F10', name: '累计值与目标快照', desc: '本年累计、上年累计、目标完成率', status: 'ok', value: '中' },
+    { id: 'F11', name: '已定稿发起调整', desc: '定稿后更正走调整申请与审批', status: 'ok', value: '低' },
+    { id: 'F12', name: '季度月报依赖检查', desc: '季度考核前校验月度定稿是否齐全', status: 'ok', value: '低' }
+  ]},
+  { key: 'G', title: '审核与定稿', items: [
+    { id: 'G01', name: '审核任务列表', desc: '待审核与已定稿任务', status: 'ok', value: '高' },
+    { id: 'G02', name: '只读提交快照', desc: '不进协同房间，静态还原并锁定', status: 'ok', value: '高' },
+    { id: 'G03', name: '打印、下载 XLSX / PDF', desc: '审核页直接输出三种格式', status: 'ok', value: '高', cap: 'PDF / Excel IO' },
+    { id: 'G04', name: '审核意见与退回', desc: '保存意见、通过、退回并设置整改期限', status: 'ok', value: '高' },
+    { id: 'G05', name: '异常处置', desc: '接受说明或要求补正', status: 'ok', value: '中' },
+    { id: 'G06', name: '调整申请审批', desc: '管理审批通过或驳回定稿后的更正', status: 'ok', value: '低' },
+    { id: 'G07', name: '生成正式文件并定稿', desc: '生成工作簿、XLSX、PDF、结构化数据、版本清单', status: 'ok', value: '高' },
+    { id: 'G08', name: '历史定稿修订', desc: '按修订号查看并下载历史产物', status: 'ok', value: '中' },
+    { id: 'G09', name: '已定稿数据页', desc: '列表、工作台、修订切换、内嵌报表生成', status: 'ok', value: '中' }
+  ]},
+  { key: 'H', title: '季度考核', items: [
+    { id: 'H01', name: '季度任务列表与只读报表', desc: '按季度包查看各组织任务', status: 'ok', value: '低' },
+    { id: 'H02', name: '指标审核', desc: '逐指标审核中 / 通过 / 退回', status: 'ok', value: '低' },
+    { id: 'H03', name: '人工评分', desc: '按最高分打分，带月报依赖门禁', status: 'ok', value: '低' },
+    { id: 'H04', name: '公式评分与豁免', desc: '业务公式自动算分，豁免按满分', status: 'ok', value: '低' },
+    { id: 'H05', name: '奖惩发起与审批', desc: '奖励 / 惩罚金额与原因，管理审批', status: 'ok', value: '低' },
+    { id: 'H06', name: '季度数据更正', desc: '定稿后的更正申请与审批', status: 'ok', value: '低' },
+    { id: 'H07', name: '整包定稿与统一排名', desc: '所有组织就绪后一次性定稿并生成排名', status: 'ok', value: '低' },
+    { id: 'H08', name: '季度参考报表', desc: '总分、名次、兑现系数、月报来源', status: 'ok', value: '低' }
+  ]},
+  { key: 'I', title: '报表与分析', items: [
+    { id: 'I01', name: '报表工作室设计', desc: '用 ReportSheet 设计报表布局', status: 'ok', value: '高', cap: 'ReportSheet' },
+    { id: 'I02', name: '报表模板发布检查与审批', desc: '报表模板的提交、批准、退回', status: 'ok', value: '低' },
+    { id: 'I03', name: '报表生成计划', desc: '定时或手动触发生成', status: 'ok', value: '低' },
+    { id: 'I04', name: '报表结果预览与下载', desc: '在线预览，导出 Excel / PDF', status: 'ok', value: '高', cap: 'PDF / Excel IO' },
+    { id: 'I05', name: '月度参考报表', desc: '按模板生成，或看标准汇总视图', status: 'ok', value: '中' },
+    { id: 'I06', name: '经营指标仪表盘', desc: 'ECharts 柱图、任务进度、数据检查', status: 'ok', value: '中' },
+    { id: 'I07', name: '原始数据下载', desc: '按周期导出原始 XLSX', status: 'ok', value: '低' },
+    { id: 'I08', name: '周期 ZIP 批量导出', desc: '后台任务打包所有组织文件', status: 'ok', value: '低' },
+    { id: 'I09', name: '历史月报导入', desc: '导入历史 XLSX，校验预览后确认', status: 'ok', value: '低' }
+  ]},
+  { key: 'J', title: '平台与运维', items: [
+    { id: 'J01', name: '角色 + 组织范围 + 任务责任人', desc: '三层权限校验', status: 'ok', value: '中' },
+    { id: 'J02', name: '路由守卫与菜单可见性', desc: '页面按角色放行，菜单按角色显示', status: 'ok', value: '高' },
+    { id: 'J03', name: '审计日志', desc: '业务事件留痕，不可删除', status: 'back', value: '低' },
+    { id: 'J04', name: '检查点备份与恢复', desc: '提交 / 定稿后自动做一致性备份', status: 'back', value: '低' },
+    { id: 'J05', name: '演示数据重置', desc: '脚本 + 定时器，把演示库恢复到初始状态', status: 'back', value: '高' },
+    { id: 'J06', name: '数据库迁移', desc: '启动时自动执行 schema 迁移', status: 'back', value: '高' },
+    { id: 'J07', name: '健康检查', desc: '/health 接口', status: 'back', value: '中' },
+    { id: 'J08', name: '本地授权注入', desc: 'SPREADJS_LICENSE / DESIGNER_LICENSE 环境变量 + Vite 虚拟模块，不把授权打进仓库', status: 'back', value: '高' },
+    { id: 'J09', name: 'SpreadJS 中文资源包', desc: '设计器与表格的中文化', status: 'ok', value: '中' }
+  ]}
+];
+
+const STORAGE_KEY = 'spreadjs-showcase-inventory-v1';
+const allItems = MODULES.flatMap(m => m.items);
+const state = { kept: new Set(allItems.map(i => i.id)), filter: 'all', query: '' };
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const saved = JSON.parse(raw);
+    if (Array.isArray(saved.cut)) state.kept = new Set(allItems.map(i => i.id).filter(id => !saved.cut.includes(id)));
+    if (typeof saved.notes === 'string') document.getElementById('notes').value = saved.notes;
+  } catch {}
+}
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      cut: allItems.filter(i => !state.kept.has(i.id)).map(i => i.id),
+      notes: document.getElementById('notes').value
+    }));
+  } catch {}
+}
+
+const statusMeta = {
+  ok: { cls: 'ok', label: '已实现' },
+  warn: { cls: 'warn', label: '未接线' },
+  new: { cls: 'info', label: '需新增' },
+  back: { cls: 'back', label: '后台' }
+};
+const valueCls = { '高': 'v-high', '中': 'v-mid', '低': 'v-low' };
+
+function matches(item, module) {
+  const q = state.query.trim().toLowerCase();
+  if (q) {
+    const hay = (item.id + ' ' + item.name + ' ' + item.desc + ' ' + module.title + ' ' + (item.cap || '')).toLowerCase();
+    if (!hay.includes(q)) return false;
+  }
+  if (state.filter === 'kept') return state.kept.has(item.id);
+  if (state.filter === 'cut') return !state.kept.has(item.id);
+  return true;
+}
+
+function render() {
+  const host = document.getElementById('modules');
+  host.innerHTML = '';
+  let visible = 0;
+  MODULES.forEach(module => {
+    const items = module.items.filter(item => matches(item, module));
+    if (!items.length) return;
+    visible += items.length;
+    const keptInModule = module.items.filter(i => state.kept.has(i.id)).length;
+
+    const section = document.createElement('section');
+    section.className = 'module';
+    section.id = 'module-' + module.key;
+
+    const head = document.createElement('div');
+    head.className = 'module-head';
+    head.innerHTML = '<span class="module-key">' + module.key + '</span>'
+      + '<h2>' + module.title + '</h2>'
+      + '<span class="count">' + keptInModule + ' / ' + module.items.length + ' 保留</span>';
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'module-toggle';
+    const allKept = keptInModule === module.items.length;
+    toggle.textContent = allKept ? '整组移除' : '整组保留';
+    toggle.addEventListener('click', () => {
+      module.items.forEach(i => allKept ? state.kept.delete(i.id) : state.kept.add(i.id));
+      save(); render();
+    });
+    head.appendChild(toggle);
+    section.appendChild(head);
+
+    const list = document.createElement('div');
+    list.className = 'items';
+    items.forEach(item => {
+      const kept = state.kept.has(item.id);
+      const row = document.createElement('label');
+      row.className = 'item' + (kept ? '' : ' cut');
+      row.htmlFor = 'cb-' + item.id;
+
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.id = 'cb-' + item.id;
+      cb.checked = kept;
+      cb.setAttribute('aria-label', '保留：' + item.name);
+      cb.addEventListener('change', () => {
+        cb.checked ? state.kept.add(item.id) : state.kept.delete(item.id);
+        save(); render();
+      });
+
+      const id = document.createElement('span');
+      id.className = 'id';
+      id.textContent = item.id;
+
+      const body = document.createElement('span');
+      const name = document.createElement('span');
+      name.className = 'name';
+      name.textContent = item.name;
+      const desc = document.createElement('span');
+      desc.className = 'desc';
+      desc.textContent = item.desc;
+      body.appendChild(name);
+      body.appendChild(desc);
+
+      const chips = document.createElement('span');
+      chips.className = 'chips';
+      const st = statusMeta[item.status] || statusMeta.ok;
+      const chipStatus = document.createElement('span');
+      chipStatus.className = 'chip ' + st.cls;
+      chipStatus.textContent = st.label;
+      chips.appendChild(chipStatus);
+      const chipValue = document.createElement('span');
+      chipValue.className = 'chip ' + (valueCls[item.value] || 'v-mid');
+      chipValue.textContent = '价值 ' + item.value;
+      chips.appendChild(chipValue);
+      if (item.cap) {
+        const chipCap = document.createElement('span');
+        chipCap.className = 'chip cap';
+        chipCap.textContent = item.cap;
+        chips.appendChild(chipCap);
+      }
+
+      row.appendChild(cb);
+      row.appendChild(id);
+      row.appendChild(body);
+      row.appendChild(chips);
+      list.appendChild(row);
+    });
+    section.appendChild(list);
+    host.appendChild(section);
+  });
+
+  if (!visible) {
+    const empty = document.createElement('div');
+    empty.className = 'empty';
+    empty.textContent = state.query ? '没有匹配的功能，换个关键词试试。' : '当前筛选下没有条目。';
+    host.appendChild(empty);
+  }
+
+  renderIndex();
+  renderCounts();
+}
+
+function renderIndex() {
+  const list = document.getElementById('indexList');
+  list.innerHTML = '';
+  MODULES.forEach(module => {
+    const kept = module.items.filter(i => state.kept.has(i.id)).length;
+    const cut = module.items.length - kept;
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = '#module-' + module.key;
+    a.className = cut ? 'has-cut' : '';
+    a.innerHTML = '<b>' + module.title + '</b><span>' + kept + '/' + module.items.length + '</span>';
+    li.appendChild(a);
+    list.appendChild(li);
+  });
+}
+
+function renderCounts() {
+  const kept = state.kept.size;
+  const total = allItems.length;
+  const cut = total - kept;
+  const pct = Math.round(kept / total * 100);
+  document.getElementById('keptCount').textContent = kept;
+  document.getElementById('cutCount').textContent = cut;
+  document.getElementById('totalCount').textContent = total;
+  document.getElementById('dockKept').textContent = kept;
+  document.getElementById('dockCut').textContent = cut;
+  document.getElementById('progressBar').style.width = pct + '%';
+}
+
+function buildResult() {
+  const kept = allItems.filter(i => state.kept.has(i.id)).map(i => i.id);
+  const cut = allItems.filter(i => !state.kept.has(i.id)).map(i => i.id);
+  const lines = [];
+  lines.push('保留（' + kept.length + '）：' + (kept.join(' ') || '无'));
+  lines.push('移除（' + cut.length + '）：' + (cut.join(' ') || '无'));
+  const notes = document.getElementById('notes').value.trim();
+  if (notes) lines.push('补充说明：' + notes);
+  return lines.join('\n');
+}
+
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    const ta = document.getElementById('result');
+    ta.focus();
+    ta.select();
+    try { return document.execCommand('copy'); } catch { return false; }
+  }
+}
+
+document.getElementById('search').addEventListener('input', e => {
+  state.query = e.target.value;
+  render();
+});
+document.querySelectorAll('.seg button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    state.filter = btn.dataset.filter;
+    document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+    render();
+  });
+});
+document.getElementById('clearAll').addEventListener('click', () => {
+  state.kept.clear();
+  save(); render();
+});
+document.getElementById('reset').addEventListener('click', () => {
+  state.kept = new Set(allItems.map(i => i.id));
+  document.getElementById('notes').value = '';
+  save(); render();
+});
+document.getElementById('notes').addEventListener('input', save);
+document.getElementById('copy').addEventListener('click', async () => {
+  const text = buildResult();
+  const box = document.getElementById('output');
+  box.classList.add('open');
+  document.body.classList.add('has-output');
+  document.getElementById('result').value = text;
+  const ok = await copyText(text);
+  const btn = document.getElementById('copy');
+  const original = btn.textContent;
+  btn.textContent = ok ? '已复制，可直接粘贴回传' : '已生成，请手动复制';
+  setTimeout(() => { btn.textContent = original; }, 2200);
+});
+
+load();
+render();
+</script>

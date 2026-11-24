@@ -1,0 +1,40 @@
+/* Keep the field workflow on the same action palette as the adjacent catalogs. */
+.field-catalog-page,
+.field-versions-dialog,
+body:has(.field-catalog-page) .app-data-table-filter {
+  --el-color-primary: #941966;
+  --el-color-primary-light-3: #7a1454;
+  --el-color-primary-light-5: #c77aa5;
+  --el-color-primary-light-7: #dfaec9;
+  --el-color-primary-light-8: #f8ebf3;
+  --el-color-primary-light-9: #f8ebf3;
+  --el-color-primary-dark-2: #6f114b;
+  --el-text-color-placeholder: #6d5a65;
+}
+:is(.field-catalog-page,.field-versions-dialog) ::selection { color:#6f114b; background:#f8ebf3; }
+:is(.field-catalog-page,.field-versions-dialog) .el-button.is-link:not(.is-disabled) { color:#941966; }
+:is(.field-catalog-page,.field-versions-dialog) .el-button.is-link:not(.is-disabled):hover { color:#7a1454; text-decoration:underline; text-underline-offset:3px; }
+.field-catalog-page .el-button--danger.is-link:not(.is-disabled) { color:#b42318; }
+.field-catalog-page .el-button--success.is-link:not(.is-disabled) { color:#287346; }
+:is(.field-catalog-page,.field-versions-dialog) .el-button.is-disabled { cursor:not-allowed; }
+:is(.field-catalog-page,.field-versions-dialog) :is(.el-empty__description p,.el-dialog__headerbtn) { color:#6d5a65; }
+:is(.field-catalog-page,.field-versions-dialog) .el-tag--plain.el-tag--success { --el-tag-text-color:#287346; --el-tag-border-color:#b8d4c1; --el-tag-bg-color:#f0f7f2; }
+:is(.field-catalog-page,.field-versions-dialog) .el-tag--plain.el-tag--warning { --el-tag-text-color:#8a5300; --el-tag-border-color:#dfc9a5; --el-tag-bg-color:#fff8eb; }
+:is(.field-catalog-page,.field-versions-dialog) .el-tag--plain.el-tag--danger { --el-tag-text-color:#b42318; --el-tag-border-color:#e8b4ae; --el-tag-bg-color:#fff5f4; }
+:is(.field-catalog-page,.field-versions-dialog) .el-tag--plain.el-tag--info { --el-tag-text-color:#6d5a65; --el-tag-border-color:#dcdfe6; --el-tag-bg-color:#f8f3f6; }
+:is(.field-catalog-page,.field-versions-dialog) .field-item-badge { display:inline-block; background:#f8f3f6; font-variant-numeric:tabular-nums; }
+:is(.field-catalog-page,.field-versions-dialog) .field-item-heading { align-items:baseline; }
+:is(.field-catalog-page,.field-versions-dialog) .field-item-heading .el-tag { flex-shrink:0; height:auto; padding:2px 6px; font-size:14px; line-height:1.5; }
+:is(.field-catalog-page,.field-versions-dialog) .field-item summary:hover,
+.field-catalog-page .summary-note summary:hover { color:#7a1454; text-decoration:underline; text-underline-offset:3px; }
+.field-catalog-page .summary-note summary { border-radius:4px; }
+.field-catalog-page .field-name { color:#2c1b26; font-weight:600; }
+.field-catalog-page .catalog-tabs .el-tabs__item.is-active { font-weight:600; }
+html body :is(.field-catalog-page,.field-versions-dialog) .app-data-table th.el-table__cell { color:#6d5a65; font-size:14px; }
+:is(.field-catalog-page,.field-versions-dialog) .app-column-control { color:#6d5a65; }
+:is(.field-catalog-page,.field-versions-dialog) .app-column-control:is(:hover,.active) { color:#941966; background:#f8ebf3; }
+html body :is(.field-catalog-page,.field-versions-dialog) .app-data-table :is(.app-column-control,.el-table__column-filter-trigger):focus-visible { outline:2px solid #941966; outline-offset:2px; }
+:is(.field-catalog-page,.field-versions-dialog) :is(.accessible-table-scroll,.el-dialog__body) { scrollbar-color:#909399 #f8f3f6; }
+:is(.field-catalog-page,.field-versions-dialog) .app-data-table { font-variant-numeric:tabular-nums; }
+.field-versions-dialog .el-dialog__title { color:#2c1b26; font-size:20px; font-weight:600; line-height:1.5; }
+.field-versions-dialog .el-dialog__header { margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid #e8d9e1; }

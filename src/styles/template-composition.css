@@ -1,0 +1,167 @@
+/* Composition owns its scroll area so actions stay reachable at short heights. */
+.el-dialog.template-composition-dialog {
+  --el-text-color-placeholder: var(--portal-muted, #6d5a65);
+  --el-color-primary: var(--portal-focus, #941966);
+  display: flex;
+  flex-direction: column;
+  max-width: calc(100% - 32px);
+  max-height: 90vh;
+  max-height: 90dvh;
+  margin-bottom: 0;
+  padding: 0;
+}
+.template-composition-dialog .el-dialog__header {
+  flex: none;
+  margin: 0;
+  padding: 20px 60px 16px 24px;
+}
+.template-composition-dialog .el-dialog__title { color: var(--portal-ink, #2c1b26); font-size: 20px; font-weight: 600; overflow-wrap: anywhere; }
+.template-composition-dialog .el-dialog__headerbtn { top: 8px; right: 8px; width: 44px; height: 44px; }
+.template-composition-dialog .el-dialog__body {
+  min-height: 0;
+  padding: 0 24px 16px;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-gutter: stable;
+  scrollbar-color: #a8abb2 transparent;
+}
+.template-composition-dialog .el-dialog__footer {
+  flex: none;
+  padding: 12px 24px max(12px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--portal-line, #e8d9e1);
+}
+.template-composition-dialog .composition-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.template-composition-dialog .composition-actions .el-button + .el-button { margin-left: 0; }
+.template-composition-dialog .el-button--primary {
+  --el-button-bg-color: var(--portal-focus, #941966);
+  --el-button-border-color: var(--portal-focus, #941966);
+  --el-button-hover-bg-color: #7a1454;
+  --el-button-hover-border-color: #7a1454;
+  --el-button-active-bg-color: #6f114b;
+  --el-button-active-border-color: #6f114b;
+}
+.template-composition-dialog .el-button--danger.is-link:not(.is-disabled) { color: #b42318; }
+.template-composition-dialog .template-meta-form .span-two { margin-bottom: 0; }
+.template-composition-dialog .sheet-heading { gap: 16px; margin: 24px 0 12px; }
+.template-composition-dialog .sheet-heading h3 { display: flex; align-items: baseline; gap: 8px; color: var(--portal-ink, #2c1b26); }
+.template-composition-dialog .sheet-heading h3 small { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.template-composition-dialog .sheet-card { padding: 16px; border-color: var(--portal-line, #e8d9e1); border-radius: var(--portal-radius-panel, 8px); background: var(--portal-surface, #fff); }
+.template-composition-dialog .sheet-row-title { margin-bottom: 12px; color: var(--portal-ink, #2c1b26); }
+.template-composition-dialog .sheet-controls { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.template-composition-dialog .component-selects { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 16px; border: 1px solid var(--portal-line, #e8d9e1); border-radius: 4px; overflow: hidden; }
+.template-composition-dialog .composition-column-head { display: grid; grid-template-columns: 32px repeat(6, minmax(0, 1fr)); background: var(--portal-paper, #f8f3f6); color: var(--portal-muted, #6d5a65); font-size: 12px; text-align: center; }
+.template-composition-dialog .composition-column-head span { padding: 4px 0; border-inline-end: 1px solid var(--portal-line, #e8d9e1); }
+.template-composition-dialog .component-drop-slot { position: relative; display: grid; grid-template-columns: 32px minmax(0, 1fr); min-height: 108px; padding: 0; border: 0; border-top: 1px solid var(--portal-line, #e8d9e1); border-radius: 0; background-color: var(--portal-surface, #fff); }
+.template-composition-dialog .component-drop-slot[data-region="body"] { min-height: 144px; }
+.template-composition-dialog .composition-row-head { display: flex; align-items: center; justify-content: center; background: var(--portal-paper, #f8f3f6); border-inline-end: 1px solid var(--portal-line, #e8d9e1); color: var(--portal-muted, #6d5a65); font-size: 12px; }
+.template-composition-dialog .component-region-content { min-width: 0; padding: 16px 24px; background-image: linear-gradient(to right, var(--portal-line, #e8d9e1) 1px, transparent 1px), linear-gradient(to bottom, var(--portal-line, #e8d9e1) 1px, transparent 1px); background-size: calc(100% / 6) 24px; }
+.template-composition-dialog .component-drop-slot .slot-label { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; width: fit-content; max-width: 100%; margin: 0 0 8px; padding: 2px 6px; background: var(--portal-surface, #fff); font-weight: 400; }
+.template-composition-dialog .slot-label strong { color: var(--portal-ink, #2c1b26); font-size: 14px; font-weight: 600; }
+.template-composition-dialog .component-region-content .el-select { max-width: 440px; }
+.template-composition-dialog .sheet-card.sheet-drop-active { border-color: var(--portal-focus, #941966); }
+.template-composition-dialog .component-drop-slot.drop-target { outline: 2px solid var(--portal-focus, #941966); outline-offset: -2px; background-color: var(--portal-accent-surface, #f8ebf3); box-shadow: none; }
+.template-composition-dialog .component-snap-hint { width: fit-content; margin: 8px 0 0; padding: 2px 6px; background: var(--portal-accent-surface, #f8ebf3); color: var(--portal-focus, #941966); font-size: 12px; }
+.template-composition-dialog .component-region-content .composition-field-error { background: var(--portal-surface, #fff); padding: 4px 6px; }
+.template-composition-dialog .sheet-controls .el-form-item { min-width: 0; margin-bottom: 0; }
+.template-composition-dialog .el-form-item__label { height: auto; line-height: 1.5; }
+.template-composition-dialog .sheet-controls .el-select { width: 100%; }
+.template-composition-dialog .composition-touch-hint { display: none; }
+.template-composition-dialog .auxiliary-grid-size { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 100%; }
+.template-composition-dialog .auxiliary-grid-size label { display: grid; gap: 6px; min-width: 0; }
+.template-composition-dialog .auxiliary-grid-size .el-input-number { width: 100%; max-width: 200px; }
+.template-composition-dialog .auxiliary-editor,
+.template-composition-dialog .remote-config-row .el-form-item { min-width: 0; }
+.template-composition-dialog :is(.palette-label, .form-hint, .remote-hint, .auxiliary-grid-size),
+.template-composition-dialog .component-drop-slot .slot-label,
+.template-composition-dialog .component-drag-card small { color: var(--portal-muted, #6d5a65); }
+.template-composition-dialog .component-drag-palette { padding: 12px; gap: 8px; border-color: var(--portal-line, #e8d9e1); background: var(--portal-paper, #f8f3f6); }
+.template-composition-dialog .palette-label { flex-basis: 100%; line-height: 1.6; }
+.template-composition-dialog .component-drag-card { max-width: 100%; min-height: 36px; white-space: normal; font-family: inherit; border-color: var(--portal-line, #e8d9e1); color: var(--portal-ink, #2c1b26); }
+.template-composition-dialog .component-drag-card:not(:disabled):hover { border-color: var(--portal-focus, #941966); background: var(--portal-accent-surface, #f8ebf3); }
+.template-composition-dialog .component-drag-card:not(:disabled):active { cursor: grabbing; }
+.template-composition-dialog .component-drag-card .el-tag { --el-tag-text-color: var(--portal-focus, #941966); }
+.template-composition-dialog .component-drag-card strong { min-width: 0; overflow-wrap: anywhere; }
+.template-composition-dialog .component-drag-card small { flex-shrink: 0; }
+.composition-select-menu { max-width: calc(100vw - 24px); }
+.composition-select-menu .el-select-dropdown__item { height: auto; min-height: 34px; white-space: normal; overflow-wrap: anywhere; line-height: 1.5; padding-top: 7px; padding-bottom: 7px; }
+.composition-select-menu .el-select-dropdown__item.is-selected { color: var(--portal-focus, #941966); }
+.template-composition-dialog :is(input, textarea) { caret-color: var(--portal-focus, #941966); }
+.template-composition-dialog ::selection { color: var(--portal-ink, #2c1b26); background: #c6e2ff; }
+.template-composition-dialog .composition-status { margin: 0 0 16px; overflow-wrap: anywhere; }
+.template-composition-dialog .composition-status .el-alert__content { min-width: 0; }
+.template-composition-dialog .composition-status .el-button { white-space: normal; height: auto; margin-top: 8px; }
+.template-composition-dialog .sheet-heading h3 small { color: var(--portal-muted, #6d5a65); font-weight: 400; font-size: 12px; }
+.template-composition-dialog .el-form-item__error { position: static; padding-top: 6px; line-height: 1.5; color: #b42318; }
+.template-composition-dialog .el-alert--error.is-light,
+.template-composition-dialog .el-alert--error.is-light .el-alert__description { color: #b42318; }
+.template-composition-dialog .composition-field-error { margin: 6px 0 0; color: #b42318; font-size: 14px; line-height: 1.6; grid-column: 1 / -1; overflow-wrap: anywhere; }
+.template-composition-dialog .composition-error-summary { padding: 12px 16px; margin-bottom: 16px; border: 1px solid #e8b4ae; border-radius: 6px; background: #fff5f4; color: #922419; }
+.template-composition-dialog .composition-error-summary ul { margin: 8px 0 0; padding-inline-start: 20px; max-height: 180px; overflow-y: auto; }
+.template-composition-dialog .composition-error-summary button { min-height: 44px; border: 0; background: none; padding: 6px 0; text-align: start; font: inherit; color: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; overflow-wrap: anywhere; }
+.template-composition-dialog :is(button, a):focus-visible { outline: 2px solid var(--portal-focus, #941966); outline-offset: 2px; }
+.composition-confirm { width: min(420px, calc(100vw - 32px)); max-width: calc(100vw - 32px); }
+.composition-confirm .el-message-box__message { overflow-wrap: anywhere; }
+.composition-confirm .el-message-box__btns { flex-wrap: wrap; gap: 8px; }
+.composition-confirm .el-message-box__btns .el-button { min-height: 44px; margin: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .template-composition-dialog .component-drop-slot { transition: none; }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+  .template-composition-dialog .form-grid,
+  .template-composition-dialog .sheet-controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .template-composition-dialog .sheet-controls .el-form-item:last-child { grid-column: 1 / -1; }
+  .template-composition-dialog .component-selects { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .el-dialog.template-composition-dialog {
+    --el-dialog-margin-top: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
+    margin: 0;
+    border-radius: 0;
+  }
+  .template-composition-dialog .el-dialog__header { padding: max(16px, env(safe-area-inset-top)) 60px 16px max(16px, env(safe-area-inset-left)); }
+  .template-composition-dialog .el-dialog__body { flex: 1; padding: 0 max(16px, env(safe-area-inset-right)) 16px max(16px, env(safe-area-inset-left)); scrollbar-gutter: auto; }
+  .template-composition-dialog .el-dialog__footer { padding-left: max(12px, env(safe-area-inset-left)); padding-right: max(12px, env(safe-area-inset-right)); }
+  .template-composition-dialog .composition-actions { display: grid; grid-template-columns: .75fr 1fr 1fr; gap: 8px; }
+  .template-composition-dialog .composition-actions .el-button { min-width: 0; padding-inline: 8px; }
+  .template-composition-dialog .form-grid,
+  .template-composition-dialog .sheet-controls,
+  .template-composition-dialog .component-selects { grid-template-columns: 1fr; }
+  .template-composition-dialog .sheet-controls { gap: 16px; }
+  .template-composition-dialog .sheet-card { padding: 12px; }
+  .template-composition-dialog .el-radio-group { display: flex; flex-wrap: wrap; gap: 8px; }
+  .template-composition-dialog .el-radio-button { flex: 1 1 auto; }
+  .template-composition-dialog .el-radio-button__inner { width: 100%; border: 1px solid var(--el-border-color); border-radius: var(--el-border-radius-base); white-space: normal; line-height: 1.5; }
+}
+
+/* Touch selection uses the same component selectors, without a drag-only toolbar. */
+@media (max-width: 900px), (pointer: coarse) {
+  .template-composition-dialog .component-drag-palette { display: none; }
+  .template-composition-dialog .composition-touch-hint { display: block; margin: 0 0 16px; color: var(--portal-muted, #6d5a65); font-size: 14px; line-height: 1.6; }
+}
+@media (max-width: 900px), (any-pointer: coarse) {
+  .template-composition-dialog .el-button { min-height: 44px; min-width: 44px; }
+  .template-composition-dialog .el-input__wrapper,
+  .template-composition-dialog .el-select__wrapper { min-height: 44px; box-sizing: border-box; }
+  .template-composition-dialog :is(.el-input__inner, .el-textarea__inner, .el-select__selected-item, .el-radio-button__inner) { font-size: 16px; }
+  .template-composition-dialog .el-input-number { height: 44px; line-height: 42px; }
+  .template-composition-dialog .el-input-number__decrease,
+  .template-composition-dialog .el-input-number__increase { width: 44px; }
+  .template-composition-dialog .el-input-number .el-input__wrapper { padding-left: 48px; padding-right: 48px; }
+  .template-composition-dialog .el-radio-button__inner { display: flex; align-items: center; justify-content: center; min-height: 44px; }
+  .template-composition-dialog :is(.form-hint, .remote-hint, .auxiliary-grid-size),
+  .template-composition-dialog .component-drop-slot .slot-label { font-size: 14px; }
+  .composition-select-menu .el-select-dropdown__item { min-height: 44px; display: flex; align-items: center; font-size: 16px; }
+}
+
+@media (max-width: 380px) {
+  .template-composition-dialog .auxiliary-grid-size { grid-template-columns: 1fr; }
+  .template-composition-dialog .auxiliary-grid-size .el-input-number { max-width: none; }
+}

@@ -1,0 +1,14 @@
+﻿成本指标 Demo 精简分享包说明
+
+本包包含当前源码、现有录屏和示例授权；不含 Git 历史、临时文件、运行数据库、模板存储、备份或本机授权，因而不包含原演示数据。
+
+依赖锁定文件及 docs/demo/media-manifest.json 从本地 Git 的 HEAD 补入分享包。原工作目录未修改。
+
+建议使用 Node.js 22。解压后在项目目录执行：
+1. npm ci
+2. npm --prefix server ci
+3. 在运行环境设置 SPREADJS_LICENSE、DESIGNER_LICENSE、SERVER_LICENSE；授权只从环境变量读取。
+4. npm run media:download 下载缺失录屏（依赖原服务器可用；如不可用需另行提供视频）。
+5. npm run start:all
+
+当前原项目只有“协同填报.mp4”，另外 7 段录屏未包含。数据库首次启动会初始化，但演示账号及数据需要另行准备。README 部分有关已有演示库、文档与测试的描述可能不适用。

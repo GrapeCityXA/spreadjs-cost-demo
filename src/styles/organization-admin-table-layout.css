@@ -1,0 +1,64 @@
+/* Keep each column label and its controls together on mouse and touch screens. */
+html body .org-admin .app-data-table th .cell {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  /* AppDataTable uses auto table layout: let the complete header set the minimum. */
+  min-width: max-content;
+  gap: 0;
+  padding-inline: 12px;
+}
+.org-admin .app-data-table .app-column-heading { display: contents; }
+.org-admin .app-data-table .app-column-label {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  line-height: 24px;
+}
+html body .org-admin .app-data-table .app-column-control,
+html body .org-admin .app-data-table .el-table__column-filter-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+}
+html body .org-admin .app-data-table .el-table__column-filter-trigger > .el-icon { width: 100%; height: 100%; }
+html body .org-admin .app-data-table th.el-table__cell {
+  padding-block: 4px;
+  color: var(--portal-muted, #6d5a65);
+  font-size: 14px;
+}
+.org-admin .app-data-table .app-column-control {
+  box-sizing: border-box;
+  border: 1px solid transparent;
+}
+.org-admin .app-data-table th:has(.app-column-control.active) .app-column-label { color: var(--portal-focus, #941966); }
+.org-admin .app-data-table .app-column-control:is(:hover, .active),
+.org-admin .app-data-table .el-table__column-filter-trigger:is(:hover, [aria-expanded="true"]) .app-column-control {
+  color: var(--portal-focus, #941966);
+  background: var(--portal-accent-surface, #f8ebf3);
+}
+.org-admin .app-data-table .app-column-control.active,
+.org-admin .app-data-table .el-table__column-filter-trigger[aria-expanded="true"] .app-column-control {
+  border-color: var(--portal-focus, #941966);
+}
+.org-admin .app-data-table button.app-column-control:active,
+.org-admin .app-data-table .el-table__column-filter-trigger:active .app-column-control { background: #f8ebf3; }
+.org-admin .app-data-table .el-scrollbar__wrap { scrollbar-color: #8e9ba8 var(--portal-paper, #f8f3f6); }
+html body .org-admin .app-data-table :is(button.app-column-control, .el-table__column-filter-trigger):focus-visible {
+  outline: 2px solid var(--portal-focus, #941966);
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+/* Expanded narrow tables scroll as one surface, without actions covering headers. */
+html body .org-admin .app-data-table.el-table--scrollable-x .el-table-fixed-column--right { position: static !important; }
+html body .org-admin .app-data-table.el-table--scrollable-x .el-table-fixed-column--right::before { display: none; }
+@container org-list (max-width: 1080px) {
+  .org-admin .has-responsive-summary { --org-table-display: none; --org-summary-display: block; --org-toggle-display: inline-flex; }
+}
+@container org-list (max-width: 1340px) {
+  #pane-audit .has-responsive-summary { --org-table-display: none; --org-summary-display: block; --org-toggle-display: inline-flex; }
+}

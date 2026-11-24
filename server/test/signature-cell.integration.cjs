@@ -1,0 +1,138 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
+const jwt = require('jsonwebtoken');
+const { chromium, expect } = require('@playwright/test');
+const root = fs.mkdtempSync(path.join(os.tmpdir(), 'cost-signature-'));
+Object.assign(process.env, { COST_REPORT_DB_PATH: path.join(root, 'business.db'), COST_REPORT_COLLAB_DB_PATH: path.join(root, 'collaboration.db'), COST_REPORT_TEMPLATE_DIR: path.join(root, 'templates'), COST_REPORT_ARTIFACT_DIR: path.join(root, 'artifacts'), COST_REPORT_BACKUP_DIR: path.join(root, 'backups'), JWT_SECRET: 'signature-isolated-test' });
+const db = require('../src/config/database');
+const app = require('../src/app');
+const collaboration = require('../src/services/collaborationServer');
+let server, browser, page;
+const sql = (text, args = []) => new Promise((resolve, reject) => db.run(text, args, error => error ? reject(error) : resolve()));
+const designer = () => document.querySelector('main.workbench').__vueParentComponent.proxy;
+(async () => {
+  await db.ready;
+  await sql("INSERT INTO users(id,username,password,name,permissions) VALUES(1,'signature-admin','test','签名管理员','[]'),(2,'signature-reader','test','只读管理员','[]')");
+  await sql("INSERT INTO user_roles(user_id,role_code) VALUES(1,'system_admin'),(1,'subsidiary_filler'),(1,'subsidiary_submitter'),(2,'system_admin')");
+  server = require('http').createServer(app); await collaboration.attach(server); await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  const base = `http://127.0.0.1:${server.address().port}`, token = jwt.sign({ id: 1 }, process.env.JWT_SECRET);
+  async function api(url, body, method = body === undefined ? 'GET' : 'POST', status = 200) {
+    const response = await fetch(base + '/api' + url, { method, headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }, body: body === undefined ? undefined : JSON.stringify(body) });
+    const payload = await response.json(); assert.equal(response.status, status, `${url}: ${JSON.stringify(payload)}`); return payload;
+  }
+  browser = await chromium.launch({ headless: true });
+  const errors = [];
+  async function newPage(id = 1) {
+    const p = await browser.newPage({ viewport: { width: 1480, height: 1020 } });
+    p.on('pageerror', error => { errors.push(error.message); console.error('Browser error:',error.message); });
+    p.on('requestfailed', request => console.error('Request failed:',request.url(),request.failure()?.errorText));
+    await p.addInitScript(host => { const Original = window.WebSocket; window.WebSocket = class extends Original { constructor(url, protocols) { const parsed = new URL(url); if (parsed.hostname === '127.0.0.1' && ['5176','5302'].includes(parsed.port) && ![protocols].flat().includes('vite-hmr')) parsed.host = host; super(parsed.href, protocols); } }; }, new URL(base).host);
+    await p.route('**/api/**', async route => { const url = new URL(route.request().url()); if (!url.pathname.startsWith('/api/')) return route.continue(); await route.fulfill({ response: await route.fetch({ url: base + url.pathname + url.search }) }); });
+    await p.goto('http://127.0.0.1:5176');
+    await p.evaluate(({ token, id }) => { localStorage.setItem('token', token); localStorage.setItem('userInfo', JSON.stringify({ id, name: '签名验收', roles: [{ code: 'system_admin' }] })); }, { token: jwt.sign({ id }, process.env.JWT_SECRET), id });
+    return p;
+  }
+  page = await newPage();
+  console.log('Opening Designer');
+  await page.goto('http://127.0.0.1:5176/portal/template-workbench?mode=template&new=true');
+  await expect.poll(() => page.evaluate(() => Boolean(document.querySelector('main.workbench')?.__vueParentComponent?.proxy?.spread)), { timeout: 60000 }).toBe(true);
+  await page.getByPlaceholder('例如：月度经营报表').fill('签名验收模板');
+  await page.evaluate(() => {
+    const vm = document.querySelector('main.workbench').__vueParentComponent.proxy, sheet = vm.spread.getActiveSheet();
+    sheet.setRowCount(12); sheet.setColumnCount(6); sheet.setColumnWidth(1, 230); sheet.setRowHeight(2, 96);
+    sheet.addSpan(2,1,1,2); sheet.setValue(1,1,'负责人签名'); sheet.setActiveCell(2,1); vm.selectedTargetCell = { row:2,col:1 }; vm.switchInspector('signature');
+  });
+  await expect(page.getByRole('button', { name: '签名单元格', exact: true })).toBeVisible();
+  await page.getByText('启用手写签名', { exact: true }).click();
+  const configured = await page.evaluate(() => { const vm = document.querySelector('main.workbench').__vueParentComponent.proxy, sheet = vm.spread.getActiveSheet(); return { tag: JSON.parse(sheet.getTag(2,1)), format: sheet.getFormatter(2,1), enabled: vm.signatureEnabled }; });
+  assert.equal(configured.tag.signature.version, 1); assert.equal(configured.tag.permission, 'primary_input'); assert.equal(configured.format, '=IMAGE(@,"手写签名",0)'); assert.equal(configured.enabled, true);
+  await page.evaluate(() => document.querySelector('main.workbench').__vueParentComponent.proxy.spread.undoManager().undo());
+  assert.equal(await page.evaluate(() => document.querySelector('main.workbench').__vueParentComponent.proxy.signatureEnabled), false);
+  await page.evaluate(() => document.querySelector('main.workbench').__vueParentComponent.proxy.spread.undoManager().redo());
+  const activeCellPoint = await page.evaluate(() => { const book = document.querySelector('main.workbench').__vueParentComponent.proxy.spread; const cell = book.getActiveSheet().getCellRect(2,1), host = book.getHost().getBoundingClientRect(); return {x:host.left+cell.x+20,y:host.top+cell.y+20}; });
+  await page.mouse.click(activeCellPoint.x,activeCellPoint.y);
+  await page.keyboard.press('ArrowDown');
+  await expect.poll(() => page.evaluate(() => document.querySelector('main.workbench').__vueParentComponent.proxy.signatureEnabled)).toBe(false);
+  await page.keyboard.press('ArrowUp');
+  await expect.poll(() => page.evaluate(() => document.querySelector('main.workbench').__vueParentComponent.proxy.signatureEnabled)).toBe(true);
+  await page.screenshot({ path: path.join(root,'designer.png'), fullPage: true });
+  const saved = await page.evaluate(async () => { const vm = document.querySelector('main.workbench').__vueParentComponent.proxy; return { ok: await vm.saveDirectTemplate(false), id: vm.templateVersionId, templateId: vm.templateId }; });
+  assert.equal(saved.ok, true);
+  await page.goto(`http://127.0.0.1:5176/portal/template-workbench?mode=template&templateVersionId=${saved.id}`);
+  await expect.poll(() => page.evaluate(() => document.querySelector('main.workbench')?.__vueParentComponent?.proxy?.spread?.getActiveSheet()?.getTag(2,1)), { timeout: 60000 }).toContain('signature');
+  assert.equal((await api(`/template-governance/templates/versions/${saved.id}/publication-checks`)).report.passed, true);
+  await api(`/template-governance/templates/${saved.templateId}/versions/${saved.id}/submit`, {});
+  const org = await api('/admin/organizations', { code: 'SIGN_ORG', name: '签名验收组织', organizationType: 'subsidiary', effectiveFrom: '2026-01-01' }, 'POST', 201);
+  const rt = await api('/period-configuration/report-types', { code: 'SIGN_MONTHLY', displayName: '签名验收月报', cadence: 'monthly' }, 'POST', 201);
+  const pkg = await api('/period-configuration/packages', { reportTypeId: rt.reportTypeId, periodCode: '2027-01', templateVersionId: saved.id,
+    organizations: [{ organizationId: org.organizationId }], assignments: ['filler','submitter','department_reviewer','approver','finalizer'].map(responsibility => ({ organizationId: org.organizationId, responsibility, userId: 1 })) }, 'POST', 201);
+  await api(`/period-configuration/packages/${pkg.package.id}/activate`, {});
+  const task = await db._helpers.get(db, 'SELECT * FROM report_tasks WHERE package_id = ?', [pkg.package.id]);
+  const url = `http://127.0.0.1:5176/portal/monthly-filling?taskId=${task.id}`;
+  await page.goto(url);
+  const ready = p => expect.poll(() => p.evaluate(() => Boolean(document.querySelector('main.filling-page')?.__vueParentComponent?.proxy?.ready)), { timeout: 60000 }).toBe(true);
+  await ready(page);
+  const peer = await newPage(); await peer.goto(url); await ready(peer);
+  async function clickCell(p) {
+    const point = await p.evaluate(() => { const vm = document.querySelector('main.filling-page').__vueParentComponent.proxy, book = vm.workbook, sheet = book.getActiveSheet(); const r = sheet.getCellRect(2,1), h = book.getHost().getBoundingClientRect(); return { x: h.left+r.x+20, y:h.top+r.y+20 }; });
+    await p.mouse.click(point.x,point.y);
+  }
+  await clickCell(page);
+  const dialog = page.getByRole('dialog', { name: '手写签名' });
+  await expect(dialog).toBeVisible();
+  await expect(dialog.locator('canvas.jSignature')).toBeVisible();
+  await expect(dialog.getByRole('button', { name: '完成', exact:true })).toBeDisabled();
+  async function draw(p) { const canvas = p.locator('.signature-pad canvas.jSignature'), r = await canvas.boundingBox(); await p.mouse.move(r.x+80,r.y+140); await p.mouse.down(); await p.mouse.move(r.x+160,r.y+70,{steps:14}); await p.mouse.move(r.x+220,r.y+175,{steps:14}); await p.mouse.move(r.x+310,r.y+90,{steps:14}); await p.mouse.up(); }
+  await draw(page);
+  await dialog.getByRole('button', { name: '重新签名' }).click();
+  await expect(dialog.getByRole('button', { name: '完成', exact:true })).toBeDisabled();
+  await draw(page);
+  await page.screenshot({ path: path.join(root,'pad.png'), fullPage:true });
+  const read = p => p.evaluate(() => document.querySelector('main.filling-page').__vueParentComponent.proxy.workbook.getActiveSheet().getValue(2,1));
+  assert.equal(await read(peer), null, 'Drawing is local until completion');
+  await dialog.getByRole('button', { name: '完成', exact:true }).click();
+  await expect(dialog).toBeHidden({timeout:20000});
+  const image = await read(page); assert.match(image,/^data:image\/png;base64,/);
+  await expect.poll(() => read(peer)).toBe(image);
+  await page.reload(); await ready(page); assert.equal(await read(page), image);
+  await page.screenshot({path:path.join(root,'saved.png'),fullPage:true});
+  await clickCell(page); await expect(dialog.locator('canvas.jSignature')).toBeVisible();
+  await expect(dialog.getByAltText('当前已保存的签名')).toHaveAttribute('src',image);
+  await page.setViewportSize({width:390,height:844});
+  await expect.poll(async () => (await dialog.boundingBox()).width).toBeLessThanOrEqual(390);
+  const touch = await page.context().newCDPSession(page);
+  const pad = await dialog.locator('canvas.jSignature').boundingBox();
+  await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:pad.x+30,y:pad.y+100}]});
+  for (let i=1;i<=12;i++) await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:pad.x+30+i*12,y:pad.y+100+i*3}]});
+  await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+  await expect(dialog.getByRole('button',{name:'完成',exact:true})).toBeEnabled();
+  await page.screenshot({path:path.join(root,'touch-pad.png'),fullPage:true});
+  await dialog.getByRole('button', {name:'取消',exact:true}).click(); assert.equal(await read(page),image);
+  await page.setViewportSize({width:1480,height:1020});
+  const reader = await newPage(2); await reader.goto(url); await ready(reader); await clickCell(reader);
+  await expect(reader.getByRole('dialog',{name:'手写签名'})).toBeHidden();
+  const submitted = await page.evaluate(async taskId => { const { collaborationApi } = await import('/src/api/index.js'); const vm = document.querySelector('main.filling-page').__vueParentComponent.proxy; return collaborationApi.submitTask(taskId,{expectedVersion:Number(vm.sharedDoc.version),pendingChanges:0,warningExplanations:[]},crypto.randomUUID()); },task.id);
+  assert.ok(submitted.revisionId);
+  await page.reload(); await ready(page); assert.equal(await read(page),image); await clickCell(page); await expect(dialog).toBeHidden();
+  const room = await api(`/collaboration/tasks/${task.id}/room`);
+  const sheetJSON = Object.values(room.submittedWorkbook.sheets)[0]; assert.equal(sheetJSON.data.dataTable[2][1].value,image);
+  await page.goto('http://127.0.0.1:5176/portal/home');
+  await page.evaluate(async json => {
+    const { createApp } = await import('/node_modules/.vite/deps/vue.js');
+    const { default: Preview } = await import('/src/components/ReportResultPreview.vue');
+    const host = document.createElement('div'); document.body.replaceChildren(host);
+    window.signaturePreview = createApp(Preview,{workbook:json,frozen:true}); window.signaturePreview.mount(host);
+  },room.submittedWorkbook);
+  await expect.poll(() => page.evaluate(async () => {
+    const { default: GC } = await import('/node_modules/.vite/deps/@grapecity-software_spread-sheets.js');
+    const sheet = GC.Spread.Sheets.findControl(document.querySelector('.report-preview'))?.getActiveSheet();
+    return { value:sheet?.getValue(2,1), format:sheet?.getFormatter(2,1) };
+  }),{timeout:20000}).toEqual({value:image,format:'=IMAGE(@,"手写签名",0)'});
+  await page.screenshot({path:path.join(root,'result-preview.png'),fullPage:true});
+  await page.evaluate(() => window.signaturePreview.unmount());
+  assert.deepEqual(errors,[]);
+  fs.writeFileSync(path.join(root,'result.json'),JSON.stringify({passed:true,taskId:task.id,revisionId:submitted.revisionId,bytes:image.length,errors},null,2));
+  console.log('PASS: signature design/save/publish, mouse drawing/reset/cancel, real value synchronization, reload, read-only gate and submission. Evidence:',root);
+})().catch(async error => { console.error(error); if(page) { console.error((await page.locator('body').innerText()).slice(-4500)); await page.screenshot({path:path.join(root,'failure.png'),fullPage:true}); } console.error('Evidence:',root); process.exitCode=1; }).finally(async()=>{ await browser?.close(); server?.close(); db.close(); db.collaborationDb.close(); });

@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成本指标协同填报 · 官网落地页原型</title>
+<style>
+  :root {
+    --ink: #251a20;
+    --muted: #6f5f67;
+    --plum: #941966;
+    --plum-dark: #6f114b;
+    --plum-soft: #f6e9f1;
+    --paper: #fbf8fa;
+    --white: #ffffff;
+    --line: #e8dde3;
+    --gold: #b0814f;
+    --shadow: 0 24px 70px rgba(72, 25, 52, .13);
+    --font: "Inter", "Microsoft YaHei", "微软雅黑", -apple-system, BlinkMacSystemFont, "Noto Sans", "PingFang SC", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    color: var(--ink);
+    background: var(--white);
+    font-family: var(--font);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; }
+  .wrap { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--plum); font-size: 13px; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+  }
+  .eyebrow::before { content: ""; width: 22px; height: 1px; background: currentColor; }
+  h1, h2, h3, p { margin: 0; }
+  h1 { font-size: clamp(32px, 4.1vw, 56px); line-height: 1.18; letter-spacing: -.035em; font-weight: 750; }
+  h1 em { color: var(--plum); font-style: normal; }
+  h2 { font-size: clamp(27px, 3.1vw, 40px); line-height: 1.3; letter-spacing: -.025em; font-weight: 700; }
+  h3 { font-size: 19px; line-height: 1.45; font-weight: 650; }
+  .lead { color: var(--muted); font-size: clamp(16px, 1.45vw, 19px); line-height: 1.9; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 50px; padding: 0 24px; border-radius: 6px;
+    border: 1px solid var(--plum); font-size: 15px; font-weight: 650;
+    transition: .2s ease; cursor: pointer;
+  }
+  .btn-primary { color: #fff; background: var(--plum); }
+  .btn-primary:hover { background: var(--plum-dark); border-color: var(--plum-dark); }
+  .btn-ghost { color: var(--plum); background: transparent; }
+  .btn-ghost:hover { background: var(--plum-soft); }
+  .btn svg { width: 17px; height: 17px; }
+
+  /* ---------- prototype note (remove before handoff) ---------- */
+  .proto {
+    background: #21151c; color: #f8eef4; font-size: 13px;
+    padding: 10px 0;
+  }
+  .proto .wrap { display: flex; flex-wrap: wrap; gap: 6px 24px; align-items: center; }
+  .proto strong { color: #fff; letter-spacing: .02em; }
+  .proto span { color: #c9b6c1; }
+
+  /* ---------- header ---------- */
+  .site-head {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(255,255,255,.92); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .site-head .wrap { display: flex; align-items: center; gap: 28px; min-height: 68px; }
+  .brand { display: flex; align-items: baseline; gap: 12px; font-weight: 750; letter-spacing: -.02em; }
+  .brand b { color: var(--plum); font-size: 21px; }
+  .brand small { color: var(--muted); font-size: 12px; font-weight: 500; }
+  .nav { display: flex; gap: 26px; margin-left: auto; color: var(--muted); font-size: 14px; }
+  .nav a:hover { color: var(--plum); }
+  .head-cta { margin-left: 8px; }
+  .head-cta .btn { min-height: 40px; padding-inline: 18px; font-size: 13px; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(900px 520px at 88% 12%, rgba(148,25,102,.12), transparent 62%),
+      linear-gradient(180deg, #fff 0%, var(--paper) 100%);
+    border-bottom: 1px solid var(--line);
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: auto 0 0 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--line), transparent);
+  }
+  .hero .wrap {
+    display: grid; grid-template-columns: 1.12fr 1fr; gap: 54px;
+    align-items: center; padding: 82px 0 76px;
+  }
+  .hero-copy { max-width: 560px; }
+  .hero h1 { margin-top: 20px; }
+  .hero .lead { margin-top: 24px; max-width: 500px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .hero-proof { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 26px; color: var(--muted); font-size: 13px; }
+  .hero-proof span { display: inline-flex; align-items: center; gap: 7px; }
+  .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--plum); flex: none; }
+
+  /* mock product */
+  .mock {
+    position: relative; border-radius: 12px; border: 1px solid #e3d5dd;
+    background: #fff; box-shadow: var(--shadow); overflow: visible;
+    transform: perspective(1200px) rotateY(-3deg) rotateX(1deg);
+  }
+  .mock-bar {
+    display: flex; align-items: center; gap: 8px; padding: 12px 14px;
+    border-bottom: 1px solid var(--line); background: #fdfbfc; border-radius: 12px 12px 0 0;
+  }
+  .mock-bar i { width: 9px; height: 9px; border-radius: 50%; background: #e4d5dd; }
+  .mock-bar i:first-child { background: #94196655; }
+  .mock-path {
+    margin-left: 8px; flex: 1; height: 26px; display: flex; align-items: center;
+    padding: 0 12px; border-radius: 4px; background: #f6f0f3;
+    color: #8b7781; font-size: 11px; letter-spacing: .01em;
+  }
+  .mock-body { display: grid; grid-template-columns: 46px 1fr; min-height: 390px; }
+  .mock-rail { background: #f8f2f5; border-right: 1px solid var(--line); padding: 12px 8px; display: grid; gap: 10px; align-content: start; }
+  .mock-rail span { display: block; height: 22px; border-radius: 4px; background: #eadde4; }
+  .mock-rail span:nth-child(2) { background: #941966; }
+  .mock-main { display: flex; flex-direction: column; min-width: 0; }
+  .mock-toolbar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--line); color: #8b7781; font-size: 11px; }
+  .mock-toolbar b { color: var(--ink); font-weight: 600; }
+  .mock-toolbar .pill { margin-left: auto; padding: 3px 8px; border-radius: 99px; background: #f1e4ec; color: var(--plum); }
+  .sheet { padding: 0 12px 10px; overflow: hidden; }
+  .sheet-head, .sheet-row { display: grid; grid-template-columns: 1.1fr 1fr 1fr 1fr; border-bottom: 1px solid #f0e7ec; }
+  .sheet-head div { padding: 9px 10px; color: #85727c; font-size: 10px; font-weight: 600; background: #fbf7f9; }
+  .sheet-row div { padding: 10px; font-size: 11px; color: #4d3d45; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sheet-row:nth-child(3) { background: #fdf5fa; }
+  .sheet-row:nth-child(4) { background: #9419660a; }
+  .cell-active { outline: 2px solid #941966; outline-offset: -2px; }
+  .mock-tabs { margin-top: auto; display: flex; align-items: center; gap: 6px; padding: 8px 12px; border-top: 1px solid var(--line); font-size: 10px; color: #85727c; }
+  .mock-tabs b { padding: 4px 10px; border: 1px solid var(--line); border-bottom: 2px solid var(--plum); color: var(--plum); border-radius: 3px 3px 0 0; }
+  .cursor {
+    position: absolute; z-index: 3; display: flex; flex-direction: column; gap: 2px;
+    font-size: 10px; font-weight: 650; pointer-events: none;
+  }
+  .cursor::before { content: ""; width: 0; height: 0; border: 7px solid transparent; border-top-color: currentColor; border-right-color: currentColor; transform: rotate(10deg); }
+  .cursor.one { top: 39%; left: 56%; color: #941966; }
+  .cursor.two { top: 57%; left: 76%; color: #1d7a58; }
+  .cursor span { padding: 2px 6px; border-radius: 3px; color: #fff; background: currentColor; width: max-content; }
+  .mock-badge {
+    position: absolute; right: -22px; bottom: 34px;
+    display: grid; gap: 2px; padding: 12px 16px; border-radius: 8px;
+    background: #fff; border: 1px solid var(--line); box-shadow: 0 14px 34px rgba(72,25,52,.14);
+    font-size: 11px; color: var(--muted);
+  }
+  .mock-badge strong { color: var(--ink); font-size: 14px; }
+  .mock-badge b { color: #1d7a58; }
+
+  /* ---------- stats ---------- */
+  .stats { border-bottom: 1px solid var(--line); background: #fff; }
+  .stats .wrap { display: grid; grid-template-columns: repeat(4, 1fr); padding: 26px 0; }
+  .stat { padding: 0 24px; border-right: 1px solid var(--line); }
+  .stat:last-child { border-right: 0; }
+  .stat strong { display: block; font-size: 26px; letter-spacing: -.03em; color: var(--plum); }
+  .stat span { color: var(--muted); font-size: 13px; }
+
+  /* ---------- sections ---------- */
+  section { padding: 86px 0; }
+  .section-head { display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: end; margin-bottom: 42px; }
+  .section-head p { color: var(--muted); font-size: 16px; max-width: 560px; }
+  .section-head h2 { margin-top: 12px; }
+
+  .pain { background: var(--paper); }
+  .pain-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .pain-card { background: #fff; padding: 26px 22px 24px; min-height: 210px; }
+  .pain-card .num { color: #c4adb8; font-size: 12px; font-weight: 700; letter-spacing: .1em; }
+  .pain-card h3 { margin-top: 18px; font-size: 16px; }
+  .pain-card p { margin-top: 10px; color: var(--muted); font-size: 14px; line-height: 1.75; }
+
+  /* flow */
+  .flow { background: #fff; }
+  .flow-track { position: relative; display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; border-top: 1px solid var(--line); padding-top: 26px; }
+  .flow-step { position: relative; padding: 0 12px 0 0; }
+  .flow-step::before {
+    content: ""; position: absolute; top: -31px; left: 0; width: 9px; height: 9px; border-radius: 50%;
+    background: #fff; border: 2px solid var(--plum);
+  }
+  .flow-step:first-child::after {
+    content: ""; position: absolute; top: -27px; left: 10px; right: 0; height: 1px; background: var(--line);
+  }
+  .flow-step:not(:last-child)::after {
+    content: ""; position: absolute; top: -27px; left: 11px; right: 0; height: 1px; background: var(--line);
+  }
+  .flow-step b { display: block; color: var(--plum); font-size: 12px; letter-spacing: .08em; }
+  .flow-step h3 { font-size: 14px; margin-top: 8px; }
+  .flow-step p { color: var(--muted); font-size: 12px; line-height: 1.65; margin-top: 6px; }
+
+  /* capability rows */
+  .cap { background: var(--paper); }
+  .cap-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 58px; align-items: center;
+    padding: 44px 0; border-top: 1px solid var(--line);
+  }
+  .cap-row:first-of-type { border-top: 0; }
+  .cap-row:nth-child(even) .cap-copy { order: 2; }
+  .cap-copy .tag { color: var(--gold); font-size: 12px; font-weight: 700; letter-spacing: .1em; }
+  .cap-copy h3 { font-size: clamp(22px, 2.3vw, 30px); margin-top: 10px; letter-spacing: -.02em; }
+  .cap-copy p { color: var(--muted); margin-top: 14px; max-width: 460px; }
+  .cap-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .cap-list span { padding: 5px 10px; border: 1px solid var(--line); border-radius: 4px; font-size: 12px; color: #5b4851; background: #fff; }
+  .cap-visual {
+    min-height: 260px; border-radius: 10px; border: 1px solid var(--line); overflow: hidden;
+    background: #fff; box-shadow: 0 14px 40px rgba(72,25,52,.06);
+    display: grid; place-items: center; padding: 22px;
+  }
+  .mini-ui { width: 100%; display: grid; gap: 8px; }
+  .mini-ui .row { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 8px; }
+  .mini-ui .row div { height: 34px; border-radius: 4px; background: #f7f0f4; border: 1px solid #eee2e9; }
+  .mini-ui .row.head div { height: 26px; background: #f1e4ec; border-color: #ead8e2; }
+  .mini-ui .row .on { background: #9419660f; border-color: #94196655; box-shadow: inset 0 0 0 1px #94196633; }
+  .mini-ui .bar { height: 10px; border-radius: 99px; background: #efe4ea; overflow: hidden; }
+  .mini-ui .bar i { display: block; width: 68%; height: 100%; background: var(--plum); }
+  .mini-kpi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; }
+  .mini-kpi div { padding: 14px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+  .mini-kpi small { color: var(--muted); font-size: 10px; }
+  .mini-kpi strong { display: block; margin-top: 6px; font-size: 18px; color: var(--plum); }
+
+  /* experience cards */
+  .experience { background: #fff; }
+  .exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .exp-card { border: 1px solid var(--line); border-radius: 8px; padding: 26px 24px; background: #fff; transition: .2s ease; }
+  .exp-card:hover { border-color: #d8bfcc; transform: translateY(-2px); box-shadow: 0 14px 36px rgba(72,25,52,.07); }
+  .exp-card .icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 8px; background: var(--plum-soft); color: var(--plum); }
+  .exp-card h3 { margin-top: 18px; font-size: 17px; }
+  .exp-card p { margin-top: 10px; color: var(--muted); font-size: 14px; }
+  .exp-card a { display: inline-flex; gap: 6px; margin-top: 16px; color: var(--plum); font-size: 13px; font-weight: 650; }
+
+  /* scenarios */
+  .scenes { background: var(--paper); }
+  .scene-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .scene-card { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 24px; }
+  .scene-card .kicker { color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: .1em; }
+  .scene-card h3 { margin-top: 12px; font-size: 17px; }
+  .scene-card p { color: var(--muted); font-size: 14px; margin-top: 10px; }
+  .scene-card ul { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 7px; color: #5b4851; font-size: 13px; }
+  .scene-card li::before { content: "—"; color: var(--plum); margin-right: 8px; }
+
+  /* tech */
+  .tech { background: #fff; }
+  .tech-inner { display: grid; grid-template-columns: .85fr 1.15fr; gap: 60px; align-items: center; }
+  .tech-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tech-chips span { padding: 9px 14px; border: 1px solid var(--line); border-radius: 99px; font-size: 13px; color: #4f3d46; background: var(--paper); }
+  .tech-note { color: var(--muted); font-size: 13px; margin-top: 18px; }
+
+  /* cta */
+  .cta { background: linear-gradient(135deg, #2b1321 0%, #4a1633 55%, #6f114b 100%); color: #fff; padding: 76px 0; }
+  .cta .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+  .cta h2 { color: #fff; }
+  .cta p { color: #e4cdda; margin-top: 14px; max-width: 560px; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-end; }
+  .cta .btn-primary { background: #fff; color: var(--plum-dark); border-color: #fff; }
+  .cta .btn-primary:hover { background: #f7edf3; }
+  .cta .btn-ghost { color: #fff; border-color: #ffffff55; }
+  .cta .btn-ghost:hover { background: #ffffff12; }
+
+  .foot { padding: 30px 0; color: var(--muted); font-size: 12px; border-top: 1px solid var(--line); }
+  .foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+  /* design notes */
+  .notes { background: #21151c; color: #d9c6d1; padding: 54px 0; }
+  .notes h2 { color: #fff; font-size: 22px; letter-spacing: 0; }
+  .notes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 26px; }
+  .notes-grid h3 { color: #fff; font-size: 14px; }
+  .notes-grid p, .notes-grid li { font-size: 13px; line-height: 1.75; }
+  .notes-grid ul { margin: 8px 0 0; padding-left: 18px; }
+  .notes-tip { color: #a98e9d; font-size: 12px; margin-top: 24px; }
+
+  @media (max-width: 980px) {
+    .hero .wrap, .section-head, .tech-inner, .cta .wrap { grid-template-columns: 1fr; }
+    .hero .wrap { padding: 58px 0 60px; }
+    .hero-copy { max-width: none; }
+    .mock { transform: none; max-width: 640px; }
+    .pain-grid { grid-template-columns: 1fr 1fr; }
+    .flow-track { grid-template-columns: repeat(4, 1fr); row-gap: 26px; border-top: 0; padding-top: 0; }
+    .flow-step { padding-top: 22px; border-top: 1px solid var(--line); }
+    .flow-step::before { top: -5px; }
+    .flow-step::after { display: none; }
+    .cap-row, .exp-grid, .scene-grid, .notes-grid { grid-template-columns: 1fr; }
+    .cap-row { gap: 28px; }
+    .cap-row:nth-child(even) .cap-copy { order: 0; }
+    .stats .wrap { grid-template-columns: 1fr 1fr; row-gap: 18px; }
+    .stat:nth-child(2) { border-right: 0; }
+    .cta-actions { justify-content: flex-start; }
+  }
+  @media (max-width: 620px) {
+    .wrap { width: calc(100% - 32px); }
+    .nav { display: none; }
+    .pain-grid { grid-template-columns: 1fr; }
+    .flow-track { grid-template-columns: 1fr 1fr; }
+    .hero-actions .btn, .cta-actions .btn { width: 100%; }
+    .mock-badge { right: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="proto">
+  <div class="wrap">
+    <strong>原型稿</strong>
+    <span>仅用于确认信息架构、文案与视觉方向；最终版式、动效和配图由网站设计完成。</span>
+    <span>所有“产品截图”位置均为占位示意。</span>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="#top"><b>SpreadJS</b><small>成本指标协同填报演示</small></a>
+    <nav class="nav" aria-label="页面导航">
+      <a href="#pain">业务挑战</a>
+      <a href="#flow">流程闭环</a>
+      <a href="#capability">核心能力</a>
+      <a href="#experience">在线体验</a>
+      <a href="#scene">适用场景</a>
+    </nav>
+    <div class="head-cta"><a class="btn btn-primary" href="https://demo.grapecity.com.cn/spreadjs/cost-report/" target="_blank" rel="noopener">在线体验</a></div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="eyebrow">SpreadJS 成本管理场景演示</span>
+        <h1>让一张成本表，<br>走完整个<em>协同填报流程</em></h1>
+        <p class="lead">从 Excel 模板、业务字段绑定，到多人协同填报、校验提交、审核定稿和报表输出，用一个可操作的在线 Demo，展示 SpreadJS 如何承载集团成本指标管理的关键环节。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://demo.grapecity.com.cn/spreadjs/cost-report/" target="_blank" rel="noopener">在线体验 Demo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#capability">查看方案能力</a>
+        </div>
+        <div class="hero-proof">
+          <span><i class="dot"></i>保留 Excel 操作习惯</span>
+          <span><i class="dot"></i>浏览器内完成全流程</span>
+          <span><i class="dot"></i>支持 Excel / PDF 输出</span>
+        </div>
+      </div>
+
+      <div class="mock" aria-label="产品界面占位示意">
+        <div class="mock-bar"><i></i><i></i><i></i><span class="mock-path">成本指标平台 / 月度协同填报 / 2026-11</span></div>
+        <div class="mock-body">
+          <div class="mock-rail"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="mock-main">
+            <div class="mock-toolbar"><b>月度成本指标填报</b><span>华东子公司</span><span class="pill">协同编辑中</span></div>
+            <div class="sheet">
+              <div class="sheet-head"><div>指标</div><div>预算</div><div>实际</div><div>差异</div></div>
+              <div class="sheet-row"><div>材料成本</div><div>100,000.00</div><div>102,400.00</div><div>+2,400.00</div></div>
+              <div class="sheet-row"><div>人工成本</div><div>80,000.00</div><div>78,900.00</div><div>-1,100.00</div></div>
+              <div class="sheet-row"><div>制造费用</div><div>60,000.00</div><div class="cell-active">61,250.00</div><div>+1,250.00</div></div>
+              <div class="sheet-row"><div>单位成本</div><div>24.00</div><div>24.26</div><div>+1.08%</div></div>
+              <div class="sheet-row"><div>差异率</div><div>—</div><div>0.83%</div><div>正常</div></div>
+            </div>
+            <div class="mock-tabs"><b>成本指标录入</b><span>辅助数据</span><span>填报说明</span></div>
+          </div>
+        </div>
+        <span class="cursor one"><span>填报人二</span></span>
+        <span class="cursor two"><span>审核人</span></span>
+        <div class="mock-badge"><strong>2 人正在协作</strong><span><b>●</b> 单元格权限已生效</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="wrap">
+      <div class="stat"><strong>7 步</strong><span>从模板到报表的完整闭环</span></div>
+      <div class="stat"><strong>实时</strong><span>多人编辑与在线状态同步</span></div>
+      <div class="stat"><strong>细粒度</strong><span>按角色控制单元格可见与可编辑</span></div>
+      <div class="stat"><strong>多格式</strong><span>Excel / PDF / 在线报表</span></div>
+    </div>
+  </div>
+
+  <!-- PAIN -->
+  <section id="pain" class="pain">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">业务挑战</span><h2>成本填报的难点，<br>往往不在表格本身</h2></div>
+        <p>表样可以画出来，但要让多个组织、多个角色围绕同一份数据协同工作，还需要版本、权限、流程和留痕。</p>
+      </div>
+      <div class="pain-grid">
+        <article class="pain-card"><span class="num">01</span><h3>表样散落在个人电脑</h3><p>Excel 模板各自维护，版本和口径难以统一；每次周期开始都要重新收集、核对。</p></article>
+        <article class="pain-card"><span class="num">02</span><h3>字段和精度靠口头约定</h3><p>单位、类型、小数位没有统一约束，汇总时才发现口径不一致。</p></article>
+        <article class="pain-card"><span class="num">03</span><h3>填报进度不可见</h3><p>谁已经开始、谁卡在哪一步、距离截止还有多久，管理者缺少统一视图。</p></article>
+        <article class="pain-card"><span class="num">04</span><h3>审核过程难追溯</h3><p>提交版本、修改记录、审核意见分散在邮件和聊天里，定稿依据不完整。</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOW -->
+  <section id="flow" class="flow">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">流程闭环</span><h2>一张表，连接七个业务环节</h2></div>
+        <p>Demo 按真实成本管理流程组织，每一步都可以在浏览器中操作和演示，而不是一组孤立的表格功能。</p>
+      </div>
+      <div class="flow-track">
+        <div class="flow-step"><b>01</b><h3>设计模板</h3><p>导入 Excel，或直接设计模板与组件。</p></div>
+        <div class="flow-step"><b>02</b><h3>绑定数据</h3><p>绑定业务字段、辅助数据和单元格权限。</p></div>
+        <div class="flow-step"><b>03</b><h3>发布任务</h3><p>设置周期、组织、责任人与截止时间。</p></div>
+        <div class="flow-step"><b>04</b><h3>协同填报</h3><p>多人实时编辑同一工作簿。</p></div>
+        <div class="flow-step"><b>05</b><h3>校验提交</h3><p>提交前检查公式、必填和勾稽关系。</p></div>
+        <div class="flow-step"><b>06</b><h3>审核定稿</h3><p>查看静态提交版本，退回或批准。</p></div>
+        <div class="flow-step"><b>07</b><h3>报表输出</h3><p>生成月报、季报及 Excel / PDF。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITY -->
+  <section id="capability" class="cap">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">核心能力</span><h2>把表格能力，<br>放进业务流程里</h2></div>
+        <p>SpreadJS 提供表格交互、计算与协同底座；Demo 在这些能力之上，补齐模板治理、任务分发、审核和报表的业务闭环。</p>
+      </div>
+
+      <div class="cap-row">
+        <div class="cap-copy">
+          <span class="tag">模板与字段</span>
+          <h3>熟悉的 Excel 表样，变成可治理的模板</h3>
+          <p>支持直接导入 Excel、空白设计或组件组合。业务字段统一管理类型、单位和精度，发布前自动检查绑定、权限与公式引用。</p>
+          <div class="cap-list"><span>Excel 导入</span><span>组件化模板</span><span>字段目录</span><span>发布检查</span></div>
+        </div>
+        <div class="cap-visual" aria-label="模板设计界面占位">
+          <div class="mini-ui">
+            <div class="row head"><div>字段</div><div>类型</div><div>精度</div></div>
+            <div class="row"><div>材料成本</div><div>decimal</div><div>2</div></div>
+            <div class="row"><div>产量</div><div>decimal</div><div>2</div></div>
+            <div class="row"><div class="on">差异率</div><div class="on">decimal</div><div class="on">12</div></div>
+            <div class="row"><div>备注</div><div>text</div><div>—</div></div>
+            <div class="bar"><i></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cap-row">
+        <div class="cap-copy">
+          <span class="tag">任务与协同</span>
+          <h3>同一份工作簿，多个角色同时工作</h3>
+          <p>按周期和组织生成任务，配置填报、提交、审核与定稿责任。协同引擎负责实时同步，项目侧逐单元格检查可见与可编辑权限。</p>
+          <div class="cap-list"><span>周期任务</span><span>责任分派</span><span>实时协同</span><span>单元格权限</span></div>
+        </div>
+        <div class="cap-visual" aria-label="协同填报界面占位">
+          <div class="mini-kpi">
+            <div><small>在线协作者</small><strong>2 人</strong></div>
+            <div><small>已编辑单元格</small><strong>18</strong></div>
+            <div><small>协作版本</small><strong>26</strong></div>
+          </div>
+          <div class="mini-ui" style="margin-top:14px">
+            <div class="row head"><div>指标</div><div>填报人一</div><div>填报人二</div></div>
+            <div class="row"><div>材料成本</div><div class="on">已填写</div><div>—</div></div>
+            <div class="row"><div>人工成本</div><div>—</div><div class="on">编辑中</div></div>
+            <div class="bar"><i style="width:82%"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cap-row">
+        <div class="cap-copy">
+          <span class="tag">提交与审核</span>
+          <h3>提交有检查，审核有依据</h3>
+          <p>提交前执行公式、必填、精度与勾稽检查；提交后冻结工作簿快照，形成可追溯的业务修订。审核人员看到的是与提交时一致的静态版本。</p>
+          <div class="cap-list"><span>提交前检查</span><span>业务修订</span><span>静态快照</span><span>审核意见</span></div>
+        </div>
+        <div class="cap-visual" aria-label="提交审核界面占位">
+          <div class="mini-ui">
+            <div class="row head"><div>检查项</div><div>结果</div><div>定位</div></div>
+            <div class="row"><div>必填项</div><div style="color:#1d7a58">通过</div><div>—</div></div>
+            <div class="row"><div>公式结果</div><div style="color:#1d7a58">通过</div><div>—</div></div>
+            <div class="row"><div>差异率精度</div><div style="color:#1d7a58">通过</div><div>—</div></div>
+            <div class="row"><div class="on">勾稽关系</div><div class="on" style="color:#941966">待确认</div><div class="on">B14</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cap-row">
+        <div class="cap-copy">
+          <span class="tag">报表输出</span>
+          <h3>定稿数据，直接进入报表和交付</h3>
+          <p>使用 ReportSheet 将定稿数据组织为月度、季度参考报表，浏览器内生成并导出 Excel / PDF，成果可保存、共享和下载。</p>
+          <div class="cap-list"><span>ReportSheet</span><span>月报 / 季报</span><span>Excel</span><span>PDF</span></div>
+        </div>
+        <div class="cap-visual" aria-label="报表输出界面占位">
+          <div class="mini-ui">
+            <div class="row head"><div>报表</div><div>期间</div><div>状态</div></div>
+            <div class="row"><div>定稿指标月报</div><div>2026-11</div><div style="color:#1d7a58">已生成</div></div>
+            <div class="row"><div>季度成本参考</div><div>2026-Q4</div><div style="color:#1d7a58">已生成</div></div>
+            <div class="row"><div>经营指标仪表盘</div><div>2026-11</div><div style="color:#941966">查看</div></div>
+            <div class="bar"><i style="width:100%"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">在线体验</span><h2>不用安装，直接打开浏览器</h2></div>
+        <p>Demo 保留了完整的演示数据和操作路径，可以按角色体验，也可以从一个空白模板开始走完整流程。</p>
+      </div>
+      <div class="exp-grid">
+        <article class="exp-card">
+          <div class="icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg>
+          </div>
+          <h3>双人协同填报</h3>
+          <p>用两个账号打开同一任务，观察选区、在线头像和修改同步；体验单元格级权限和提交前检查。</p>
+          <a href="https://demo.grapecity.com.cn/spreadjs/cost-report/" target="_blank" rel="noopener">进入协同填报 →</a>
+        </article>
+        <article class="exp-card">
+          <div class="icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>
+          </div>
+          <h3>从填报到定稿</h3>
+          <p>完成一份成本指标填报，执行提交检查，切换审核账号查看提交快照并完成退回或定稿。</p>
+          <a href="https://demo.grapecity.com.cn/spreadjs/cost-report/" target="_blank" rel="noopener">走一遍流程 →</a>
+        </article>
+        <article class="exp-card">
+          <div class="icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h16"/><path d="M8 15l4-5 3 3 4-6"/></svg>
+          </div>
+          <h3>从定稿到报表</h3>
+          <p>把已定稿的指标数据生成月报，预览报表并下载 Excel / PDF，查看数据在页面中的流转。</p>
+          <a href="https://demo.grapecity.com.cn/spreadjs/cost-report/" target="_blank" rel="noopener">体验报表输出 →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENARIOS -->
+  <section id="scene" class="scenes">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">适用场景</span><h2>当成本管理需要一张“活”的表</h2></div>
+        <p>只要业务仍在用 Excel 承载口径、计算和审批，这套模式就可以复用到类似的填报与管理场景。</p>
+      </div>
+      <div class="scene-grid">
+        <article class="scene-card"><span class="kicker">制造与集团财务</span><h3>月度成本指标填报</h3><p>多组织按统一模板填报材料、人工、制造费用等指标，汇总到集团口径。</p><ul><li>多组织任务分派</li><li>字段与精度统一</li><li>定稿数据沉淀</li></ul></article>
+        <article class="scene-card"><span class="kicker">预算与经营分析</span><h3>预算执行与差异分析</h3><p>在表格中完成预算、实际、差异率的计算与核对，跟踪异常并形成分析结论。</p><ul><li>公式与勾稽检查</li><li>差异定位与说明</li><li>报表输出</li></ul></article>
+        <article class="scene-card"><span class="kicker">审计与合规</span><h3>数据采集与审核留痕</h3><p>把填报、修改、提交、退回和定稿过程完整记录，形成可追溯的业务版本。</p><ul><li>提交快照</li><li>审核意见</li><li>历史版本对照</li></ul></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH -->
+  <section class="tech">
+    <div class="wrap tech-inner">
+      <div>
+        <span class="eyebrow">技术底座</span>
+        <h2 style="margin-top:12px">SpreadJS 提供表格能力，<br>业务系统负责流程治理</h2>
+        <p class="tech-note">Demo 使用 SpreadJS 19.2 与 Vue 3 / Express / SQLite 构建。表格交互、协同与报表呈现由 SpreadJS 承担；组织、权限、审批和版本由业务服务管理。</p>
+      </div>
+      <div class="tech-chips" aria-label="技术组件">
+        <span>SpreadJS Designer</span><span>DataManager</span><span>OT 协同引擎</span><span>WebSocket</span><span>ReportSheet</span><span>Excel IO</span><span>PDF 导出</span><span>Vue 3</span><span>Express</span><span>SQLite</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+    <div class="wrap">
+      <div>
+        <h2>把成本填报，做成一条可演示的流程</h2>
+        <p>打开在线 Demo，按角色走一遍；如果需要，我们也可以结合你的业务表样，讲解模板、协同和报表的实现方式。</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="https://demo.grapecity.com.cn/spreadjs/cost-report/" target="_blank" rel="noopener">在线体验 Demo</a>
+        <a class="btn btn-ghost" href="#top">返回顶部</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap"><span>SpreadJS 成本指标协同填报演示 · 官网落地页原型</span><span>页面结构与文案仅供设计评审使用</span></div>
+</footer>
+
+<!-- 给设计同学的备注，正式页面可删除 -->
+<section class="notes" aria-label="设计说明">
+  <div class="wrap">
+    <h2>给设计同学的说明</h2>
+    <div class="notes-grid">
+      <div>
+        <h3>信息层级</h3>
+        <ul>
+          <li>首屏先讲“一张表走完流程”，不要一上来堆功能列表。</li>
+          <li>第二屏用业务挑战建立共鸣，再进入流程与能力。</li>
+          <li>能力区按“模板—任务—协同—提交—报表”顺序展开。</li>
+        </ul>
+      </div>
+      <div>
+        <h3>视觉方向</h3>
+        <ul>
+          <li>主色建议沿用品牌紫红；背景以暖白和浅纸色为主。</li>
+          <li>产品截图优先使用真实 Demo 界面，避免通用办公素材。</li>
+          <li>首屏右侧可用实际工作簿截图 + 在线协作光标，增强“活表格”感。</li>
+        </ul>
+      </div>
+      <div>
+        <h3>交互建议</h3>
+        <ul>
+          <li>流程区可做横向滚动或悬停高亮，移动端改为纵向。</li>
+          <li>能力区可做滚动进入时截图轻微上浮，不要使用大幅视差。</li>
+          <li>在线体验按钮统一指向 Demo 地址，新窗口打开。</li>
+        </ul>
+      </div>
+    </div>
+    <p class="notes-tip">备注：本文件是信息架构与文案原型，不是最终视觉稿；所有数字、功能描述请以 Demo 当前版本为准。</p>
+  </div>
+</section>
+
+</body>
+</html>

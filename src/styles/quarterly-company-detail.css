@@ -1,0 +1,35 @@
+.company-detail { container: quarter-detail / inline-size; display: grid; gap: 24px; min-width: 0; padding: 16px 0 24px; color: var(--portal-ink, #2c1b26); }
+.detail-block { min-width: 0; }
+.detail-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; padding-bottom: 12px; border-bottom: 1px solid var(--portal-line, #e8d9e1); }
+.detail-heading h3 { margin: 0; font-size: 14px; line-height: 1.5; }
+.detail-heading span, .month-card span, .month-card small, .dependency-totals span { color: var(--portal-muted, #6d5a65); font-size: 12px; line-height: 1.6; }
+.indicator-table { min-width: 0; width: 100%; }
+.detail-summary, .detail-block > :deep(.has-responsive-summary > .compact-table-toggle) { display: none; }
+.detail-block > :deep(.has-responsive-summary:not(.table-expanded) > .accessible-table-scroll) { display: var(--detail-table-display, block); }
+.detail-block > :deep(.has-responsive-summary:not(.table-expanded) > .detail-summary) { display: var(--detail-summary-display, none); }
+.detail-block > :deep(.has-responsive-summary > .compact-table-toggle) { display: var(--detail-toggle-display, none); min-height: 44px; margin: 12px 0; white-space: normal; }
+.indicator-entry { padding: 16px 0; border-bottom: 1px solid var(--portal-line, #e8d9e1); overflow-wrap: anywhere; }
+.indicator-entry:last-child { border-bottom: 0; }
+.indicator-entry h4 { margin: 0 0 12px; font-size: 14px; line-height: 1.6; }
+.indicator-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px 16px; margin: 0; }
+.indicator-facts dt, .review-opinion span { color: var(--portal-muted, #6d5a65); font-size: 12px; }
+.indicator-facts dd { margin: 4px 0 0; font-size: 13px; }
+.review-opinion { margin: 12px 0 0; font-size: 13px; line-height: 1.7; }
+.review-opinion span { display: block; margin-bottom: 4px; }
+.detail-empty { color: var(--portal-muted, #6d5a65); font-size: 13px; }
+.month-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 168px), 1fr)); gap: 16px; padding: 16px 0; }
+.month-card { display: flex; flex-direction: column; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+.month-card strong { font-size: 13px; }
+.dependency-totals { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; padding: 16px; background: var(--portal-accent-surface, #f8ebf3); border-radius: 4px; }
+.dependency-totals strong { display: block; margin-top: 4px; color: var(--portal-ink, #2c1b26); font-size: 14px; overflow-wrap: anywhere; }
+.company-detail { font-variant-numeric: tabular-nums; }
+.company-detail :deep(button:focus-visible) { outline: 2px solid var(--portal-focus, #941966); outline-offset: 2px; }
+@container quarter-detail (max-width: 1180px) {
+  .detail-block { --detail-table-display: none; --detail-summary-display: block; --detail-toggle-display: inline-flex; }
+}
+@container quarter-detail (max-width: 600px) {
+  .dependency-totals { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 12px; }
+}
+@media (any-pointer: coarse) {
+  .company-detail :deep(.el-button) { min-height: 44px; }
+}

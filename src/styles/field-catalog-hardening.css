@@ -1,0 +1,26 @@
+.catalog-page .field-read-error,
+.field-versions-dialog .field-read-error {
+  display:flex; flex-wrap:wrap; align-items:center; gap:12px;
+  padding:12px 16px; margin-block:0 16px; border:1px solid #e8b4ae;
+  border-radius:6px; background:#fff5f4; color:#b42318;
+}
+.field-read-error p { flex:1 1 240px; margin:0; overflow-wrap:anywhere; }
+.field-read-status { color:#6d5a65; margin-block:12px; line-height:1.6; }
+.catalog-page .summary-row small { color:#b42318; }
+.catalog-page .page-heading > div,
+.catalog-page .summary-row > div { min-width:0; overflow-wrap:anywhere; }
+.catalog-page .accessible-data-table,
+.field-versions-dialog .accessible-data-table { min-width:0; max-width:100%; }
+.catalog-page .accessible-table-scroll > .field-catalog-table { min-width:1111px; }
+.catalog-page .accessible-table-scroll > .field-drafts-table { min-width:1031px; }
+.field-versions-dialog .accessible-table-scroll > .field-versions-table { min-width:806px; }
+.catalog-page .app-data-table .cell,
+.field-versions-dialog .app-data-table .cell { overflow-wrap:anywhere; max-width:36rem; }
+.catalog-page .el-pagination,
+.field-versions-dialog .el-pagination { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:12px; }
+.catalog-page .accessible-table-scroll:focus-visible,
+.field-versions-dialog .accessible-table-scroll:focus-visible { outline:2px solid #941966; outline-offset:2px; }
+html body .field-versions-dialog.el-dialog { max-height:calc(100vh - 32px); max-height:calc(100dvh - 32px); display:flex; flex-direction:column; }
+.field-versions-dialog .el-dialog__header { flex:0 0 auto; padding-inline-end:44px; }
+.field-versions-dialog .el-dialog__title { display:block; overflow-wrap:anywhere; }
+.field-versions-dialog .el-dialog__body { min-height:0; overflow:auto; }

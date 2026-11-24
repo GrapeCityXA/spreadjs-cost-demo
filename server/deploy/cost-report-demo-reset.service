@@ -1,0 +1,18 @@
+[Unit]
+Description=Reset cost report demo data while the backend is stopped
+
+[Service]
+Type=oneshot
+WorkingDirectory=/srv/cost-report
+# Use exactly the same storage environment as cost-report.service.
+EnvironmentFile=/etc/cost-report.env
+# Edit service name, account and absolute paths for the deployment.
+# Stop must complete before Node starts. On failure, later ExecStart lines
+# are not executed: the backend stays stopped for inspection/recovery.
+ExecStart=/usr/bin/systemctl is-active --quiet cost-report.service
+ExecStart=/usr/sbin/runuser --user costreport --preserve-environment -- /usr/bin/node /srv/cost-report/server/scripts/reset-demo.cjs --scheduled --showcase --dry-run
+ExecStart=/usr/bin/systemctl stop cost-report.service
+ExecStart=/usr/sbin/runuser --user costreport --preserve-environment -- /usr/bin/node /srv/cost-report/server/scripts/reset-demo.cjs --scheduled --showcase --apply --confirm-offline --retain 7
+ExecStart=/usr/bin/systemctl start cost-report.service
+TimeoutStartSec=30min
+UMask=0077
